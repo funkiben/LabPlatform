@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import lab.component.LabComponent;
 
