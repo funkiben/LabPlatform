@@ -17,8 +17,10 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 	private final JLabel valueField;
 	private String maximumValue;
 	private boolean showValue;
+	private boolean isVertical = false;
 	private double minValue;
 	private double maxValue;
+	
 
 	public SliderComponent(int width, int height, double min, double max, boolean showValueField) {
 		
@@ -30,6 +32,30 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 		maximumValue = "" + max;
 		minValue = min;
 		maxValue = max;
+	}
+	
+	public SliderComponent(int width, int height, double min, double max, boolean showValueField, boolean isVertical) {
+		this(width,height,min,max,showValueField);
+		this.isVertical = isVertical;
+		if (isVertical) {
+			slider.setOrientation(JSlider.VERTICAL);
+		} else {
+			slider.setOrientation(JSlider.HORIZONTAL);
+		}
+		
+	}
+	
+	public void setOrientation(boolean vertical) {
+		this.isVertical = vertical;
+		if (isVertical) {
+			slider.setOrientation(JSlider.VERTICAL);
+		} else {
+			slider.setOrientation(JSlider.HORIZONTAL);
+		}
+	}
+	
+	public boolean getOrientation() {
+		return isVertical;
 	}
 
 	public void setValue(double v) {
@@ -50,6 +76,22 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 		return slider;
 	}
 
+	public double getMinValue() {
+		return minValue;
+	}
+
+	public void setMinValue(double minValue) {
+		this.minValue = minValue;
+	}
+
+	public double getMaxValue() {
+		return maxValue;
+	}
+
+	public void setMaxValue(double maxValue) {
+		this.maxValue = maxValue;
+	}
+
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
 
@@ -65,7 +107,7 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 			
 			panel.add(slider);
 			
-			slider.setSize(width - fontMetrics.stringWidth(maximumValue), height);
+			slider.setSize(width - fontMetrics.stringWidth(maximumValue + "____"), height);
 			slider.setLocation(x, y);
 			slider.setEnabled(this.isActivated());
 			slider.setBackground(Color.white);
@@ -73,7 +115,7 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 			
 			panel.add(valueField);
 			
-			valueField.setSize(fontMetrics.stringWidth(maximumValue), height);
+			valueField.setSize(fontMetrics.stringWidth(maximumValue + "____"), height);
 			
 			valueField.setLocation(x + width - fontMetrics.stringWidth(maximumValue), y);
 			valueField.setVisible(true);
