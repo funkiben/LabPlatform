@@ -8,10 +8,11 @@ import lab.LabFrame;
 import lab.Vector2;
 import lab.component.fx.Particle;
 import lab.component.fx.ParticleSystem;
-import lab.component.fx.RandomDoubleGenerator;
 import lab.component.fx.RandomVector2Generator;
 
 public class ParticleTestLab extends LabFrame implements MouseMotionListener {
+	
+	private static final long serialVersionUID = 5498968999145696519L;
 
 	public static void main(String[] args) {
 		new ParticleTestLab();
