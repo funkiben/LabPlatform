@@ -16,6 +16,7 @@ public abstract class LabComponent implements Drawable {
 	private int offsetY = 0;
 	private boolean inputsDrawn = false;
 	private boolean visible = true;
+	private boolean useLayout = true;
 	private List<LabComponent> children = new ArrayList<LabComponent>();
 	
 	public LabComponent(int width, int height) {
@@ -92,6 +93,14 @@ public abstract class LabComponent implements Drawable {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
+	
+	public boolean canUseLayout() {
+		return useLayout;
+	}
+	
+	public void setUseLayout(boolean useLayout) {
+		this.useLayout = useLayout;
+	}
 
 	public void update() { // guarenteed to run at set fps
 		
@@ -109,6 +118,30 @@ public abstract class LabComponent implements Drawable {
 		
 		draw(px, py, w, h, g);
 		
+		if (useLayout) {
+			drawLayout(g, px, py, w, h, canvas, overMaxFPS);
+		} else {
+			drawFreely(g, px, py, w, h, canvas, overMaxFPS);
+		}
+		
+		redrawInputs = false;
+		
+		if (prevWidth == -1) {
+			prevWidth = canvas.getWidth();
+			prevHeight = canvas.getHeight();
+		} else {
+			
+			if (prevWidth != canvas.getWidth() || prevHeight != canvas.getHeight()) {
+				redrawInputs = true;
+			}
+			
+			prevWidth = canvas.getWidth();
+			prevHeight = canvas.getHeight();
+		}
+		
+	}
+	
+	private void drawLayout(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
 		int maxHeight = Integer.MIN_VALUE;
 		int x = 0, y = 0, swidth, sheight, sx, sy;
 		
@@ -150,22 +183,32 @@ public abstract class LabComponent implements Drawable {
 			}
 			
 		}
+	}
+	
+	private void drawFreely(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
+		int swidth, sheight, sx, sy;
 		
-		redrawInputs = false;
-		
-		if (prevWidth == -1) {
-			prevWidth = canvas.getWidth();
-			prevHeight = canvas.getHeight();
-		} else {
+		for (LabComponent c : children) {
 			
-			if (prevWidth != canvas.getWidth() || prevHeight != canvas.getHeight()) {
-				redrawInputs = true;
+			swidth = (int) ((double) c.getWidth() / width * w);
+			sheight = (int) ((double) c.getHeight() / height * h);
+			sx = (int) ((double) (c.getOffsetX()) / width * w) + px;
+			sy = (int) ((double) (c.getOffsetY()) / height * h) + py;
+			
+			if (c.isVisible()) {
+				c.draw(g, sx, sy, swidth, sheight, canvas, overMaxFPS);
 			}
 			
-			prevWidth = canvas.getWidth();
-			prevHeight = canvas.getHeight();
+			if (!overMaxFPS) {
+				c.update();
+			}
+			
+			if (!c.areInputsDrawn() || redrawInputs) {
+				c.drawInputs(sx, sy, swidth, sheight, canvas);
+				c.setInputsDrawn();
+			}
+			
 		}
-		
 	}
 	
 	public abstract void drawInputs(int x, int y, int width, int height, JPanel panel);
