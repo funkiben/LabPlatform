@@ -1,5 +1,6 @@
 package lab.component;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -239,6 +240,14 @@ public abstract class LabComponent implements Drawable {
 	
 	
 	public abstract void drawInputs(int x, int y, int width, int height, JPanel panel);
+	
+	public static void drawCenteredString(Graphics g, String str, int x, int y) {
+		FontMetrics metrics = g.getFontMetrics();
+		int width = metrics.stringWidth(str);
+		
+		g.drawString(str, x - width / 2, y);
+		
+	}
 	
 	
 }
