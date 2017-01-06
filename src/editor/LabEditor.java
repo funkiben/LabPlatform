@@ -9,7 +9,7 @@ public class LabEditor extends LabFrame {
 	public LabEditor() {
 		super("Lab Editor", 1500, 800);
 		
-		addComponent(new ComponentPicker());
+		addComponent(new ComponentPicker(1500, 800));
 		
 		start(30);
 		

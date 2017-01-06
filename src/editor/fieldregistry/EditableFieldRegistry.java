@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import lab.component.LabComponent;
-import lab.component.container.Beaker;
 import lab.component.input.InputComponent;
 
 public class EditableFieldRegistry {

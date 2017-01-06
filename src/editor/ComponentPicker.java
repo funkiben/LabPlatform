@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import editor.fieldregistry.EditableFieldRegistry;
 import lab.component.BunsenBurner;
 import lab.component.LabComponent;
 import lab.component.Piston;
@@ -61,16 +60,20 @@ public class ComponentPicker extends LabComponent {
 	
 	
 	
-	public ComponentPicker() {
-		super(180, 600);
+	public ComponentPicker(int width, int height) {
+		super(width, height);
 		
-		LabelComponent label = new LabelComponent(180, 20, "Component Picker");
+		LabelComponent label = new LabelComponent(100000, 20, "Component Picker");
 		
 		addChild(label);
 		
 		for (Class<? extends LabComponent> component : components) {
 			createButtonFor(component);
 		}
+		
+		setLayout(LabComponent.PARAGRAPH);
+		
+		setScaleChildren(false);
 		
 		
 	}
@@ -104,6 +107,7 @@ public class ComponentPicker extends LabComponent {
 	public void draw(int x, int y, int width, int height, Graphics g) {
 		g.setColor(Color.black);
 		g.drawRect(x, y, width, height);
+		
 	}
 
 	@Override

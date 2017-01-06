@@ -10,13 +10,17 @@ import draw.Drawable;
 
 public abstract class LabComponent implements Drawable {
 	
+	public static final byte FREE_FORM = 0;
+	public static final byte PARAGRAPH = 1;
+	
 	private int width;
 	private int height;
 	private int offsetX = 0;
 	private int offsetY = 0;
 	private boolean inputsDrawn = false;
 	private boolean visible = true;
-	private boolean useLayout = true;
+	private int layout = PARAGRAPH;
+	private boolean scaleChildren = true;
 	private List<LabComponent> children = new ArrayList<LabComponent>();
 	
 	public LabComponent(int width, int height) {
@@ -94,15 +98,23 @@ public abstract class LabComponent implements Drawable {
 		this.visible = visible;
 	}
 	
-	public boolean canUseLayout() {
-		return useLayout;
+	public int getLayout() {
+		return layout;
 	}
 	
-	public void setUseLayout(boolean useLayout) {
-		this.useLayout = useLayout;
+	public void setLayout(int layout) {
+		this.layout = layout;
+	}
+	
+	public boolean canScaleChildren() {
+		return scaleChildren;
+	}
+	
+	public void setScaleChildren(boolean scaleChildren) {
+		this.scaleChildren = scaleChildren;
 	}
 
-	public void update() { // guarenteed to run at set fps
+	public void update() { // guarenteed to run at constant fps
 		
 	}
 	
@@ -118,10 +130,10 @@ public abstract class LabComponent implements Drawable {
 		
 		draw(px, py, w, h, g);
 		
-		if (useLayout) {
-			drawLayout(g, px, py, w, h, canvas, overMaxFPS);
-		} else {
-			drawFreely(g, px, py, w, h, canvas, overMaxFPS);
+		if (layout == PARAGRAPH) {
+			drawParagraph(g, px, py, w, h, canvas, overMaxFPS);
+		} else if (layout == FREE_FORM) {
+			drawFreeForm(g, px, py, w, h, canvas, overMaxFPS);
 		}
 		
 		redrawInputs = false;
@@ -141,13 +153,13 @@ public abstract class LabComponent implements Drawable {
 		
 	}
 	
-	private void drawLayout(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
+	private void drawParagraph(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
 		int maxHeight = Integer.MIN_VALUE;
 		int x = 0, y = 0, swidth, sheight, sx, sy;
 		
 		for (LabComponent c : children) {
 			
-			if (x + c.getWidth() + c.getOffsetX() > width) {
+			if (x + c.getWidth() + c.getOffsetX() > (scaleChildren ? width : w)) {
 				if (maxHeight == Integer.MIN_VALUE) {
 					maxHeight = 0;
 				}
@@ -157,10 +169,17 @@ public abstract class LabComponent implements Drawable {
 				x = 0;
 			}
 			
-			swidth = (int) ((double) c.getWidth() / width * w);
-			sheight = (int) ((double) c.getHeight() / height * h);
-			sx = (int) ((double) (x + c.getOffsetX()) / width * w) + px;
-			sy = (int) ((double) (y + c.getOffsetY()) / height * h) + py;
+			if (scaleChildren) {
+				swidth = (int) ((double) c.getWidth() / width * w);
+				sheight = (int) ((double) c.getHeight() / height * h);
+				sx = (int) ((double) (x + c.getOffsetX()) / width * w) + px;
+				sy = (int) ((double) (y + c.getOffsetY()) / height * h) + py;
+			} else {
+				swidth = c.getWidth();
+				sheight = c.getHeight();
+				sx = x + c.getOffsetX() + px;
+				sy = y + c.getOffsetY() + py;
+			}
 			
 			if (c.isVisible()) {
 				c.draw(g, sx, sy, swidth, sheight, canvas, overMaxFPS);
@@ -185,15 +204,22 @@ public abstract class LabComponent implements Drawable {
 		}
 	}
 	
-	private void drawFreely(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
+	private void drawFreeForm(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
 		int swidth, sheight, sx, sy;
 		
 		for (LabComponent c : children) {
 			
-			swidth = (int) ((double) c.getWidth() / width * w);
-			sheight = (int) ((double) c.getHeight() / height * h);
-			sx = (int) ((double) (c.getOffsetX()) / width * w) + px;
-			sy = (int) ((double) (c.getOffsetY()) / height * h) + py;
+			if (scaleChildren) {
+				swidth = (int) ((double) c.getWidth() / width * w);
+				sheight = (int) ((double) c.getHeight() / height * h);
+				sx = (int) ((double) (c.getOffsetX()) / width * w) + px;
+				sy = (int) ((double) (c.getOffsetY()) / height * h) + py;
+			} else {
+				swidth = c.getWidth();
+				sheight = c.getHeight();
+				sx = c.getOffsetX() + px;
+				sy = c.getOffsetY() + py;
+			}
 			
 			if (c.isVisible()) {
 				c.draw(g, sx, sy, swidth, sheight, canvas, overMaxFPS);
@@ -210,6 +236,7 @@ public abstract class LabComponent implements Drawable {
 			
 		}
 	}
+	
 	
 	public abstract void drawInputs(int x, int y, int width, int height, JPanel panel);
 	
