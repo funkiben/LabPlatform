@@ -89,6 +89,10 @@ public abstract class LabComponent implements Drawable {
 	
 	public void redrawInputs() {
 		inputsDrawn = false;
+		
+		for (LabComponent child : children) {
+			child.redrawInputs();
+		}
 	}
 	
 	public boolean isVisible() {
@@ -97,6 +101,10 @@ public abstract class LabComponent implements Drawable {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+		
+		for (LabComponent child : children) {
+			child.setVisible(visible);
+		}
 	}
 	
 	public int getLayout() {

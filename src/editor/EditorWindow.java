@@ -9,7 +9,9 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import lab.component.EmptyComponent;
 import lab.component.LabComponent;
+import lab.component.input.ButtonComponent;
 
 public class EditorWindow extends LabComponent implements MouseListener, MouseMotionListener {
 	
@@ -17,13 +19,41 @@ public class EditorWindow extends LabComponent implements MouseListener, MouseMo
 	
 	private String name;
 	private boolean isBeingDragged = false;
+	private final LabComponent content;
+	private final LabComponent dragBar;
+	private final ButtonComponent closeButton;
 	
 	public EditorWindow(String name, int width, int height) {
 		super(width, height);
 		
 		this.name = name;
 		
+		dragBar = new EmptyComponent(width, DRAG_BAR_HEIGHT);
+		dragBar.setOffsetY(-DRAG_BAR_HEIGHT);
+		
+		final EditorWindow t = this;
+		
+		closeButton = new ButtonComponent(20, 20, "X") {
+			@Override
+			public void doSomething() {
+				t.setVisible(false);
+			}
+		};
+		
+		closeButton.setOffsetX(width - closeButton.getWidth());
+		closeButton.setOffsetY(0);
+		
+		dragBar.addChild(closeButton);
+		
+		content = new EmptyComponent(width, height);
+		
+		addChild(dragBar);
+		addChild(content);
+		
+		setLayout(FREE_FORM);
+		
 	}
+	
 	
 	public String getName() {
 		return name;
@@ -31,6 +61,10 @@ public class EditorWindow extends LabComponent implements MouseListener, MouseMo
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public LabComponent getContent() {
+		return content;
 	}
 
 	private Point relativeClick = null;
@@ -67,8 +101,14 @@ public class EditorWindow extends LabComponent implements MouseListener, MouseMo
 		}
 		
 		if (isBeingDragged && mousePosition != null) {
-			setOffsetX(mousePosition.x + relativeClick.x);
-			setOffsetY(mousePosition.y + relativeClick.y);
+			
+			if (mousePosition.x + relativeClick.x != getOffsetX() || mousePosition.y + relativeClick.y != getOffsetY()) {
+				setOffsetX(mousePosition.x + relativeClick.x);
+				setOffsetY(mousePosition.y + relativeClick.y);
+				
+				redrawInputs();
+			}
+			
 		}
 		
 	}
