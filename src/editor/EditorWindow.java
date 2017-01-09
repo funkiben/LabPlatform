@@ -111,6 +111,9 @@ public class EditorWindow extends LabComponent implements MouseListener, MouseMo
 			
 		}
 		
+		
+		
+		
 	}
 
 	@Override
