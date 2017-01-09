@@ -1,6 +1,7 @@
 package editor;
 
 import lab.LabFrame;
+import lab.component.LabComponent;
 
 public class LabEditor extends LabFrame {
 	
@@ -9,9 +10,15 @@ public class LabEditor extends LabFrame {
 	public LabEditor() {
 		super("Lab Editor", 1500, 800);
 		
-		addComponent(new ComponentPicker(1500, 800));
+		getRoot().setScaleChildren(false);
+		getRoot().setLayout(LabComponent.FREE_FORM);
 		
-		start(30);
+		EditorWindow testWindow = new EditorWindow("Test Window", 180, 360);
+		testWindow.getContent().addChild(new ComponentPicker(180, 360));
+		testWindow.setOffsetY(20);
+		addComponent(testWindow);
+		
+		start(60);
 		
 	}
 
