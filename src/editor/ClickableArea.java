@@ -14,7 +14,7 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	private int x, y, width, height;
 	private final LabComponent component;
 	private Point mousePosition = null;
-	private Point click = null;
+	private Point clickPosition = null;
 	private Point relativeClick = null;
 	private Point dragDelta = null;
 	private boolean hasClick = false;
@@ -64,8 +64,8 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 		return mousePosition;
 	}
 
-	public Point getClick() {
-		return click;
+	public Point getClickPosition() {
+		return clickPosition;
 	}
 
 	public boolean hasClick() {
@@ -79,25 +79,43 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	public Point getDragDelta() {
 		return dragDelta;
 	}
+	
+	public LabComponent getComponent() {
+		return component;
+	}
 
 	public void initializeMouseListeners(JPanel panel) {
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 	}
 	
-	public void check(LabComponent c, int sx, int sy, int sw, int sh) {
+	public void check(int sx, int sy, int sw, int sh) {
 		
 		hasClick = false;
 		
-		if (click != null) {
+		if (clickPosition != null) {
 			
-			double cx = (click.getX() - x) / width * sw + sx;
-			double cy = (click.getY() - y) / height * sh + sy;
+			double bx, by, bw, bh;
 			
-			if (cx >= x && cx <= x + width && cy >= y && cy <= y + height) {
+			if (sw != component.getWidth() && sh != component.getHeight()) {
+			
+				bx = (double) (x / component.getWidth()) * sw + sx;
+				by = (double) (y / component.getHeight()) * sh + sy;
+				
+				bw = (double) width / component.getWidth() * sw;
+				bh = (double) height / component.getHeight() * sh;
+				
+			} else {
+				bx = x + sx;
+				by = y + sy;
+				bw = width;
+				bh = height;
+			}
+			
+			if (clickPosition.x >= bx && clickPosition.x <= bx + bw && clickPosition.y >= by && clickPosition.y <= by + bh) {
 				hasClick = true;
 				hasDrag = true;
-				relativeClick = new Point(click.x - x, click.y - y);
+				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
 			}
 			
 		}
@@ -111,23 +129,29 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		click = e.getPoint();
+		clickPosition = e.getPoint();
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		click = null;
-		mousePosition = null;
 		hasDrag = false;
+		hasClick = false;
+		clickPosition = null;
+		mousePosition = null;
 	}
+	
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (click != null) {
+		if (clickPosition != null) {
 			mousePosition = e.getPoint();
 		}
 	}
-
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		mousePosition = e.getPoint();
+	}
 
 
 	@Override
@@ -136,7 +160,6 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	public void mouseEntered(MouseEvent e) { }
 	@Override
 	public void mouseExited(MouseEvent e) { }
-	@Override
-	public void mouseMoved(MouseEvent e) { }
+	
 	
 }
