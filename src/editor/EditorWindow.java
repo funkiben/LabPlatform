@@ -2,9 +2,11 @@ package editor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
+import lab.component.ClickableArea;
 import lab.component.EmptyComponent;
 import lab.component.LabComponent;
 import lab.component.input.ButtonComponent;
@@ -80,9 +82,11 @@ public class EditorWindow extends LabComponent {
 		
 		if (dragBarClickableArea.hasDrag()) {
 			
-			if (dragBarClickableArea.getDragDelta().x != getOffsetX() || dragBarClickableArea.getDragDelta().y != getOffsetY()) {
-				setOffsetX(dragBarClickableArea.getDragDelta().x);
-				setOffsetY(dragBarClickableArea.getDragDelta().y);
+			Point drag = dragBarClickableArea.getDragDelta();
+			
+			if (drag.x != getOffsetX() || drag.y != getOffsetY()) {
+				setOffsetX(drag.x);
+				setOffsetY(drag.y);
 
 				this.redrawInputs();
 			}
