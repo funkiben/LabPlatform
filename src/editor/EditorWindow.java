@@ -15,18 +15,33 @@ public class EditorWindow extends LabComponent {
 	
 	private static final int DRAG_BAR_HEIGHT = 20;
 	
+	private static final int RESIZE_DRAG_AREA = 5;
+	
+	
 	private String name;
 	private final LabComponent content;
 	private final LabComponent dragBar;
 	private final ButtonComponent closeButton;
-	private ClickableArea dragBarClickableArea;
+	private ClickableArea dragBarDragArea;
+	private ClickableArea WResizeDragArea;
+	private ClickableArea SWResizeDragArea;
+	private ClickableArea SResizeDragArea;
+	private ClickableArea SEResizeDragArea;
+	private ClickableArea EResizeDragArea;
 	
 	public EditorWindow(String name, int width, int height) {
 		super(width, height);
 		
 		this.name = name;
 		
-		dragBarClickableArea = new ClickableArea(this, 0, -DRAG_BAR_HEIGHT, width, DRAG_BAR_HEIGHT);
+		dragBarDragArea = new ClickableArea(this, 0, -DRAG_BAR_HEIGHT, width, DRAG_BAR_HEIGHT);
+		
+		/*
+		WResizeDragArea = new ClickableArea(this, -RESIZE_DRAG_AREA, 0, RESIZE_DRAG_AREA, height - RESIZE_DRAG_AREA);
+		SWResizeDragArea = new ClickableArea(this, -RESIZE_DRAG_AREA, height - RESIZE_DRAG_AREA, RESIZE_DRAG_AREA, height);
+		
+		SResizeDragArea = new ClickableArea(this, RESIZE_DRAG_AREA, , RESIZE_DRAG_AREA, height);
+		*/
 		
 		dragBar = new EmptyComponent(width, DRAG_BAR_HEIGHT);
 		dragBar.setOffsetY(-DRAG_BAR_HEIGHT);
@@ -78,17 +93,19 @@ public class EditorWindow extends LabComponent {
 		g.setColor(Color.gray);
 		g.drawRect(x, y, width, height);
 		
-		dragBarClickableArea.check(x, y, width, height);
 		
-		if (dragBarClickableArea.hasDrag()) {
+		
+		dragBarDragArea.check(x, y, width, height);
+		
+		if (dragBarDragArea.hasDrag()) {
 			
-			Point drag = dragBarClickableArea.getDragDelta();
+			Point drag = dragBarDragArea.getDragDelta();
 			
 			if (drag.x != getOffsetX() || drag.y != getOffsetY()) {
 				setOffsetX(drag.x);
 				setOffsetY(drag.y);
 
-				this.redrawInputs();
+				redrawInputs();
 			}
 			
 		}
@@ -100,7 +117,7 @@ public class EditorWindow extends LabComponent {
 
 	@Override
 	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
-		dragBarClickableArea.initializeMouseListeners(panel);
+		dragBarDragArea.initializeMouseListeners(panel);
 	}
 	
 	
