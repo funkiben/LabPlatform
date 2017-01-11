@@ -14,8 +14,7 @@ import lab.component.input.ButtonComponent;
 public class EditorWindow extends LabComponent {
 	
 	private static final int DRAG_BAR_HEIGHT = 20;
-	
-	private static final int RESIZE_DRAG_AREA = 5;
+	private static final int RESIZE_DRAG_AREA_SIZE = 5;
 	
 	
 	private String name;
@@ -23,11 +22,6 @@ public class EditorWindow extends LabComponent {
 	private final LabComponent dragBar;
 	private final ButtonComponent closeButton;
 	private ClickableArea dragBarDragArea;
-	private ClickableArea WResizeDragArea;
-	private ClickableArea SWResizeDragArea;
-	private ClickableArea SResizeDragArea;
-	private ClickableArea SEResizeDragArea;
-	private ClickableArea EResizeDragArea;
 	
 	public EditorWindow(String name, int width, int height) {
 		super(width, height);
@@ -36,12 +30,6 @@ public class EditorWindow extends LabComponent {
 		
 		dragBarDragArea = new ClickableArea(this, 0, -DRAG_BAR_HEIGHT, width, DRAG_BAR_HEIGHT);
 		
-		/*
-		WResizeDragArea = new ClickableArea(this, -RESIZE_DRAG_AREA, 0, RESIZE_DRAG_AREA, height - RESIZE_DRAG_AREA);
-		SWResizeDragArea = new ClickableArea(this, -RESIZE_DRAG_AREA, height - RESIZE_DRAG_AREA, RESIZE_DRAG_AREA, height);
-		
-		SResizeDragArea = new ClickableArea(this, RESIZE_DRAG_AREA, , RESIZE_DRAG_AREA, height);
-		*/
 		
 		dragBar = new EmptyComponent(width, DRAG_BAR_HEIGHT);
 		dragBar.setOffsetY(-DRAG_BAR_HEIGHT);
@@ -102,15 +90,13 @@ public class EditorWindow extends LabComponent {
 			Point drag = dragBarDragArea.getDragDelta();
 			
 			if (drag.x != getOffsetX() || drag.y != getOffsetY()) {
-				setOffsetX(drag.x);
-				setOffsetY(drag.y);
+				setOffsetX(dragBarDragArea.getMousePosition().x + dragBarDragArea.getClickRelativeToPosition().x);
+				setOffsetY(dragBarDragArea.getMousePosition().y + dragBarDragArea.getClickRelativeToPosition().y);
 
 				redrawInputs();
 			}
 			
 		}
-		
-		
 		
 		
 	}

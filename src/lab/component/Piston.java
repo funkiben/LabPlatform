@@ -96,11 +96,7 @@ public class Piston extends GraduatedComponent {
 			getGraduation().draw(g, width, height);
 		}
 		
-		dragArea.setY((int) (pistonY - pistonHeight));
-		dragArea.setHeight((int) pistonHeight);
-		dragArea.setWidth(width);
-		
-		dragArea.check(x, y, width, height);
+		dragArea.checkRaw(x, (int) (pistonY - pistonHeight) + y, width, (int) pistonHeight);
 		
 		
 		if (dragArea.hasDrag()) {

@@ -79,7 +79,11 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	}
 	
 	public Point getDragDelta() {
-		return new Point(mousePosition.x + relativeClick.x, mousePosition.y + relativeClick.y);
+		return new Point(mousePosition.x - relativeClick.x, mousePosition.y - relativeClick.y);
+	}
+	
+	public Point getClickRelativeToPosition() {
+		return relativeClick;
 	}
 	
 	public LabComponent getComponent() {
@@ -131,14 +135,31 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 			
 		}
 		
+	}
+	
+	public void checkRaw(int sx, int sy, int sw, int sh) {
 		
+		hasClick = false;
+		
+		if (clickPosition != null) {
+			
+			if (clickPosition.x >= sx && clickPosition.x <= sx + sw && clickPosition.y >= sy && clickPosition.y <= sy + sh) {
+				hasClick = true;
+				hasDrag = true;
+				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
+			}
+			
+		}
 		
 	}
 	
 	
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		clickPosition = e.getPoint();
+		if (!hasClick) {
+			clickPosition = e.getPoint();
+		}
 	}
 
 	@Override
