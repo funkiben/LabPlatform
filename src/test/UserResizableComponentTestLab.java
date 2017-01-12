@@ -19,6 +19,8 @@ public class UserResizableComponentTestLab extends LabFrame {
 		
 		addComponent(c);
 		
+		getRoot().setScaleChildren(false);
+		
 		start(60);
 	}
 

@@ -85,13 +85,15 @@ public class EditorWindow extends LabComponent {
 		
 		dragBarDragArea.check(x, y, width, height);
 		
-		if (dragBarDragArea.hasDrag()) {
+		if (dragBarDragArea.hasClick()) {
 			
-			Point drag = dragBarDragArea.getDragDelta();
+			Point newOffset = new Point();
+			newOffset.x = dragBarDragArea.getMousePosition().x + dragBarDragArea.getClickRelativeToPosition().x;
+			newOffset.y = dragBarDragArea.getMousePosition().y + dragBarDragArea.getClickRelativeToPosition().y;
 			
-			if (drag.x != getOffsetX() || drag.y != getOffsetY()) {
-				setOffsetX(dragBarDragArea.getMousePosition().x + dragBarDragArea.getClickRelativeToPosition().x);
-				setOffsetY(dragBarDragArea.getMousePosition().y + dragBarDragArea.getClickRelativeToPosition().y);
+			if (newOffset.x != getOffsetX() || newOffset.y != getOffsetY()) {
+				setOffsetX(newOffset.x);
+				setOffsetY(newOffset.y);
 
 				redrawInputs();
 			}

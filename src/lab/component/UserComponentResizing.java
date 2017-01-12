@@ -69,52 +69,78 @@ public class UserComponentResizing {
 		SW_dragArea = on ? new ClickableArea(component) : null;
 	}
 	
+	private int clickHeight = -1, clickWidth = -1;
+	
 	public void check(int x, int y, int width, int height) {
 		NE_dragArea.checkRaw(x + width - clickableAreaWidth, y - clickableAreaWidth, 2 * clickableAreaWidth, clickableAreaWidth * 2);
 		N_dragArea.checkRaw(x + clickableAreaWidth, y - clickableAreaWidth, width - 2 * clickableAreaWidth, clickableAreaWidth * 2);
 		NW_dragArea.checkRaw(x - clickableAreaWidth, y - clickableAreaWidth, 2 * clickableAreaWidth, clickableAreaWidth * 2);
 		W_dragArea.checkRaw(x - clickableAreaWidth, y + clickableAreaWidth, clickableAreaWidth * 2, height - clickableAreaWidth * 2);
 		SW_dragArea.checkRaw(x - clickableAreaWidth, y + height - clickableAreaWidth, clickableAreaWidth * 2, clickableAreaWidth * 2);
-		S_dragArea.checkRaw(x + clickableAreaWidth, y + height - clickableAreaWidth, width - clickableAreaWidth * 2, clickableAreaWidth * 2);
+		S_dragArea.checkRaw(x + clickableAreaWidth, y + height - clickableAreaWidth, width - 2 * clickableAreaWidth, clickableAreaWidth * 2);
 		SE_dragArea.checkRaw(x + width - clickableAreaWidth, y + height - clickableAreaWidth, clickableAreaWidth * 2, clickableAreaWidth * 2);
 		E_dragArea.checkRaw(x + width - clickableAreaWidth, y + clickableAreaWidth, clickableAreaWidth * 2, height - clickableAreaWidth * 2);
 		
-		if (NE_dragArea.hasDrag()) {
-			component.setWidth(NE_dragArea.getDragDelta().x - x);
-			component.setHeight(NE_dragArea.getDragDelta().y - y);
+		if (S_dragArea.hasClick() && SE_dragArea.hasClick()) {
+			System.out.println("tes");
 		}
 		
-		if (N_dragArea.hasDrag()) {
-			component.setHeight(N_dragArea.getDragDelta().y - y);
+		if (NE_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setWidth(NE_dragArea.getDragDelta().x + clickWidth);
+			component.setHeight(NE_dragArea.getDragDelta().y + clickHeight);
+			
+		} else if (N_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setHeight(clickHeight - (N_dragArea.getMousePosition().y - y));
+			component.setOffsetY(N_dragArea.getMousePosition().y + N_dragArea.getClickRelativeToPosition().y);
+			
+		} else if (NW_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setWidth(NW_dragArea.getDragDelta().x + clickWidth);
+			component.setHeight(NW_dragArea.getDragDelta().y + clickHeight);
+			
+		} else if (W_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setWidth(W_dragArea.getDragDelta().x + clickWidth);
+			
+		} else if (SW_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setWidth(SW_dragArea.getDragDelta().x + clickWidth);
+			component.setHeight(SW_dragArea.getDragDelta().y + clickHeight);
+			
+		} else if (S_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setHeight(S_dragArea.getDragDelta().y + clickHeight);
+			
+		} else if (SE_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setWidth(SE_dragArea.getDragDelta().x + clickWidth);
+			component.setHeight(SE_dragArea.getDragDelta().y + clickHeight);
+			
+		} else if (E_dragArea.hasClick()) {
+			setClickDimensions(width, height);
+			
+			component.setWidth(E_dragArea.getDragDelta().x + clickWidth);
+			
+		} else {
+			clickWidth = -1;
+			clickHeight = -1;
 		}
 		
-		if (NW_dragArea.hasDrag()) {
-			component.setWidth(NW_dragArea.getDragDelta().x - x);
-			component.setHeight(NW_dragArea.getDragDelta().y - y);
-		}
 		
-		if (W_dragArea.hasDrag()) {
-			component.setWidth(W_dragArea.getDragDelta().x - x);
-		}
-
-		if (SW_dragArea.hasDrag()) {
-			component.setWidth(SW_dragArea.getDragDelta().x - x);
-			component.setHeight(SW_dragArea.getDragDelta().y - y);
-		}
-		
-		if (S_dragArea.hasDrag()) {
-			component.setHeight(S_dragArea.getDragDelta().y - y);
-		}
-		
-		if (SE_dragArea.hasDrag()) {
-			component.setWidth(SE_dragArea.getDragDelta().x - x);
-			component.setHeight(SE_dragArea.getDragDelta().y - y);
-		}
-		
-
-		if (E_dragArea.hasDrag()) {
-			component.setWidth(E_dragArea.getDragDelta().x - x);
-		}
+	}
+	
+	private void setClickDimensions(int w, int h) {
+		clickWidth = clickWidth == -1 ? w : clickWidth;
+		clickHeight = clickHeight == -1 ? h : clickHeight;
 		
 	}
 	

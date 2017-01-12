@@ -99,7 +99,7 @@ public class Piston extends GraduatedComponent {
 		dragArea.checkRaw(x, (int) (pistonY - pistonHeight) + y, width, (int) pistonHeight);
 		
 		
-		if (dragArea.hasDrag()) {
+		if (dragArea.hasClick()) {
 			setValue(range - (double) (dragArea.getMousePosition().y - y) / height * range);
 		}
 		

@@ -15,7 +15,6 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	private Point clickPosition = null;
 	private Point relativeClick = null;
 	private boolean hasClick = false;
-	private boolean hasDrag = false;
 	private boolean scale = false;
 	
 	public ClickableArea(LabComponent component, int x, int y, int width, int height) {
@@ -73,17 +72,13 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	public boolean hasClick() {
 		return hasClick;
 	}
-
-	public boolean hasDrag() {
-		return hasDrag;
-	}
-	
-	public Point getDragDelta() {
-		return new Point(mousePosition.x - relativeClick.x, mousePosition.y - relativeClick.y);
-	}
 	
 	public Point getClickRelativeToPosition() {
 		return relativeClick;
+	}
+	
+	public Point getDragDelta() {
+		return new Point(mousePosition.x - clickPosition.x, mousePosition.y - clickPosition.y);
 	}
 	
 	public LabComponent getComponent() {
@@ -105,9 +100,8 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	
 	public void check(int sx, int sy, int sw, int sh) {
 		
-		hasClick = false;
 		
-		if (clickPosition != null) {
+		if (clickPosition != null && !hasClick) {
 			
 			double bx, by, bw, bh;
 			
@@ -127,9 +121,8 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 			}
 			
 			
-			if (clickPosition.x >= bx && clickPosition.x <= bx + bw && clickPosition.y >= by && clickPosition.y <= by + bh) {
+			if (clickPosition.x > bx && clickPosition.x < bx + bw && clickPosition.y > by && clickPosition.y < by + bh) {
 				hasClick = true;
-				hasDrag = true;
 				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
 			}
 			
@@ -139,13 +132,10 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	
 	public void checkRaw(int sx, int sy, int sw, int sh) {
 		
-		hasClick = false;
-		
-		if (clickPosition != null) {
+		if (clickPosition != null && !hasClick) {
 			
-			if (clickPosition.x >= sx && clickPosition.x <= sx + sw && clickPosition.y >= sy && clickPosition.y <= sy + sh) {
+			if (clickPosition.x > sx && clickPosition.x < sx + sw && clickPosition.y > sy && clickPosition.y < sy + sh) {
 				hasClick = true;
-				hasDrag = true;
 				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
 			}
 			
@@ -160,11 +150,11 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 		if (!hasClick) {
 			clickPosition = e.getPoint();
 		}
+		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		hasDrag = false;
 		hasClick = false;
 		clickPosition = null;
 		mousePosition = null;
