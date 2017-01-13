@@ -124,6 +124,8 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 			if (clickPosition.x > bx && clickPosition.x < bx + bw && clickPosition.y > by && clickPosition.y < by + bh) {
 				hasClick = true;
 				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
+			} else {
+				clickPosition = null;
 			}
 			
 		}
@@ -137,7 +139,10 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 			if (clickPosition.x > sx && clickPosition.x < sx + sw && clickPosition.y > sy && clickPosition.y < sy + sh) {
 				hasClick = true;
 				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
+			} else {
+				clickPosition = null;
 			}
+			
 			
 		}
 		

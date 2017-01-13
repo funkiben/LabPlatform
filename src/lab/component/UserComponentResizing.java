@@ -81,9 +81,6 @@ public class UserComponentResizing {
 		SE_dragArea.checkRaw(x + width - clickableAreaWidth, y + height - clickableAreaWidth, clickableAreaWidth * 2, clickableAreaWidth * 2);
 		E_dragArea.checkRaw(x + width - clickableAreaWidth, y + clickableAreaWidth, clickableAreaWidth * 2, height - clickableAreaWidth * 2);
 		
-		if (S_dragArea.hasClick() && SE_dragArea.hasClick()) {
-			System.out.println("tes");
-		}
 		
 		if (NE_dragArea.hasClick()) {
 			setClickDimensions(width, height);
@@ -94,8 +91,11 @@ public class UserComponentResizing {
 		} else if (N_dragArea.hasClick()) {
 			setClickDimensions(width, height);
 			
-			component.setHeight(clickHeight - (N_dragArea.getMousePosition().y - y));
-			component.setOffsetY(N_dragArea.getMousePosition().y + N_dragArea.getClickRelativeToPosition().y);
+			//component.setHeight(clickHeight - (N_dragArea.getMousePosition().y - y));
+			//component.setOffsetY(N_dragArea.getMousePosition().y + N_dragArea.getClickRelativeToPosition().y);
+			
+			component.setHeight(N_dragArea.getDragDelta().y + clickHeight);
+			
 			
 		} else if (NW_dragArea.hasClick()) {
 			setClickDimensions(width, height);
