@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import lab.component.ClickableArea;
 import lab.component.EmptyComponent;
 import lab.component.LabComponent;
+import lab.component.UserComponentResizing;
 import lab.component.input.ButtonComponent;
 
 public class EditorWindow extends LabComponent {
@@ -22,6 +23,7 @@ public class EditorWindow extends LabComponent {
 	private final LabComponent dragBar;
 	private final ButtonComponent closeButton;
 	private ClickableArea dragBarDragArea;
+	private final UserComponentResizing resizing = new UserComponentResizing(this, 20, 20);
 	
 	public EditorWindow(String name, int width, int height) {
 		super(width, height);
@@ -55,6 +57,11 @@ public class EditorWindow extends LabComponent {
 		
 		setLayout(FREE_FORM);
 		
+		resizing.setClickableAreaWidth(RESIZE_DRAG_AREA_SIZE);
+		resizing.enableNDrag(false);
+		resizing.enableNEDrag(false);
+		resizing.enableNWDrag(false);
+		
 	}
 	
 	
@@ -70,6 +77,22 @@ public class EditorWindow extends LabComponent {
 		return content;
 	}
 	
+	public int getMinWidth() {
+		return resizing.getMinWidth();
+	}
+	
+	public void setMinWidth(int minWidth) {
+		resizing.setMinWidth(minWidth);
+	}
+
+	public int getMinHeight() {
+		return resizing.getMinHeight();
+	}
+
+	public void setMinHeight(int minHeight) {
+		resizing.setMinHeight(minHeight);
+	}
+
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
 		g.setColor(Color.black);
@@ -100,12 +123,13 @@ public class EditorWindow extends LabComponent {
 			
 		}
 		
-		
+		resizing.check(x, y, width, height);
 	}
 
 	@Override
 	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
 		dragBarDragArea.initializeMouseListeners(panel);
+		resizing.initializeMouseListeners(panel);
 	}
 	
 	
