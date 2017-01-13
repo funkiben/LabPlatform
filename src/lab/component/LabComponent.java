@@ -3,6 +3,8 @@ package lab.component;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -18,11 +20,14 @@ public abstract class LabComponent implements Drawable {
 	private int height;
 	private int offsetX = 0;
 	private int offsetY = 0;
+	private int zOrder = 0;
 	private boolean inputsDrawn = false;
 	private boolean visible = true;
 	private int layout = PARAGRAPH;
 	private boolean scaleChildren = true;
 	private List<LabComponent> children = new ArrayList<LabComponent>();
+	private LabComponent parent = null;
+	private boolean needsChildSort = false;
 	
 	public LabComponent(int width, int height) {
 		this.width = width;
@@ -30,7 +35,10 @@ public abstract class LabComponent implements Drawable {
 	}
 	
 	public void addChild(LabComponent component) {
+		component.parent = this;
 		children.add(component);
+		
+		needsChildSort = true;
 	}
 
 	public void addChild(LabComponent...components) {
@@ -41,10 +49,16 @@ public abstract class LabComponent implements Drawable {
 	
 	public void removeChild(LabComponent component) {
 		children.remove(component);
+		
+		needsChildSort = true;
 	}
 	
 	public List<LabComponent> getChildren() {
 		return new ArrayList<LabComponent>(children);
+	}
+	
+	public LabComponent getParent() {
+		return parent;
 	}
 	
 	public void setWidth(int width) {
@@ -77,6 +91,18 @@ public abstract class LabComponent implements Drawable {
 
 	public void setOffsetY(int offsetY) {
 		this.offsetY = offsetY;
+	}
+	
+	public int getZOrder() {
+		return zOrder;
+	}
+
+	public void setZOrder(int zOrder) {
+		this.zOrder = zOrder;
+		
+		if (parent != null) {
+			parent.needsChildSort = true;
+		}
 	}
 	
 	public void setInputsDrawn() {
@@ -137,6 +163,11 @@ public abstract class LabComponent implements Drawable {
 			update();
 		}
 		
+		if (needsChildSort) {
+			sortChildren();
+			needsChildSort = false;
+		}
+		
 		draw(px, py, w, h, g);
 		
 		if (layout == PARAGRAPH) {
@@ -160,6 +191,15 @@ public abstract class LabComponent implements Drawable {
 			prevHeight = canvas.getHeight();
 		}
 		
+	}
+	
+	private void sortChildren() {
+		Collections.sort(children, new Comparator<LabComponent>() {
+			@Override
+			public int compare(LabComponent c1, LabComponent c2) {
+				return c1.getZOrder() - c2.getZOrder();
+			}
+		});
 	}
 	
 	private void drawParagraph(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {

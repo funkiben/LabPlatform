@@ -15,6 +15,7 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 	private Point clickPosition = null;
 	private Point relativeClick = null;
 	private boolean hasClick = false;
+	private boolean hasHover = false;
 	private boolean scale = false;
 	
 	public ClickableArea(LabComponent component, int x, int y, int width, int height) {
@@ -73,6 +74,10 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 		return hasClick;
 	}
 	
+	public boolean hasHover() {
+		return hasHover;
+	}
+	
 	public Point getClickRelativeToPosition() {
 		return relativeClick;
 	}
@@ -103,25 +108,7 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 		
 		if (clickPosition != null && !hasClick) {
 			
-			double bx, by, bw, bh;
-			
-			if (sw != component.getWidth() && sh != component.getHeight() && scale) {
-			
-				bx = ((double) x / component.getWidth()) * sw + sx;
-				by = ((double) y / component.getHeight()) * sh + sy;
-				
-				bw = (double) width / component.getWidth() * sw;
-				bh = (double) height / component.getHeight() * sh;
-				
-			} else {
-				bx = x + sx;
-				by = y + sy;
-				bw = width;
-				bh = height;
-			}
-			
-			
-			if (clickPosition.x > bx && clickPosition.x < bx + bw && clickPosition.y > by && clickPosition.y < by + bh) {
+			if (isInBounds1(clickPosition, sx, sy, sw, sh)) {
 				hasClick = true;
 				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
 			} else {
@@ -130,13 +117,42 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 			
 		}
 		
+		if (mousePosition != null) {
+			hasHover = isInBounds1(mousePosition, sx, sy, sw, sh);
+		}
+		
+	}
+	
+	private boolean isInBounds1(Point p, int sx, int sy, int sw, int sh) {
+		double bx, by, bw, bh;
+		
+		if (sw != component.getWidth() && sh != component.getHeight() && scale) {
+		
+			bx = ((double) x / component.getWidth()) * sw + sx;
+			by = ((double) y / component.getHeight()) * sh + sy;
+			
+			bw = (double) width / component.getWidth() * sw;
+			bh = (double) height / component.getHeight() * sh;
+			
+		} else {
+			bx = x + sx;
+			by = y + sy;
+			bw = width;
+			bh = height;
+		}
+		
+		return isInBounds2(p, bx, by, bw, bh);
+	}
+	
+	private boolean isInBounds2(Point p, double sx, double sy, double sw, double sh) {
+		return p.x > sx && p.x < sx + sw && p.y > sy && p.y < sy + sh;
 	}
 	
 	public void checkRaw(int sx, int sy, int sw, int sh) {
 		
 		if (clickPosition != null && !hasClick) {
 			
-			if (clickPosition.x > sx && clickPosition.x < sx + sw && clickPosition.y > sy && clickPosition.y < sy + sh) {
+			if (isInBounds2(clickPosition, sx, sy, sw, sh)) {
 				hasClick = true;
 				relativeClick = new Point(sx - clickPosition.x, sy - clickPosition.y);
 			} else {
@@ -146,7 +162,12 @@ public class ClickableArea implements MouseInputListener, MouseMotionListener {
 			
 		}
 		
+		if (mousePosition != null) {
+			hasHover = isInBounds2(mousePosition, sx, sy, sw, sh);
+		}
+		
 	}
+	
 	
 	
 	

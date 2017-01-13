@@ -3,7 +3,7 @@ package lab.component;
 import javax.swing.JPanel;
 
 public class UserComponentResizing {
-
+	
 	private final LabComponent component;
 	private int clickableAreaWidth = 5;
 	private ClickableArea N_dragArea;
