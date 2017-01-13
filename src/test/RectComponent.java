@@ -10,7 +10,7 @@ import lab.component.UserComponentResizing;
 
 public class RectComponent extends LabComponent {
 	
-	private final UserComponentResizing resize = new UserComponentResizing(this);
+	private final UserComponentResizing resize = new UserComponentResizing(this, 10, 10);
 	
 	public RectComponent(int width, int height) {
 		super(width, height);
