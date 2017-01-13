@@ -27,15 +27,30 @@ public abstract class LabComponent implements Drawable {
 	private boolean scaleChildren = true;
 	private List<LabComponent> children = new ArrayList<LabComponent>();
 	private LabComponent parent = null;
+	private LabComponent root = null;
 	private boolean needsChildSort = false;
+	private int lastDrawX = 0;
+	private int lastDrawY = 0;
+	private int lastDrawWidth = 0;
+	private int lastDrawHeight = 0;
 	
 	public LabComponent(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}
 	
+	private void updateRoot() {
+		root = getRoot(this);
+		
+		for (LabComponent c : children) {
+			c.updateRoot();
+		}
+	}
+	
 	public void addChild(LabComponent component) {
 		component.parent = this;
+		component.updateRoot();
+		
 		children.add(component);
 		
 		needsChildSort = true;
@@ -49,6 +64,8 @@ public abstract class LabComponent implements Drawable {
 	
 	public void removeChild(LabComponent component) {
 		children.remove(component);
+		component.parent = null;
+		component.updateRoot();
 		
 		needsChildSort = true;
 	}
@@ -59,6 +76,10 @@ public abstract class LabComponent implements Drawable {
 	
 	public LabComponent getParent() {
 		return parent;
+	}
+	
+	public LabComponent getRoot() {
+		return root;
 	}
 	
 	public void setWidth(int width) {
@@ -149,6 +170,54 @@ public abstract class LabComponent implements Drawable {
 		this.scaleChildren = scaleChildren;
 	}
 
+	public int getLastDrawX() {
+		return lastDrawX;
+	}
+
+	public void setLastDrawX(int lastDrawX) {
+		this.lastDrawX = lastDrawX;
+	}
+
+	public int getLastDrawY() {
+		return lastDrawY;
+	}
+
+	public void setLastDrawY(int lastDrawY) {
+		this.lastDrawY = lastDrawY;
+	}
+
+	public int getLastDrawWidth() {
+		return lastDrawWidth;
+	}
+
+	public void setLastDrawWidth(int lastDrawWidth) {
+		this.lastDrawWidth = lastDrawWidth;
+	}
+
+	public int getLastDrawHeight() {
+		return lastDrawHeight;
+	}
+
+	public void setLastDrawHeight(int lastDrawHeight) {
+		this.lastDrawHeight = lastDrawHeight;
+	}
+
+	public boolean isPointCovered(int x, int y, int z) {
+		for (LabComponent c : children) {
+			if (c.contains(x, y)) {
+				if (c.getZOrder() > z) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean contains(int x, int y) {
+		return x >= lastDrawX && x <= lastDrawX + lastDrawWidth && y >= lastDrawY && y <= lastDrawY + lastDrawHeight;
+	}
+	
 	public void update() { // guarenteed to run at constant fps
 		
 	}
@@ -159,6 +228,11 @@ public abstract class LabComponent implements Drawable {
 	private boolean redrawInputs = false;
 	
 	public void draw(Graphics g, int px, int py, int w, int h, JPanel canvas, boolean overMaxFPS) {
+		lastDrawX = px;
+		lastDrawY = py;
+		lastDrawWidth = w;
+		lastDrawHeight = h;
+		
 		if (!overMaxFPS) {
 			update();
 		}
@@ -230,18 +304,17 @@ public abstract class LabComponent implements Drawable {
 				sy = y + c.getOffsetY() + py;
 			}
 			
+			if (!c.areInputsDrawn() || redrawInputs) {
+				c.drawInputs(sx, sy, swidth, sheight, canvas);
+				c.setInputsDrawn();
+			}
+			
 			if (c.isVisible()) {
 				c.draw(g, sx, sy, swidth, sheight, canvas, overMaxFPS);
-				
 			}
 			
 			if (!overMaxFPS) {
 				c.update();
-			}
-			
-			if (!c.areInputsDrawn() || redrawInputs) {
-				c.drawInputs(sx, sy, swidth, sheight, canvas);
-				c.setInputsDrawn();
 			}
 			
 			x += c.getWidth() + c.getOffsetX();
@@ -270,17 +343,17 @@ public abstract class LabComponent implements Drawable {
 				sy = c.getOffsetY() + py;
 			}
 			
+			if (!c.areInputsDrawn() || redrawInputs) {
+				c.drawInputs(sx, sy, swidth, sheight, canvas);
+				c.setInputsDrawn();
+			}
+			
 			if (c.isVisible()) {
 				c.draw(g, sx, sy, swidth, sheight, canvas, overMaxFPS);
 			}
 			
 			if (!overMaxFPS) {
 				c.update();
-			}
-			
-			if (!c.areInputsDrawn() || redrawInputs) {
-				c.drawInputs(sx, sy, swidth, sheight, canvas);
-				c.setInputsDrawn();
 			}
 			
 		}
@@ -296,6 +369,19 @@ public abstract class LabComponent implements Drawable {
 		g.drawString(str, x - width / 2, y);
 		
 	}
+	
+	private static LabComponent getRoot(LabComponent p) {
+		if (p.root != null) {
+			return p.root;
+		}
+		
+		if (p.parent != null) {
+			return getRoot(p.parent);
+		} else {
+			return p;
+		}
+	}
+
 	
 	
 }
