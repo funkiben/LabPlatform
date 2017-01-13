@@ -69,7 +69,7 @@ public class UserComponentResizing {
 		SW_dragArea = on ? new ClickableArea(component) : null;
 	}
 	
-	private int clickHeight = -1, clickWidth = -1;
+	private int clickHeight = -1, clickWidth = -1, clickOffsetX = -1, clickOffsetY = -1;
 	
 	public void check(int x, int y, int width, int height) {
 		NE_dragArea.checkRaw(x + width - clickableAreaWidth, y - clickableAreaWidth, 2 * clickableAreaWidth, clickableAreaWidth * 2);
@@ -83,65 +83,78 @@ public class UserComponentResizing {
 		
 		
 		if (NE_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
 			component.setWidth(NE_dragArea.getDragDelta().x + clickWidth);
-			component.setHeight(NE_dragArea.getDragDelta().y + clickHeight);
+			component.setHeight(-NE_dragArea.getDragDelta().y + clickHeight);
+			
+			component.setOffsetY(NE_dragArea.getDragDelta().y + clickOffsetY);
+			
 			
 		} else if (N_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
-			//component.setHeight(clickHeight - (N_dragArea.getMousePosition().y - y));
-			//component.setOffsetY(N_dragArea.getMousePosition().y + N_dragArea.getClickRelativeToPosition().y);
+			component.setHeight(-N_dragArea.getDragDelta().y + clickHeight);
 			
-			component.setHeight(N_dragArea.getDragDelta().y + clickHeight);
+			component.setOffsetY(N_dragArea.getDragDelta().y + clickOffsetY);
 			
 			
 		} else if (NW_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
-			component.setWidth(NW_dragArea.getDragDelta().x + clickWidth);
-			component.setHeight(NW_dragArea.getDragDelta().y + clickHeight);
+			component.setWidth(-NW_dragArea.getDragDelta().x + clickWidth);
+			component.setHeight(-NW_dragArea.getDragDelta().y + clickHeight);
+			
+			component.setOffsetX(NW_dragArea.getDragDelta().x + clickOffsetX);
+			component.setOffsetY(NW_dragArea.getDragDelta().y + clickOffsetY);
+			
 			
 		} else if (W_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
-			component.setWidth(W_dragArea.getDragDelta().x + clickWidth);
+			component.setWidth(-W_dragArea.getDragDelta().x + clickWidth);
+			
+			component.setOffsetX(W_dragArea.getDragDelta().x + clickOffsetX);
 			
 		} else if (SW_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
-			component.setWidth(SW_dragArea.getDragDelta().x + clickWidth);
+			component.setWidth(-SW_dragArea.getDragDelta().x + clickWidth);
 			component.setHeight(SW_dragArea.getDragDelta().y + clickHeight);
 			
+			component.setOffsetX(SW_dragArea.getDragDelta().x + clickOffsetX);
+			
 		} else if (S_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
 			component.setHeight(S_dragArea.getDragDelta().y + clickHeight);
 			
 		} else if (SE_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
 			component.setWidth(SE_dragArea.getDragDelta().x + clickWidth);
 			component.setHeight(SE_dragArea.getDragDelta().y + clickHeight);
 			
 		} else if (E_dragArea.hasClick()) {
-			setClickDimensions(width, height);
+			setClickState(width, height);
 			
 			component.setWidth(E_dragArea.getDragDelta().x + clickWidth);
 			
 		} else {
 			clickWidth = -1;
 			clickHeight = -1;
+			clickOffsetX = -1;
+			clickOffsetY = -1;
 		}
 		
 		
 	}
 	
-	private void setClickDimensions(int w, int h) {
+	private void setClickState(int w, int h) {
 		clickWidth = clickWidth == -1 ? w : clickWidth;
 		clickHeight = clickHeight == -1 ? h : clickHeight;
-		
+		clickOffsetX = clickOffsetX == -1 ? component.getOffsetX() : clickOffsetX;
+		clickOffsetY = clickOffsetY == -1 ? component.getOffsetY() : clickOffsetY;
 	}
 	
 	public void initializeMouseListeners(JPanel panel) {
