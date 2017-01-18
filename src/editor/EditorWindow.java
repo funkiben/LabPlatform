@@ -46,7 +46,7 @@ public class EditorWindow extends LabComponent {
 		};
 		
 		closeButton.setOffsetX(width - closeButton.getWidth());
-		closeButton.setOffsetY(1);
+		closeButton.setOffsetY(0);
 		
 		dragBar.addChild(closeButton);
 		
@@ -61,6 +61,7 @@ public class EditorWindow extends LabComponent {
 		resizing.enableNDrag(false);
 		resizing.enableNEDrag(false);
 		resizing.enableNWDrag(false);
+		
 		
 	}
 	
@@ -104,7 +105,8 @@ public class EditorWindow extends LabComponent {
 		g.setColor(Color.gray);
 		g.drawRect(x, y, width, height);
 		
-		
+		dragBarDragArea.setWidth(width);
+		closeButton.setOffsetX(width - closeButton.getWidth());
 		
 		dragBarDragArea.check(x, y, width, height);
 		
@@ -124,6 +126,10 @@ public class EditorWindow extends LabComponent {
 		}
 		
 		resizing.check(x, y, width, height);
+		
+		if (resizing.hasDrag()) {
+			redrawInputs();
+		}
 	}
 
 	@Override
