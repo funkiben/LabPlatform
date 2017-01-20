@@ -73,7 +73,7 @@ public class ComponentPicker extends LabComponent {
 		
 		setLayout(LabComponent.PARAGRAPH);
 		
-		//setScaleChildren(false);
+		setScaleChildren(false);
 		
 		
 	}

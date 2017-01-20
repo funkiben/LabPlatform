@@ -33,10 +33,14 @@ public abstract class LabComponent implements Drawable {
 	private int lastDrawY = 0;
 	private int lastDrawWidth = 0;
 	private int lastDrawHeight = 0;
+	private final int startingWidth;
+	private final int startingHeight;
 	
 	public LabComponent(int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.startingWidth = width;
+		this.startingHeight = height;
 	}
 	
 	private void updateRoot() {
@@ -201,6 +205,14 @@ public abstract class LabComponent implements Drawable {
 	public void setLastDrawHeight(int lastDrawHeight) {
 		this.lastDrawHeight = lastDrawHeight;
 	}
+	
+	public double getWidthScale() {
+		return (double) width / startingWidth;
+	}
+	
+	public double getHeightScale() {
+		return (double) height / startingHeight;
+	}
 
 	public boolean isPointCovered(int x, int y, int z) {
 		for (LabComponent c : children) {
@@ -293,8 +305,8 @@ public abstract class LabComponent implements Drawable {
 			}
 			
 			if (scaleChildren) {
-				swidth = (int) ((double) c.getWidth() / width * w);
-				sheight = (int) ((double) c.getHeight() / height * h);
+				swidth = (int) ((double) c.getWidth() / width * w * getWidthScale());
+				sheight = (int) ((double) c.getHeight() / height * h * getHeightScale());
 				sx = (int) ((double) (x + c.getOffsetX()) / width * w) + px;
 				sy = (int) ((double) (y + c.getOffsetY()) / height * h) + py;
 			} else {
@@ -332,8 +344,8 @@ public abstract class LabComponent implements Drawable {
 		for (LabComponent c : children) {
 			
 			if (scaleChildren) {
-				swidth = (int) ((double) c.getWidth() / width * w);
-				sheight = (int) ((double) c.getHeight() / height * h);
+				swidth = (int) ((double) c.getWidth() / width * w * getWidthScale());
+				sheight = (int) ((double) c.getHeight() / height * h * getHeightScale());
 				sx = (int) ((double) (c.getOffsetX()) / width * w) + px;
 				sy = (int) ((double) (c.getOffsetY()) / height * h) + py;
 			} else {

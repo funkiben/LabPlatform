@@ -30,11 +30,12 @@ public class EditorWindow extends LabComponent {
 		
 		this.name = name;
 		
-		dragBarDragArea = new ClickableArea(this, 0, -DRAG_BAR_HEIGHT, width, DRAG_BAR_HEIGHT);
+		dragBarDragArea = new ClickableArea(this);
 		
 		
 		dragBar = new EmptyComponent(width, DRAG_BAR_HEIGHT);
 		dragBar.setOffsetY(-DRAG_BAR_HEIGHT);
+		dragBar.setScaleChildren(false);
 		
 		final EditorWindow t = this;
 		
@@ -105,10 +106,9 @@ public class EditorWindow extends LabComponent {
 		g.setColor(Color.gray);
 		g.drawRect(x, y, width, height);
 		
-		dragBarDragArea.setWidth(width);
 		closeButton.setOffsetX(width - closeButton.getWidth());
 		
-		dragBarDragArea.check(x, y, width, height);
+		dragBarDragArea.checkRaw(x, y - DRAG_BAR_HEIGHT, width, DRAG_BAR_HEIGHT);
 		
 		if (dragBarDragArea.hasClick()) {
 			
