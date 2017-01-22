@@ -285,7 +285,7 @@ public class ParticleSystem extends LabComponent {
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 		// TODO Auto-generated method stub
 		
 	}

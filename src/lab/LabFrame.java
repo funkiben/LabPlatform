@@ -36,7 +36,7 @@ public abstract class LabFrame extends JFrame {
 			@Override
 			public void draw(int x, int y, int w, int h, Graphics g) { }
 			@Override
-			public void drawInputs(int x, int y, int width, int height, JPanel panel) { }
+			public void drawJComponents(int x, int y, int width, int height, JPanel panel) { }
 		};
 		
 		inst = this;

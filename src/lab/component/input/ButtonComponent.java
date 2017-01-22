@@ -44,7 +44,7 @@ public abstract class ButtonComponent extends InputComponent {
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 		panel.add(button);
 		button.setSize(width, height);
 		button.setLocation(x, y);

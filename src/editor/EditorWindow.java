@@ -114,7 +114,7 @@ public class EditorWindow extends LabComponent {
 			
 			Point newOffset = new Point();
 			newOffset.x = dragBarDragArea.getMousePosition().x + dragBarDragArea.getClickRelativeToPosition().x;
-			newOffset.y = dragBarDragArea.getMousePosition().y + dragBarDragArea.getClickRelativeToPosition().y;
+			newOffset.y = dragBarDragArea.getMousePosition().y + dragBarDragArea.getClickRelativeToPosition().y + DRAG_BAR_HEIGHT;
 			
 			if (newOffset.x != getOffsetX() || newOffset.y != getOffsetY()) {
 				setOffsetX(newOffset.x);
@@ -133,7 +133,7 @@ public class EditorWindow extends LabComponent {
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 		dragBarDragArea.initializeMouseListeners(panel);
 		resizing.initializeMouseListeners(panel);
 	}

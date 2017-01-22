@@ -14,6 +14,6 @@ public class EmptyComponent extends LabComponent {
 	public void draw(int x, int y, int width, int height, Graphics g) { }
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) { }
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) { }
 
 }

@@ -33,7 +33,7 @@ public abstract class DropdownComponent extends LabComponent implements ActionLi
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 		dropdown.setSize(width, height);
 		dropdown.setLocation(x, y);
 		dropdown.addActionListener(this);

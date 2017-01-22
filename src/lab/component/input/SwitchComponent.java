@@ -47,7 +47,7 @@ public class SwitchComponent extends InputComponent implements ChangeListener {
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 		
 		if (showValue) {
 			

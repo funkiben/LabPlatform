@@ -21,7 +21,7 @@ public abstract class LabComponent implements Drawable {
 	private int offsetX = 0;
 	private int offsetY = 0;
 	private int zOrder = 0;
-	private boolean inputsDrawn = false;
+	private boolean jComponentsDrawn = false;
 	private boolean visible = true;
 	private int layout = PARAGRAPH;
 	private boolean scaleChildren = true;
@@ -131,15 +131,15 @@ public abstract class LabComponent implements Drawable {
 	}
 	
 	public void setInputsDrawn() {
-		inputsDrawn = true;
+		jComponentsDrawn = true;
 	}
 	
 	public boolean areInputsDrawn() {
-		return inputsDrawn;
+		return jComponentsDrawn;
 	}
 	
 	public void redrawInputs() {
-		inputsDrawn = false;
+		jComponentsDrawn = false;
 		
 		for (LabComponent child : children) {
 			child.redrawInputs();
@@ -317,7 +317,7 @@ public abstract class LabComponent implements Drawable {
 			}
 			
 			if (!c.areInputsDrawn() || redrawInputs) {
-				c.drawInputs(sx, sy, swidth, sheight, canvas);
+				c.drawJComponents(sx, sy, swidth, sheight, canvas);
 				c.setInputsDrawn();
 			}
 			
@@ -356,7 +356,7 @@ public abstract class LabComponent implements Drawable {
 			}
 			
 			if (!c.areInputsDrawn() || redrawInputs) {
-				c.drawInputs(sx, sy, swidth, sheight, canvas);
+				c.drawJComponents(sx, sy, swidth, sheight, canvas);
 				c.setInputsDrawn();
 			}
 			
@@ -372,7 +372,7 @@ public abstract class LabComponent implements Drawable {
 	}
 	
 	
-	public abstract void drawInputs(int x, int y, int width, int height, JPanel panel);
+	public abstract void drawJComponents(int x, int y, int width, int height, JPanel panel);
 	
 	public static void drawCenteredString(Graphics g, String str, int x, int y) {
 		FontMetrics metrics = g.getFontMetrics();

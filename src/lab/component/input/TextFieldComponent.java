@@ -59,7 +59,7 @@ public class TextFieldComponent extends InputComponent {
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 
 		panel.add(textField);
 

@@ -48,7 +48,7 @@ public class LabelComponent extends InputComponent {
 	}
 
 	@Override
-	public void drawInputs(int x, int y, int width, int height, JPanel panel) {
+	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
 		panel.remove(label);
 		panel.add(label);
 		label.setSize(width, height);
