@@ -15,7 +15,7 @@ public class TextFieldComponent extends InputComponent {
 
 		super(width, height);
 		textField = new JFormattedTextField(createFormatter(buildDecimal(nonDecimal, decimal)));
-
+		textField.setColumns(10);
 	}
 
 	protected MaskFormatter createFormatter(String s) {
@@ -51,24 +51,6 @@ public class TextFieldComponent extends InputComponent {
 		} catch(Exception e) {
 			textField.setValue(0);
 		}
-	}
-	
-	@Override
-	public void draw(int x, int y, int width, int height, Graphics g) {
-
-	}
-
-	@Override
-	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
-
-		panel.add(textField);
-
-		textField.setColumns(10);
-		textField.setSize(width, height);
-		textField.setLocation(x, y);
-		textField.setEnabled(this.isActivated());
-		
-
 	}
 
 	public void setMinMax(int min, int max) {

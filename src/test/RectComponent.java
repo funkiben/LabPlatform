@@ -30,7 +30,7 @@ public class RectComponent extends LabComponent {
 	}
 
 	@Override
-	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
+	public void initJPanel(JPanel panel) {
 		resize.initializeMouseListeners(panel);
 	}
 

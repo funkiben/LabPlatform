@@ -119,21 +119,15 @@ public class EditorWindow extends LabComponent {
 			if (newOffset.x != getOffsetX() || newOffset.y != getOffsetY()) {
 				setOffsetX(newOffset.x);
 				setOffsetY(newOffset.y);
-
-				redrawInputs();
 			}
 			
 		}
 		
 		resizing.check(x, y, width, height);
-		
-		if (resizing.hasDrag()) {
-			redrawInputs();
-		}
 	}
 
 	@Override
-	public void drawJComponents(int x, int y, int width, int height, JPanel panel) {
+	public void initJPanel(JPanel panel) {
 		dragBarDragArea.initializeMouseListeners(panel);
 		resizing.initializeMouseListeners(panel);
 	}

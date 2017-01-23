@@ -364,6 +364,8 @@ public class UserComponentResizing {
 					currentlyHasHovering = null;
 					resetCursor();
 				}
+			} else {
+				resetCursor();
 			}
 		}
 	}
