@@ -101,7 +101,7 @@ public class EditorWindow extends LabComponent {
 		g.fillRect(x, y - DRAG_BAR_HEIGHT, width, DRAG_BAR_HEIGHT);
 		
 		g.setColor(Color.white);
-		drawCenteredString(g, name, x + width / 2, y - DRAG_BAR_HEIGHT / 2);
+		drawCenteredString(g, name, x + width / 2, y - DRAG_BAR_HEIGHT / 3);
 		
 		g.setColor(Color.gray);
 		g.drawRect(x, y, width, height);
