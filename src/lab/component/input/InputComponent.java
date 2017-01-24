@@ -4,7 +4,9 @@ import java.awt.Component;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import lab.LabFrame;
 import lab.component.LabComponent;
 
 public abstract class InputComponent extends LabComponent {
@@ -33,21 +35,23 @@ public abstract class InputComponent extends LabComponent {
 	}
 	
 	@Override
-	public void draw(int x, int y, int width, int height, Graphics g) {
+	public void draw(final int x, final int y, final int width, final int height, Graphics g) {
 		
-		if (getLastDrawWidth() != -1) {
-			
-			if (getLastDrawWidth() != width || getLastDrawHeight() != height || getLastDrawX() != x || getLastDrawY() != y) {
-				refreshJComponent = true;
-			}
-			
+		if (getLastDrawWidth() != width || getLastDrawHeight() != height || getLastDrawX() != x || getLastDrawY() != y) {
+			refreshJComponent = true;
 		}
 		
 		if (refreshJComponent) {
-			getJComponent().setLocation(x, y);
-			getJComponent().setSize(width, height);
-			getJComponent().setEnabled(enabled);
-			getJComponent().doLayout();
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					getJComponent().setLocation(x, y);
+					getJComponent().setSize(width, height);
+					getJComponent().setEnabled(enabled);
+					getJComponent().doLayout();
+					LabFrame.inst.getDrawCanvas().repaint();
+				}
+			});
 			refreshJComponent = false;
 		}
 	}
