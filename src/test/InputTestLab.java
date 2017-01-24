@@ -1,8 +1,7 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.input.LabelSliderComponent;
-import lab.component.input.SliderComponent;
+import lab.component.input.TextFieldComponent;
 
 public class InputTestLab extends LabFrame {
 	
@@ -16,13 +15,10 @@ public class InputTestLab extends LabFrame {
 	public InputTestLab() {
 		super("Input Test Lab", 800, 800);
 		
-		LabelSliderComponent slider = new LabelSliderComponent(300, 100, 0.0f, 1.0f, 0.01f, 3, SliderComponent.HORIZONTAL);
-		
-		slider.addValueLabel(0.5f, "middle");
-		slider.addValueLabel(0.0f, "start");
-		slider.addValueLabel(1.0f, "end");
-		
-		addComponent(slider);
+	
+		addComponent(new TextFieldComponent(100, 20, "####"));
+		addComponent(new TextFieldComponent(100, 20, "####"));
+		addComponent(new TextFieldComponent(100, 20, "####"));
 		
 		
 		
