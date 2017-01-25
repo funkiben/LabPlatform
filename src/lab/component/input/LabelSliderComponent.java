@@ -14,7 +14,7 @@ public class LabelSliderComponent extends SliderComponent {
 		
 		setLayout(FREE_FORM);
 		
-		label = new LabelComponent(width / 3, height);
+		label = new LabelComponent(width / 4, height);
 		label.setOffsetX(width);
 		label.setOffsetY(-10);
 		

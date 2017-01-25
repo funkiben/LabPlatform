@@ -1,5 +1,6 @@
 package lab.component;
 
+import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ public abstract class LabComponent implements Drawable {
 	private final int startingWidth;
 	private final int startingHeight;
 	private boolean jPanelInitCalled = false;
+	private boolean showBorder = false;
+	private Color borderColor = Color.black;
 	
 	public LabComponent(int width, int height) {
 		this.width = width;
@@ -181,6 +184,22 @@ public abstract class LabComponent implements Drawable {
 	public double getHeightScaleRatio() {
 		return (double) height / startingHeight;
 	}
+	
+	public void setShowBorder(boolean showBorder) {
+		this.showBorder = showBorder;
+	}
+	
+	public boolean canShowBorder() {
+		return showBorder;
+	}
+	
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	public void setBorderColor(Color borderColor) {
+		this.borderColor = borderColor;
+	}
 
 	public boolean isPointCovered(int x, int y, int z) {
 		for (LabComponent c : children) {
@@ -228,6 +247,11 @@ public abstract class LabComponent implements Drawable {
 		if (needsChildSort) {
 			sortChildren();
 			needsChildSort = false;
+		}
+		
+		if (showBorder) {
+			g.setColor(borderColor);
+			g.drawRect(px, py, w, h);
 		}
 		
 		draw(px, py, w, h, g);

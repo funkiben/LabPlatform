@@ -20,7 +20,7 @@ public class LabEditor extends LabFrame {
 		testWindow.setMinHeight(360);
 		addComponent(testWindow);
 		
-		start(60);
+		start(30);
 		
 	}
 

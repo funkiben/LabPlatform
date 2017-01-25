@@ -112,7 +112,7 @@ public class Manometer extends GraduatedComponent {
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
 		g.setColor(Color.black);
-		g.drawString("atm", x, y - 5);
+		g.drawString("1 atm", x, y - 5);
 		g.drawString("gas", x + width / 3 * 2, y - 5);
 		
 		if (canShowValue()) {
