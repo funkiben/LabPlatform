@@ -2,12 +2,12 @@ package lab;
 
 public class SigFig {
 	
-	
+	/*
 	public static void main(String[] args) {
 		System.out.println(sigfigalize(2, 4, 1));
 
 	}
-	
+	*/
 	
 	
 	public static String sigfigalize(double num, int sigfigs) {
