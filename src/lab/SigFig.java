@@ -4,12 +4,16 @@ public class SigFig {
 	
 	/*
 	public static void main(String[] args) {
-		System.out.println(sigfigalize(400, 3));
+		System.out.println(sigfigalize(4000, 3, 0));
 
 	}
 	*/
 	
 	public static String sigfigalize(double num, int sigfigs) {
+		return sigfigalize(num, sigfigs, 1);
+	}
+	
+	public static String sigfigalize(double num, int sigfigs, int scientificNotationStart) {
 		
 		if (num == 0) {
 			return "0";
@@ -38,7 +42,7 @@ public class SigFig {
 		}
 		
 		int places;
-		if (num > 1) {
+		if (num > scientificNotationStart) {
 			places = (int) Math.log10(num);
 		} else {
 			places = (int) Math.floor(Math.log10(num));
@@ -53,7 +57,7 @@ public class SigFig {
 		
 		
 		
-		if (isNear0(places)) {
+		if (Math.abs(places - 0) <= scientificNotationStart) {
 			
 			strNum = Float.toString((float) (num * Math.pow(10, places)));
 			
@@ -88,10 +92,6 @@ public class SigFig {
 			return strNum;
 		}
 		
-	}
-	
-	private static boolean isNear0(int n) {
-		return n == 0 || n == 1 || n == -1;
 	}
 	
 	private static int getSigFigs(double num) {
