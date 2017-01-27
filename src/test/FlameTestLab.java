@@ -12,9 +12,7 @@ public class FlameTestLab extends LabFrame {
 		new FlameTestLab();
 
 	}
-	
-	//test change
-	
+		
 	public FlameTestLab() {
 		super("Flame Test", 400, 400);
 		
