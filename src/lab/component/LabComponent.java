@@ -36,8 +36,7 @@ public abstract class LabComponent implements Drawable {
 	private final int startingWidth;
 	private final int startingHeight;
 	private boolean jPanelInitCalled = false;
-	private boolean showBorder = false;
-	private Color borderColor = Color.black;
+	private boolean showBounds = false;
 	
 	public LabComponent(int width, int height) {
 		this.width = width;
@@ -185,22 +184,14 @@ public abstract class LabComponent implements Drawable {
 		return (double) height / startingHeight;
 	}
 	
-	public void setShowBorder(boolean showBorder) {
-		this.showBorder = showBorder;
+	public void setShowBounds(boolean showBounds) {
+		this.showBounds = showBounds;
 	}
 	
-	public boolean canShowBorder() {
-		return showBorder;
+	public boolean canShowBounds() {
+		return showBounds;
 	}
 	
-	public Color getBorderColor() {
-		return borderColor;
-	}
-
-	public void setBorderColor(Color borderColor) {
-		this.borderColor = borderColor;
-	}
-
 	public boolean isPointCovered(int x, int y, int z) {
 		for (LabComponent c : children) {
 			if (c.contains(x, y)) {
@@ -249,8 +240,8 @@ public abstract class LabComponent implements Drawable {
 			needsChildSort = false;
 		}
 		
-		if (showBorder) {
-			g.setColor(borderColor);
+		if (showBounds) {
+			g.setColor(Color.black);
 			g.drawRect(px, py, w, h);
 		}
 		

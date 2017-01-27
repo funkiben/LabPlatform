@@ -2,6 +2,8 @@ package lab.component.fx;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import lab.Vector2;
 import lab.component.LabComponent;
@@ -21,6 +23,7 @@ public class ParticleSystem extends LabComponent {
 	private RandomColorGenerator color = new RandomColorGenerator(0, 0, 0);
 	private RandomDoubleGenerator colorFade = new RandomDoubleGenerator(0.1);
 	private RandomDoubleGenerator lifetime = new RandomDoubleGenerator(100);
+	private List<Vector2[]> collidableEdges = new ArrayList<Vector2[]>();
 	private int shape = Particle.RECTANGLE;
 	private Color[] colors = new Color[] { Color.white };
 	private final Particle[] particles;
@@ -194,6 +197,14 @@ public class ParticleSystem extends LabComponent {
 
 	public void setColors(Color...colors) {
 		this.colors = colors;
+	}
+	
+	public void addCollidableEdge(Vector2 p1, Vector2 p2) {
+		collidableEdges.add(new Vector2[] { p1, p2 });
+	}
+	
+	public void clearCollidableEdges() {
+		collidableEdges.clear();
 	}
 	
 	public boolean isOn() {
