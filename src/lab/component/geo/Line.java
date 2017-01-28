@@ -12,6 +12,11 @@ public class Line extends LabComponent {
 
 	public Line(int startX, int startY, int endX, int endY) {
 		super(0, 0);
+		
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
 	}
 
 	public Color getColor() {

@@ -7,6 +7,10 @@ public class Oval extends GeoComponent {
 	public Oval(int width, int height) {
 		super(width, height);
 	}
+	
+	public Oval(int x, int y, int width, int height) {
+		super(x, y, width, height);
+	}
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {

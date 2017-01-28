@@ -15,6 +15,13 @@ public abstract class GeoComponent extends LabComponent {
 		super(width, height);
 	}
 	
+	public GeoComponent(int x, int y, int width, int height) {
+		super(width, height);
+		
+		setOffsetX(x);
+		setOffsetY(y);
+	}
+	
 	public Color getStrokeColor() {
 		return strokeColor;
 	}
