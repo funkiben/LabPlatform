@@ -24,6 +24,7 @@ public class ParticleSystem extends LabComponent {
 	private RandomDoubleGenerator colorFade = new RandomDoubleGenerator(0.1);
 	private RandomDoubleGenerator lifetime = new RandomDoubleGenerator(100);
 	private List<Vector2[]> collidableEdges = new ArrayList<Vector2[]>();
+	private double friction = 1.0;
 	private int shape = Particle.RECTANGLE;
 	private Color[] colors = new Color[] { Color.white };
 	private final Particle[] particles;
@@ -205,6 +206,18 @@ public class ParticleSystem extends LabComponent {
 	
 	public void clearCollidableEdges() {
 		collidableEdges.clear();
+	}
+	
+	public List<Vector2[]> getCollidableEdges() {
+		return collidableEdges;
+	}
+	
+	public void setFriction(double friction) {
+		this.friction = friction;
+	}
+	
+	public double getFriction() {
+		return friction;
 	}
 	
 	public boolean isOn() {

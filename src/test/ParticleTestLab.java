@@ -9,6 +9,7 @@ import lab.Vector2;
 import lab.component.fx.Particle;
 import lab.component.fx.ParticleSystem;
 import lab.component.fx.RandomVector2Generator;
+import lab.component.geo.Line;
 
 public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 	
@@ -42,6 +43,26 @@ public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 		particles.setParticleSpawnRate(0.1);
 		
 		particles.setShape(Particle.ELLIPSE);
+		
+		particles.setFriction(0.5);
+		
+		Vector2 v1 = new Vector2(100, 0).add(400, 400);
+		Vector2 v2;
+		for (int i = 0; i <= 50; i++) {
+			double deg = i / 50.0 * 360.0;
+			v2 = new Vector2(100, 0).rotate(deg).add(400, 400);
+			particles.addCollidableEdge(v1, v2);
+			addComponent(new Line((int) v1.getX(), (int) v1.getY(), (int) v2.getX(), (int) v2.getY()));
+			v1 = v2;
+		}
+		
+		v1 = new Vector2(0, 275);
+		for (int i = 0; i <= 100; i++) {
+			v2 = new Vector2(i * (1.0 / 100.0 * 800.0), Math.sin(i / 10.0) * 50).add(0, 275);
+			particles.addCollidableEdge(v1, v2);
+			addComponent(new Line((int) v1.getX(), (int) v1.getY(), (int) v2.getX(), (int) v2.getY()));
+			v1 = v2;
+		}
 		
 		particles.start();
 		

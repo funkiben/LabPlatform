@@ -110,6 +110,11 @@ public class Vector2 {
 		return new Vector2((x / length) * newLength, (y / length) * newLength);
 	}
 	
+	public double dot(Vector2 other) {
+		//return x * other.y + y * other.x;
+		return x * other.x + y * other.y;
+	}
+	
 	@Override
 	public String toString() {
 		return x + "," + y;
