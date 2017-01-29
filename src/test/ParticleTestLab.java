@@ -48,8 +48,8 @@ public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 		
 		Vector2 v1 = new Vector2(100, 0).add(400, 400);
 		Vector2 v2;
-		for (int i = 0; i <= 50; i++) {
-			double deg = i / 50.0 * 360.0;
+		for (int i = 0; i <= 51; i++) {
+			double deg = i / 51.0 * 360.0;
 			v2 = new Vector2(100, 0).rotate(deg).add(400, 400);
 			particles.addCollidableEdge(v1, v2);
 			addComponent(new Line((int) v1.getX(), (int) v1.getY(), (int) v2.getX(), (int) v2.getY()));
