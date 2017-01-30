@@ -204,6 +204,10 @@ public class ParticleSystem extends LabComponent {
 		collidableEdges.add(new Vector2[] { p1, p2 });
 	}
 	
+	public void addCollidableEdge(double x1, double y1, double x2, double y2) {
+		addCollidableEdge(new Vector2(x1, y1), new Vector2(x2, y2));
+	}
+	
 	public void clearCollidableEdges() {
 		collidableEdges.clear();
 	}

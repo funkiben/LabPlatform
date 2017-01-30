@@ -10,6 +10,7 @@ public class RandomVector2Generator {
 	private Vector2 start;
 	private Vector2 end;
 	private int type;
+	private boolean randomDirectionOnly = false;
 	
 	public RandomVector2Generator(Vector2 start, Vector2 end, int type) {
 		this.start = start;
@@ -64,6 +65,14 @@ public class RandomVector2Generator {
 	public boolean noRange() {
 		return getRangeX() == 0 && getRangeY() == 0;
 	}
+	
+	public void setRandomDirectionOnly(boolean randomDirectionOnly) {
+		this.randomDirectionOnly = randomDirectionOnly;
+	}
+	
+	public boolean isRandomDirectionOnly() {
+		return randomDirectionOnly;
+	}
 
 	public Vector2 getRandomVector2() {
 		
@@ -75,8 +84,22 @@ public class RandomVector2Generator {
 		
 		if (type == RECTANGLE) {
 			
-			x = Math.random() * getRangeX() + start.getX();
-			y = Math.random() * getRangeY() + start.getY();
+			if (!randomDirectionOnly) {
+				
+				x = Math.random() * getRangeX() + start.getX();
+				y = Math.random() * getRangeY() + start.getY();
+				
+			} else {
+				
+				if (Math.random() < 0.5) {
+					x = Math.random() * getRangeX() + start.getX();
+					y = Math.random() < 0.5 ? end.getY() : start.getY();
+				} else {
+					y = Math.random() * getRangeY() + start.getY();
+					x = Math.random() < 0.5 ? end.getX() : start.getX();
+				}
+				
+			}
 			
 			return new Vector2(x, y);
 			
@@ -90,9 +113,23 @@ public class RandomVector2Generator {
 			
 			radiusSqrt = Math.sqrt(Math.random());
 			
-			x = radiusSqrt * Math.cos(theta) * w2 + (start.getX() + end.getX()) / 2;
-			y = radiusSqrt * Math.sin(theta) * h2 + (start.getY() + end.getY()) / 2;
-			
+			if (!randomDirectionOnly) {
+				
+				x = radiusSqrt * Math.cos(theta) * w2 + (start.getX() + end.getX()) / 2;
+				y = radiusSqrt * Math.sin(theta) * h2 + (start.getY() + end.getY()) / 2;
+				
+			} else {
+				
+				if (Math.random() < 0.5) {
+					x = radiusSqrt * Math.cos(theta) * w2 + (start.getX() + end.getX()) / 2;
+					y = (Math.random() < 0.5 ? -1 : 1) * Math.sin(theta) * h2 + (start.getY() + end.getY()) / 2;
+				} else {
+					x = (Math.random() < 0.5 ? -1 : 1) * Math.cos(theta) * w2 + (start.getX() + end.getX()) / 2;
+					y = radiusSqrt * Math.sin(theta) * h2 + (start.getY() + end.getY()) / 2;
+				}
+				
+			}
+				
 			return new Vector2(x, y);
 		}
 		

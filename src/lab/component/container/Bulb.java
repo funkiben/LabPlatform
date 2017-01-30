@@ -14,6 +14,8 @@ public class Bulb extends Container {
 	private static final int OPENING_WIDTH = 5;
 	private static final int OPENING_HEIGHT = 10;
 	
+	private final List<Point[]> innerEdges = new ArrayList<Point[]>();
+	
 	public Bulb(int size) {
 		super(size, size);
 		
@@ -135,6 +137,20 @@ public class Bulb extends Container {
 		
 		//getGraduation().draw(g);
 		
+		innerEdges.clear();
+		
+		for (int i = 1; i < polyX1.length; i++) {
+			innerEdges.add(new Point[] { new Point(polyX1[i], polyY1[i]), new Point(polyX1[i - 1], polyY1[i - 1]) });
+		}
+		
+		for (int i = 1; i < polyX2.length; i++) {
+			innerEdges.add(new Point[] { new Point(polyX2[i], polyY2[i]), new Point(polyX2[i - 1], polyY2[i - 1]) });
+		}
+		
+	}
+	
+	public List<Point[]> getInnerEdges() {
+		return innerEdges;
 	}
 	
 	public static Point rotate(Point p, double angle)
