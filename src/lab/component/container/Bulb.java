@@ -153,8 +153,7 @@ public class Bulb extends Container {
 		return innerEdges;
 	}
 	
-	public static Point rotate(Point p, double angle)
-	{
+	public static Point rotate(Point p, double angle) {
 		angle = angle / 180.0 * Math.PI;
 		double s = Math.sin(angle);
 		double c = Math.cos(angle);
