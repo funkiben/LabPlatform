@@ -80,6 +80,33 @@ public class Particle {
 		this.active = false;
 	}
 	
+	private void checkForCollisions() {
+		Vector2 newPosition = position.add(velocity);
+		Vector2[] collisionEdge = null;
+		
+		for (Vector2[] edge : system.getCollidableEdges()) {
+			if (getLineIntersectionPoint(position, newPosition, edge[0], edge[1]) != null) {
+				collisionEdge = edge;
+				break;
+			}
+		}
+		
+		if (collisionEdge == null) {
+			return;
+		}
+		
+		double m = (collisionEdge[1].getY() - collisionEdge[0].getY()) / (collisionEdge[1].getX() - collisionEdge[0].getX());
+		m = 1.0 / -m;
+		
+		Vector2 n = new Vector2(1, m);
+		
+		Vector2 u = n.multiply(velocity.dot(n) / n.dot(n));
+		Vector2 w = velocity.subtract(u);
+		
+		velocity = w.multiply(system.getFriction()).subtract(u.multiply(system.getFriction()));
+	}
+	
+	
 	void update() {
 		if (!active) {
 			return;
@@ -90,6 +117,10 @@ public class Particle {
 		if (life >= lifetime) {
 			active = false;
 			return;
+		}
+		
+		if (system.getCollidableEdges().size() > 0) {
+			checkForCollisions();
 		}
 		
 		position = position.add(velocity);
@@ -125,6 +156,49 @@ public class Particle {
 			g.fillOval((int) dx - (int) (dw / 2), (int) dy - (int) (dh / 2), (int) dw, (int) dh);
 		}
 		
+	}
+	
+	private static Vector2 getLineIntersectionPoint(Vector2 v1, Vector2 v2, Vector2 v3, Vector2 v4) {
+
+		double x1, y1, x2, y2, x3, y3, x4, y4;
+
+		x1 = v1.getX();
+		y1 = v1.getY();
+		x2 = v2.getX();
+		y2 = v2.getY();
+		x3 = v3.getX();
+		y3 = v3.getY();
+		x4 = v4.getX();
+		y4 = v4.getY();
+
+		if (y1 == y2) {
+			x1 += 0.001;
+		}
+
+		if (y3 == y4) {
+			x3 += 0.001;
+		}
+
+		if (x1 == x2) {
+			y1 += 0.001;
+		}
+
+		if (x3 == x4) {
+			y3 += 0.001;
+		}
+
+		double denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
+		if (denom == 0.0) { // Lines are parallel.
+			return null;
+		}
+		double ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
+		double ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
+		if (ua >= 0.0f && ua <= 1.0f && ub >= 0.0f && ub <= 1.0f) {
+			// Get the intersection point.
+			return new Vector2(x1 + ua * (x2 - x1), y1 + ua * (y2 - y1));
+		}
+
+		return null;
 	}
 
 }

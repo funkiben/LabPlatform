@@ -4,10 +4,11 @@ public class SigFig {
 	
 	/*
 	public static void main(String[] args) {
-		System.out.println(sigfigalize(4000, 3, 0));
+		System.out.println(sigfigalize(2, 4, 1));
 
 	}
 	*/
+	
 	
 	public static String sigfigalize(double num, int sigfigs) {
 		return sigfigalize(num, sigfigs, 1);
@@ -63,13 +64,17 @@ public class SigFig {
 			
 			int figs = getSigFigs(num * Math.pow(10, places));
 			
-			String zeros = "";
-			
-			for (int i = 0; i <= sigfigs - figs; i++) {
-				zeros += "0";
+			if (figs < sigfigs + 1) {
+				String zeros = "";
+				
+				for (int i = 0; i <= sigfigs - figs; i++) {
+					zeros += "0";
+				}
+				
+				strNum += zeros;
+			} else if (figs > sigfigs + 1 && strNum.endsWith(".0")) {
+				strNum = strNum.substring(0, strNum.length() - 2);
 			}
-			
-			strNum += zeros;
 			
 			return strNum;
 			
@@ -77,17 +82,23 @@ public class SigFig {
 			
 			int figs = getSigFigs(num);
 			
-			String zeros = "";
-			
-			for (int i = 0; i <= sigfigs - figs; i++) {
-				zeros += "0";
-			}
-			
 			strNum = Float.toString((float) (num));
 			
-			strNum += zeros;
-			
+			if (figs < sigfigs + 1) {
+				String zeros = "";
+				
+				for (int i = 0; i <= sigfigs - figs; i++) {
+					zeros += "0";
+				}
+				
+				strNum += zeros;
+				
+			} else if (figs > sigfigs + 1 && strNum.endsWith(".0")) {
+				strNum = strNum.substring(0, strNum.length() - 2);
+			}
+				
 			strNum += "E" + places;
+				
 			
 			return strNum;
 		}
