@@ -139,13 +139,15 @@ public class Bulb extends Container {
 		
 		innerEdges.clear();
 		
-		for (int i = 1; i < polyX1.length; i++) {
+		for (int i = 5; i < polyX1.length; i++) {
 			innerEdges.add(new Point[] { new Point(polyX1[i], polyY1[i]), new Point(polyX1[i - 1], polyY1[i - 1]) });
 		}
 		
-		for (int i = 1; i < polyX2.length; i++) {
+		for (int i = 5; i < polyX2.length; i++) {
 			innerEdges.add(new Point[] { new Point(polyX2[i], polyY2[i]), new Point(polyX2[i - 1], polyY2[i - 1]) });
 		}
+		
+		innerEdges.add(new Point[] { innerEdges.get(innerEdges.size() - 1)[0], innerEdges.get(innerEdges.size() / 2 - 1)[0] });
 		
 	}
 	

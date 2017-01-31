@@ -1,7 +1,5 @@
 package lab.component.fx;
 
-import java.awt.Point;
-
 import lab.Vector2;
 
 public class RandomVector2Generator {
