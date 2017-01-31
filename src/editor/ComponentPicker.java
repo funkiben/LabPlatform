@@ -9,7 +9,7 @@ import lab.component.BunsenBurner;
 import lab.component.LabComponent;
 import lab.component.Piston;
 import lab.component.container.Beaker;
-import lab.component.container.Bulb;
+import lab.component.container.BulbLEGACY;
 import lab.component.container.Flask;
 import lab.component.container.GraduatedCylinder;
 import lab.component.fx.Flame;
@@ -31,7 +31,7 @@ public class ComponentPicker extends LabComponent {
 		BunsenBurner.class,
 		Piston.class,
 		Beaker.class,
-		Bulb.class,
+		BulbLEGACY.class,
 		Flask.class,
 		GraduatedCylinder.class,
 		ParticleSystem.class,

@@ -80,12 +80,7 @@ public class Particle {
 		this.active = false;
 	}
 	
-	public Vector2 getCenter() {
-		return new Vector2(position.getX() - width / 2.0, position.getY() - height / 2.0);
-	}
-	
 	private void checkForCollisions() {
-		Vector2 position = getCenter();
 		Vector2 newPosition = position.add(velocity);
 		Vector2[] collisionEdge = null;
 		
