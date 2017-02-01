@@ -95,6 +95,14 @@ public class Particle {
 			return;
 		}
 		
+		if (collisionEdge[0].getY() == collisionEdge[1].getY()) {
+			collisionEdge[0] = collisionEdge[0].add(0, 0.01);
+		}
+		
+		if (collisionEdge[0].getX() == collisionEdge[1].getX()) {
+			collisionEdge[0] = collisionEdge[0].add(0.01, 0);
+		}
+		
 		double m = (collisionEdge[1].getY() - collisionEdge[0].getY()) / (collisionEdge[1].getX() - collisionEdge[0].getX());
 		m = 1.0 / -m;
 		

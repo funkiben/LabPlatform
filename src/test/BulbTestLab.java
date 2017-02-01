@@ -25,7 +25,6 @@ public class BulbTestLab extends LabFrame {
 		bulb.setOffsetY(200);
 		bulb.setContentState(ContentState.LIQUID);
 		bulb.setContentColor(Color.green);
-		bulb.setShowBounds(true);
 		addComponent(bulb);
 		
 		bulb.setValue(50);

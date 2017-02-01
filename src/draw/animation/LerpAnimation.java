@@ -32,7 +32,7 @@ public abstract class LerpAnimation<E> extends Animation<E> {
 		this.minDistance = minDistance;
 	}
 	
-	protected static double lerp(double v1, double v2, float f) {
+	public static double lerp(double v1, double v2, float f) {
 		return (v2 - v1) * f + v1;
 	}
 	

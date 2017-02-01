@@ -228,6 +228,22 @@ public class ParticleSystem extends LabComponent {
 		return on;
 	}
 	
+	public int getActiveParticles() {
+		int n = 0;
+		
+		for (Particle p : particles) {
+			if (p.isActive()) {
+				n++;
+			}
+		}
+		
+		return n;
+	}
+	
+	public int getTotalParticles() {
+		return particles.length;
+	}
+	
 	public void start() {
 		if (on) {
 			return;
