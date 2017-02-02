@@ -15,12 +15,8 @@ public abstract class LabFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static LabFrame inst = null;
-	
 	private DrawCanvas canvas;
 	private final Animator animator = new Animator();
-	private final int startingWidth;
-	private final int startingHeight;
 	private boolean started = false;
 	private final LabComponent root;
 	
@@ -30,12 +26,7 @@ public abstract class LabFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(true);
 				
-		startingWidth = width;
-		startingHeight = height;
-		
 		root = new EmptyComponent(width, height);
-		
-		inst = this;
 		
 		add(canvas = new DrawCanvas());
 		
@@ -72,22 +63,6 @@ public abstract class LabFrame extends JFrame {
 	
 	public Animator getAnimator() {
 		return animator;
-	}
-	
-	public int getStartingWidth() {
-		return startingWidth;
-	}
-
-	public int getStartingHeight() {
-		return startingHeight;
-	}
-	
-	public double getWidthScalingRatio() {
-		return (double) startingWidth / canvas.getWidth();
-	}
-	
-	public double getHeightScalingRatio() {
-		return (double) startingHeight / canvas.getHeight();
 	}
 	
 	public void draw(Graphics g, boolean overMaxFPS) {

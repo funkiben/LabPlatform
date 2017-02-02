@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Random;
 
-import lab.LabFrame;
 import lab.component.GraduatedComponent;
 
 public abstract class Container extends GraduatedComponent {
@@ -106,18 +105,17 @@ public abstract class Container extends GraduatedComponent {
 	public void drawContent(int x, int y, int width, int height, Graphics g) {
 		if (contentState == ContentState.SOLID) {
 			
-			Random rand = new Random((long) getValue() * 1000);
-			
-			double scaling = Math.max(LabFrame.inst.getHeightScalingRatio(), LabFrame.inst.getWidthScalingRatio());
+			Random rand = new Random((long) getValue() * 1000);	
+			double scaling = (double) width / getWidth();
 			
 			int[] polyX = new int[(int) getValue()];
 			int[] polyY = new int[(int) getValue()];
 			
-			for (int i = 0 ; i < (int) getValue(); i++) {
+			for (int i = 0; i < (int) getValue(); i++) {
 				
-				Point p = new Point((int) (-getValue() * (rand.nextDouble() * 0.1 + 0.9) / scaling), 0);
+				Point p = new Point((int) (-getValue() * (rand.nextDouble() * 0.1 + 0.9) * scaling), 0);
 				
-				p = rotate(p, (double) i / (int) getValue() * 180.0);
+				p = rotate(p, (double) i / (int) getValue() * 190.0);
 				
 				polyX[i] = p.x + x + width / 2;
 				polyX[i] = polyX[i] > width + x ? width + x : polyX[i] < x ? x : polyX[i];
