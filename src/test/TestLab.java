@@ -10,8 +10,8 @@ import lab.component.container.BulbLEGACY;
 import lab.component.container.ContentState;
 import lab.component.container.Flask;
 import lab.component.container.GraduatedCylinder;
-import lab.component.graph.DataSet;
-import lab.component.graph.Graph;
+import lab.component.data.GraphDataSet;
+import lab.component.data.Graph;
 import lab.component.input.ButtonComponent;
 import lab.component.input.SliderComponent;
 import lab.component.input.SwitchComponent;
@@ -48,20 +48,20 @@ public class TestLab extends LabFrame {
 		
 		graph = new Graph(200, 200, "Test Graph", "m", "m", vg, hg);
 		
-		DataSet set = new DataSet("test1", true, false);
+		GraphDataSet set = new GraphDataSet("test1", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
 			set.addPoint(i, i * i * i * 0.005);
 		}
 		graph.addDataSet(set);
 		
-		set = new DataSet("test2", true, false);
+		set = new GraphDataSet("test2", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
 			set.addPoint(i, i * i * i * 0.01);
 		}
 		set.setColor(Color.blue);
 		graph.addDataSet(set);
 		
-		set = new DataSet("test3", true, false);
+		set = new GraphDataSet("test3", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
 			set.addPoint(i, i * i * i * 0.05);
 		}
