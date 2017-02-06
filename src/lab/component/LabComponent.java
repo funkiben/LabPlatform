@@ -353,6 +353,4 @@ public abstract class LabComponent implements Drawable {
 		}
 	}
 
-	
-	
 }

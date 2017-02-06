@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
 
-import lab.LabFrame;
-
 public class HorizontalGraduation extends Graduation {
 
 	public HorizontalGraduation(double start, double end, double lineIntervals, double subLineIntervals) {
@@ -49,7 +47,7 @@ public class HorizontalGraduation extends Graduation {
 			
 			p.x += offset;
 			if (i % lineIntervals == 0) {
-				g.drawLine(p.x, p.y, p.x, (int) (p.y - ((double) lineLength * LabFrame.inst.getHeightScalingRatio())));
+				g.drawLine(p.x, p.y, p.x, (int) (p.y - lineLength));
 				
 				if (showLabels) {
 					String s = Integer.toString((int) (-range + i + end)) + (i == range ? suffix : "");
@@ -57,7 +55,7 @@ public class HorizontalGraduation extends Graduation {
 				}
 				
 			} else {
-				g.drawLine(p.x, p.y, p.x, (int) (p.y - ((double) subLineLength * LabFrame.inst.getHeightScalingRatio())));
+				g.drawLine(p.x, p.y, p.x, (int) (p.y - subLineLength));
 			}
 			
 		}

@@ -3,8 +3,8 @@ package test;
 import lab.LabFrame;
 import lab.component.HorizontalGraduation;
 import lab.component.VerticalGraduation;
-import lab.component.graph.DataSet;
-import lab.component.graph.Graph;
+import lab.component.data.GraphDataSet;
+import lab.component.data.Graph;
 import lab.component.input.SliderComponent;
 
 public class GraphTestLab extends LabFrame {
@@ -17,7 +17,7 @@ public class GraphTestLab extends LabFrame {
 	}
 	
 	private final Graph graph;
-	private final DataSet set;
+	private final GraphDataSet set;
 	private final SliderComponent slider;
 	private double i = 0;
 	private double p = 0;
@@ -35,7 +35,7 @@ public class GraphTestLab extends LabFrame {
 		
 		slider = new SliderComponent(750, 20, 0, 100, 1, SliderComponent.HORIZONTAL);
 		
-		set = new DataSet("test", true, false);
+		set = new GraphDataSet("test", true, false);
 		
 		graph.addDataSet(set);
 		

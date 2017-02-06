@@ -95,6 +95,14 @@ public class Particle {
 			return;
 		}
 		
+		if (collisionEdge[0].getY() == collisionEdge[1].getY()) {
+			collisionEdge[0] = collisionEdge[0].add(0, 0.01);
+		}
+		
+		if (collisionEdge[0].getX() == collisionEdge[1].getX()) {
+			collisionEdge[0] = collisionEdge[0].add(0.01, 0);
+		}
+		
 		double m = (collisionEdge[1].getY() - collisionEdge[0].getY()) / (collisionEdge[1].getX() - collisionEdge[0].getX());
 		m = 1.0 / -m;
 		
@@ -153,7 +161,7 @@ public class Particle {
 		if (shape == ELLIPSE) {
 			g.fillOval((int) dx - (int) (dw / 2), (int) dy - (int) (dh / 2), (int) dw, (int) dh);
 		} else if (shape == RECTANGLE) {
-			g.fillOval((int) dx - (int) (dw / 2), (int) dy - (int) (dh / 2), (int) dw, (int) dh);
+			g.fillRect((int) dx - (int) (dw / 2), (int) dy - (int) (dh / 2), (int) dw, (int) dh);
 		}
 		
 	}
@@ -172,19 +180,19 @@ public class Particle {
 		y4 = v4.getY();
 
 		if (y1 == y2) {
-			x1 += 0.001;
+			x1 += 0.01;
 		}
 
 		if (y3 == y4) {
-			x3 += 0.001;
+			x3 += 0.01;
 		}
 
 		if (x1 == x2) {
-			y1 += 0.001;
+			y1 += 0.01;
 		}
 
 		if (x3 == x4) {
-			y3 += 0.001;
+			y3 += 0.01;
 		}
 
 		double denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
