@@ -1,6 +1,7 @@
-package lab.component.input;
+package lab.component.swing.input;
 
 import lab.SigFig;
+import lab.component.swing.LabelComponent;
 
 public class LabelSliderComponent extends SliderComponent {
 
@@ -34,7 +35,7 @@ public class LabelSliderComponent extends SliderComponent {
 	
 	@Override
 	public void update() {
-		label.setText(SigFig.sigfigalize(getValue(), sigfigs));
+		label.setText(SigFig.sigfigalize(getFloatValue(), sigfigs));
 	}
 
 }

@@ -1,7 +1,7 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.input.TextFieldComponent;
+import lab.component.swing.input.TextFieldComponent;
 
 public class InputTestLab extends LabFrame {
 	

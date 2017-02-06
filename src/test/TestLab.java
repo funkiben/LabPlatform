@@ -12,12 +12,12 @@ import lab.component.container.Flask;
 import lab.component.container.GraduatedCylinder;
 import lab.component.data.GraphDataSet;
 import lab.component.data.Graph;
-import lab.component.input.ButtonComponent;
-import lab.component.input.SliderComponent;
-import lab.component.input.SwitchComponent;
-import lab.component.input.TextFieldComponent;
 import lab.component.sensor.Manometer;
 import lab.component.sensor.Thermometer;
+import lab.component.swing.input.ButtonComponent;
+import lab.component.swing.input.SliderComponent;
+import lab.component.swing.input.SwitchComponent;
+import lab.component.swing.input.TextFieldComponent;
 
 public class TestLab extends LabFrame {
 
@@ -156,7 +156,7 @@ public class TestLab extends LabFrame {
 		
 		t++;
 		
-		flask.setValue(slider.getValue());
+		flask.setValue(slider.getFloatValue());
 		
 		manometer.setValue((Math.sin(t / 100) + 1) * 760);
 		thermometer.setValue(((Math.sin(t / 100) + 1) * 130 / 2) - 30);
