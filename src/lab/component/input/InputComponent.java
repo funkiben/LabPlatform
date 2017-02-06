@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import lab.LabFrame;
 import lab.component.LabComponent;
 
 public abstract class InputComponent extends LabComponent {
@@ -42,6 +41,7 @@ public abstract class InputComponent extends LabComponent {
 		}
 		
 		if (refreshJComponent) {
+			
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
@@ -49,9 +49,10 @@ public abstract class InputComponent extends LabComponent {
 					getJComponent().setSize(width, height);
 					getJComponent().setEnabled(enabled);
 					getJComponent().doLayout();
-					LabFrame.inst.getDrawCanvas().repaint();
+					//LabFrame.inst.getDrawCanvas().repaint();
 				}
 			});
+			
 			refreshJComponent = false;
 		}
 	}

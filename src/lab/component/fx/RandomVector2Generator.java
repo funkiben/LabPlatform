@@ -6,6 +6,7 @@ public class RandomVector2Generator {
 	
 	public static final int ELLIPSE = 0;
 	public static final int RECTANGLE = 1;
+	public static final int RANDOM_DIRECTION = 2;
 	
 	private Vector2 start;
 	private Vector2 end;
@@ -27,6 +28,10 @@ public class RandomVector2Generator {
 	
 	public RandomVector2Generator(double width, double height, int type) {
 		this(0, 0, width, height, type);
+	}
+	
+	public RandomVector2Generator(double magnitude) {
+		this(0, magnitude, 0, 0, RANDOM_DIRECTION);
 	}
 
 	public int getType() {
@@ -64,7 +69,7 @@ public class RandomVector2Generator {
 	public boolean noRange() {
 		return getRangeX() == 0 && getRangeY() == 0;
 	}
-
+	
 	public Vector2 getRandomVector2() {
 		
 		if (noRange()) {
@@ -92,8 +97,13 @@ public class RandomVector2Generator {
 			
 			x = radiusSqrt * Math.cos(theta) * w2 + (start.getX() + end.getX()) / 2;
 			y = radiusSqrt * Math.sin(theta) * h2 + (start.getY() + end.getY()) / 2;
-			
+				
 			return new Vector2(x, y);
+			
+		} else if (type == RANDOM_DIRECTION) {
+			
+			return start.rotate(Math.random() * 360);
+			
 		}
 		
 		return null;

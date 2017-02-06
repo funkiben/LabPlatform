@@ -6,12 +6,12 @@ import lab.LabFrame;
 import lab.component.HorizontalGraduation;
 import lab.component.VerticalGraduation;
 import lab.component.container.Beaker;
-import lab.component.container.Bulb;
+import lab.component.container.BulbLEGACY;
 import lab.component.container.ContentState;
 import lab.component.container.Flask;
 import lab.component.container.GraduatedCylinder;
-import lab.component.graph.DataSet;
-import lab.component.graph.Graph;
+import lab.component.data.GraphDataSet;
+import lab.component.data.Graph;
 import lab.component.input.ButtonComponent;
 import lab.component.input.SliderComponent;
 import lab.component.input.SwitchComponent;
@@ -29,7 +29,7 @@ public class TestLab extends LabFrame {
 	
 	private final Graph graph;
 	private final Beaker beaker;
-	private final Bulb bulb;
+	private final BulbLEGACY bulbLEGACY;
 	private final Flask flask;
 	private final GraduatedCylinder graduatedCylinder;
 	private final Thermometer thermometer;
@@ -48,20 +48,20 @@ public class TestLab extends LabFrame {
 		
 		graph = new Graph(200, 200, "Test Graph", "m", "m", vg, hg);
 		
-		DataSet set = new DataSet("test1", true, false);
+		GraphDataSet set = new GraphDataSet("test1", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
 			set.addPoint(i, i * i * i * 0.005);
 		}
 		graph.addDataSet(set);
 		
-		set = new DataSet("test2", true, false);
+		set = new GraphDataSet("test2", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
 			set.addPoint(i, i * i * i * 0.01);
 		}
 		set.setColor(Color.blue);
 		graph.addDataSet(set);
 		
-		set = new DataSet("test3", true, false);
+		set = new GraphDataSet("test3", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
 			set.addPoint(i, i * i * i * 0.05);
 		}
@@ -88,12 +88,12 @@ public class TestLab extends LabFrame {
 		graduatedCylinder.setValue(10);
 		addComponent(graduatedCylinder);
 		
-		bulb = new Bulb(200);
-		bulb.setContentState(ContentState.SOLID);
-		bulb.setContentColor(new Color(240, 240, 240));
-		bulb.setValue(10);
-		bulb.setGraduation(new VerticalGraduation(0, 100, 10, 2));
-		addComponent(bulb);
+		bulbLEGACY = new BulbLEGACY(200);
+		bulbLEGACY.setContentState(ContentState.SOLID);
+		bulbLEGACY.setContentColor(new Color(240, 240, 240));
+		bulbLEGACY.setValue(10);
+		bulbLEGACY.setGraduation(new VerticalGraduation(0, 100, 10, 2));
+		addComponent(bulbLEGACY);
 		
 		thermometer = new Thermometer(300);
 		thermometer.setValue(10);
@@ -137,7 +137,7 @@ public class TestLab extends LabFrame {
 		button = new ButtonComponent(50, 50, "Click me") {
 			@Override
 			public void doSomething() {
-				bulb.setValue(bulb.getValue() + 10);
+				bulbLEGACY.setValue(bulbLEGACY.getValue() + 10);
 			}
 			
 		};

@@ -7,7 +7,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import lab.LabFrame;
 import lab.component.GraduatedComponent;
 import lab.component.VerticalGraduation;
 
@@ -33,8 +32,8 @@ public class Thermometer extends GraduatedComponent {
 		
 		g.setColor(Color.red);
 		
-		int ow = (int) (20 / LabFrame.inst.getWidthScalingRatio());
-		int oh = (int) (20 / LabFrame.inst.getHeightScalingRatio());
+		int ow = (int) (20.0 * width / getWidth());
+		int oh = (int) (20.0 * height / getHeight());
 		
 		g.fillOval(x + (width / 2) - ow / 2, y + height, ow, oh);
 		

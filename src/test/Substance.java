@@ -2,8 +2,8 @@ package test;
 
 import java.awt.Color;
 
-import lab.component.graph.DataSet;
 import lab.component.container.ContentState;
+import lab.component.data.GraphDataSet;
 import lab.component.input.LabelComponent;
 
 public class Substance {
@@ -14,7 +14,7 @@ public class Substance {
 	
 	private Color color;
 	private ContentState state;
-	private DataSet set;
+	private GraphDataSet set;
 	private LabelComponent connectedLabel;
 	
 	private double heatOfVaporization;
@@ -69,12 +69,12 @@ public class Substance {
 		this.name = name;
 	}
 
-	public DataSet getSet() {
+	public GraphDataSet getSet() {
 		return set;
 	}
 
-	public void setSet(DataSet dataSet) {
-		set = new DataSet(dataSet.getName(),dataSet.isConnectPoints(),dataSet.isShowName());
+	public void setSet(GraphDataSet dataSet) {
+		set = new GraphDataSet(dataSet.getName(),dataSet.isConnectPoints(),dataSet.isShowName());
 	}
 
 	public LabelComponent getConnectedLabel() {
