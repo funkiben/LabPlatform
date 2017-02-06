@@ -3,12 +3,12 @@ package lab.component.swing.input;
 import lab.SigFig;
 import lab.component.swing.LabelComponent;
 
-public class LabelSliderComponent extends SliderComponent {
+public class LabeledSliderComponent extends SliderComponent {
 
 	private final LabelComponent label;
 	private final int sigfigs;
 	
-	public LabelSliderComponent(int width, int height, float min, float max, float increment, int sigfigs, int orientation) {
+	public LabeledSliderComponent(int width, int height, float min, float max, float increment, int sigfigs, int orientation) {
 		super(width, height, min, max, increment, orientation);
 		
 		this.sigfigs = sigfigs;
