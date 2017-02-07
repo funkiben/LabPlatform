@@ -1,7 +1,5 @@
 package lab.component.swing.input;
 
-import java.awt.Component;
-
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.event.ChangeEvent;
@@ -30,7 +28,7 @@ public class SwitchComponent extends InputComponent implements ChangeListener {
 	}
 	
 	@Override
-	public Component getJComponent() {
+	public JCheckBox getJComponent() {
 		return switchField;
 	}
 
