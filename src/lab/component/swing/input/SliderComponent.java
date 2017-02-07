@@ -1,7 +1,6 @@
 package lab.component.swing.input;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -87,7 +86,7 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 	}
 
 	@Override
-	public Component getJComponent() {
+	public JSlider getJComponent() {
 		return slider;
 	}
 	

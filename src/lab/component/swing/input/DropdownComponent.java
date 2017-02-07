@@ -1,6 +1,5 @@
 package lab.component.swing.input;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +32,7 @@ public class DropdownComponent extends InputComponent implements ActionListener 
 	}
 
 	@Override
-	public Component getJComponent() {
+	public JComboBox<String> getJComponent() {
 		return dropdown;
 	}
 	
