@@ -33,9 +33,8 @@ public class DropdownComponent extends InputComponent implements ActionListener 
 	}
 
 	@Override
-	public Component getJComponent() {
+	public JComboBox<String> getJComponent() {
 		return dropdown;
-	}
-	
+	}	
 	
 }
