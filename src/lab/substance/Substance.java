@@ -9,51 +9,51 @@ import lab.component.swing.LabelComponent;
 public class Substance {
 	private boolean isReactant;
 	private double amount;
-	private String name; //done
+	private String name; // done
 	private String units;
-	
+
 	private Color color;
 	private ContentState state;
 	private GraphDataSet set;
 	private LabelComponent connectedLabel;
-	
+
 	private double heatOfVaporization;
 	private double heatOfFusion;
 	private double boilingPoint;
 	private double meltingPoint;
 	private double boilPressure;
 	private double molarMass;
-	
+
 	private String formula;
-	
+
 	public Substance() {
-		
+
 	}
-	
-	public Substance(String name,double amount,boolean isReactant) {
+
+	public Substance(String name, double amount, boolean isReactant) {
 		this.name = name;
 		this.amount = amount;
 		this.isReactant = isReactant;
 	}
-	
-	public Substance(String name,double amount,boolean isReactant, Color color) {
-		this(name,amount,isReactant);
+
+	public Substance(String name, double amount, boolean isReactant, Color color) {
+		this(name, amount, isReactant);
 		this.color = color;
 	}
-	
+
 	public Substance(String name, double amount, boolean isReactant, String units) {
 		this.name = name;
 		this.amount = amount;
 		this.isReactant = isReactant;
 		this.units = units;
 	}
-	
+
 	public void setBoilingConditions(double hov, double bpt, double bpressure) {
 		this.heatOfVaporization = hov;
 		this.boilingPoint = bpt;
 		this.boilPressure = bpressure;
 	}
-	
+
 	public boolean isReactant() {
 		return isReactant;
 	}
@@ -83,7 +83,7 @@ public class Substance {
 	}
 
 	public void setSet(GraphDataSet dataSet) {
-		set = new GraphDataSet(dataSet.getName(),dataSet.isConnectPoints(),dataSet.isShowName());
+		set = new GraphDataSet(dataSet.getName(), dataSet.isConnectPoints(), dataSet.isShowName());
 	}
 
 	public LabelComponent getConnectedLabel() {
