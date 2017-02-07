@@ -17,7 +17,7 @@ import lab.component.sensor.Thermometer;
 import lab.component.swing.input.ButtonComponent;
 import lab.component.swing.input.SliderComponent;
 import lab.component.swing.input.SwitchComponent;
-import lab.component.swing.input.TextFieldComponent;
+import lab.component.swing.input.NumberFieldComponent;
 
 public class TestLab extends LabFrame {
 
@@ -36,7 +36,7 @@ public class TestLab extends LabFrame {
 	private final Manometer manometer;
 	private final SliderComponent slider;
 	private final SwitchComponent switchC;
-	private final TextFieldComponent textInput;
+	private final NumberFieldComponent textInput;
 	private final ButtonComponent button;
 	private double t = 0;
 	
@@ -127,7 +127,7 @@ public class TestLab extends LabFrame {
 		switchC.setOffsetX(5);
 		addComponent(switchC);
 		
-		textInput = new TextFieldComponent(120, 20, 50, 25) {
+		textInput = new NumberFieldComponent(120, 20, 50, 25) {
 			
 		};
 		textInput.setOffsetY(100);

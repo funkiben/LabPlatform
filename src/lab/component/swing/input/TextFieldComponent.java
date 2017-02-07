@@ -2,58 +2,38 @@ package lab.component.swing.input;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
 import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
-import javax.swing.text.MaskFormatter;
+import javax.swing.JTextField;
 
 public class TextFieldComponent extends InputComponent implements ActionListener {
 
-	private final JFormattedTextField textField;
+	private final JTextField textField;
 
-	public TextFieldComponent(int width, int height, String format) {
+	public TextFieldComponent(int width, int height, String defaultValue) {
 		super(width, height);
 
-		textField = new JFormattedTextField(createFormatter(format));
-		textField.setColumns(format.length());
+		textField = new JTextField(defaultValue);
 		textField.addActionListener(this);
 
 	}
 
-	public TextFieldComponent(int width, int height, int nonDecimal, int decimal) {
-		this(width, height, buildDecimal(nonDecimal, decimal));
-	}
-
-	protected MaskFormatter createFormatter(String s) {
-
-		MaskFormatter formatter = null;
-
-		try {
-			formatter = new MaskFormatter(s);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		return formatter;
-	}
-
-	public double getDoubleValue() {
-		return (double) textField.getValue();
+	public String getText() {
+		return textField.getText();
 	}
 	
 	public Object getValue() {
-		return getDoubleValue();
+		return textField.getText();
 	}
 
 	public void setText(String s) {
-		try {
-			textField.setValue(s);
-		} catch (Exception e) {
-			textField.setValue(0);
-		}
+		textField.setText(s);
 	}
-
+	
+	public void setColumns(int c) {
+		textField.setColumns(c);
+	}
+	
 	@Override
 	public JComponent getJComponent() {
 		return textField;
@@ -63,25 +43,10 @@ public class TextFieldComponent extends InputComponent implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		onChanged();
 	}
-
+	
 	public void onChanged() {
 
 	}
 
-	private static String buildDecimal(int n, int d) {
-
-		String s = "";
-		for (int i = 0; i < n; i++) {
-			s += "#";
-		}
-		if (d > 0) {
-			s += ".";
-		}
-		for (int i = 0; i < d; i++) {
-			s += "#";
-		}
-		return s;
-
-	}
 
 }
