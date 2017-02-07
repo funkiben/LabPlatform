@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import lab.component.container.ContentState;
 import lab.component.data.GraphDataSet;
-import lab.component.input.LabelComponent;
+import lab.component.swing.LabelComponent;
 
 public class Substance {
 	private boolean isReactant;

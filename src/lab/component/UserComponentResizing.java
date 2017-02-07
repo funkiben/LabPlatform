@@ -214,8 +214,8 @@ public class UserComponentResizing {
 		if (NE_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setWidth(NE_dragArea.getDragDelta().x + clickWidth);
-			component.setHeight(-NE_dragArea.getDragDelta().y + clickHeight);
+			component.stretchToNewWidth(NE_dragArea.getDragDelta().x + clickWidth);
+			component.stretchToNewHeight(-NE_dragArea.getDragDelta().y + clickHeight);
 
 			component.setOffsetY(NE_dragArea.getDragDelta().y + clickOffsetY);
 
@@ -226,7 +226,7 @@ public class UserComponentResizing {
 		} else if (N_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setHeight(-N_dragArea.getDragDelta().y + clickHeight);
+			component.stretchToNewHeight(-N_dragArea.getDragDelta().y + clickHeight);
 
 			component.setOffsetY(N_dragArea.getDragDelta().y + clickOffsetY);
 
@@ -237,8 +237,8 @@ public class UserComponentResizing {
 		} else if (NW_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setWidth(-NW_dragArea.getDragDelta().x + clickWidth);
-			component.setHeight(-NW_dragArea.getDragDelta().y + clickHeight);
+			component.stretchToNewWidth(-NW_dragArea.getDragDelta().x + clickWidth);
+			component.stretchToNewHeight(-NW_dragArea.getDragDelta().y + clickHeight);
 
 			component.setOffsetX(NW_dragArea.getDragDelta().x + clickOffsetX);
 			component.setOffsetY(NW_dragArea.getDragDelta().y + clickOffsetY);
@@ -250,7 +250,7 @@ public class UserComponentResizing {
 		} else if (W_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setWidth(-W_dragArea.getDragDelta().x + clickWidth);
+			component.stretchToNewWidth(-W_dragArea.getDragDelta().x + clickWidth);
 
 			component.setOffsetX(W_dragArea.getDragDelta().x + clickOffsetX);
 
@@ -261,8 +261,8 @@ public class UserComponentResizing {
 		} else if (SW_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setWidth(-SW_dragArea.getDragDelta().x + clickWidth);
-			component.setHeight(SW_dragArea.getDragDelta().y + clickHeight);
+			component.stretchToNewWidth(-SW_dragArea.getDragDelta().x + clickWidth);
+			component.stretchToNewHeight(SW_dragArea.getDragDelta().y + clickHeight);
 
 			component.setOffsetX(SW_dragArea.getDragDelta().x + clickOffsetX);
 
@@ -273,7 +273,7 @@ public class UserComponentResizing {
 		} else if (S_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setHeight(S_dragArea.getDragDelta().y + clickHeight);
+			component.stretchToNewHeight(S_dragArea.getDragDelta().y + clickHeight);
 
 			checkDimensions();
 			
@@ -282,8 +282,8 @@ public class UserComponentResizing {
 		} else if (SE_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setWidth(SE_dragArea.getDragDelta().x + clickWidth);
-			component.setHeight(SE_dragArea.getDragDelta().y + clickHeight);
+			component.stretchToNewWidth(SE_dragArea.getDragDelta().x + clickWidth);
+			component.stretchToNewHeight(SE_dragArea.getDragDelta().y + clickHeight);
 
 			checkDimensions();
 			
@@ -292,7 +292,7 @@ public class UserComponentResizing {
 		} else if (E_dragArea.hasClick()) {
 			setClickState(width, height);
 
-			component.setWidth(E_dragArea.getDragDelta().x + clickWidth);
+			component.stretchToNewWidth(E_dragArea.getDragDelta().x + clickWidth);
 
 			checkDimensions();
 			
@@ -372,7 +372,7 @@ public class UserComponentResizing {
 	
 	private void checkDimensions(boolean x, boolean y) {
 		if (component.getWidth() < minWidth) {
-			component.setWidth(minWidth);
+			component.stretchToNewWidth(minWidth);
 
 			if (x) {
 				component.setOffsetX(clickOffsetX + clickWidth - minWidth);
@@ -380,7 +380,7 @@ public class UserComponentResizing {
 		}
 
 		if (component.getHeight() < minHeight) {
-			component.setHeight(minHeight);
+			component.stretchToNewHeight(minHeight);
 
 			if (y) {
 				component.setOffsetY(clickOffsetY + clickHeight - minHeight);

@@ -1,4 +1,4 @@
-package lab.component.input;
+package lab.component.swing.input;
 
 import java.awt.Component;
 import java.awt.event.ItemEvent;
@@ -44,6 +44,11 @@ public class CheckBoxComponent extends InputComponent implements ItemListener {
 	
 	public void onDeselect() {
 		
+	}
+	
+	@Override
+	public Object getValue() {
+		return checkBox.isSelected();
 	}
 
 }
