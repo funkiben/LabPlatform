@@ -41,8 +41,10 @@ public abstract class LabComponent implements Drawable {
 	public LabComponent(int width, int height) {
 		this.width = width;
 		this.height = height;
-		this.scaleReferenceWidth = width;
-		this.scaleReferenceHeight = height;
+		
+		scaleReferenceWidth = width;
+		scaleReferenceHeight = height;
+		
 	}
 	
 	private void updateRoot() {
