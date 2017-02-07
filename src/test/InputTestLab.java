@@ -1,7 +1,8 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.input.TextFieldComponent;
+import lab.component.swing.input.NumberFieldComponent;
+import lab.component.swing.input.TextFieldComponent;
 
 public class InputTestLab extends LabFrame {
 	
@@ -16,12 +17,12 @@ public class InputTestLab extends LabFrame {
 		super("Input Test Lab", 800, 800);
 		
 	
-		addComponent(new TextFieldComponent(100, 20, "####"));
-		addComponent(new TextFieldComponent(100, 20, "####"));
-		addComponent(new TextFieldComponent(100, 20, "####"));
+		addComponent(new NumberFieldComponent(100, 20, "####"));
+		addComponent(new NumberFieldComponent(100, 20, "####"));
+		addComponent(new NumberFieldComponent(100, 20, "####"));
 		
 		
-		
+		addComponent(new TextFieldComponent(100, 20, "Hey"));
 		
 		
 		

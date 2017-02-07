@@ -1,4 +1,4 @@
-package lab.component.input;
+package lab.component.swing.input;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -37,5 +37,9 @@ public class DropdownComponent extends InputComponent implements ActionListener 
 		return dropdown;
 	}
 	
+	@Override
+	public Object getValue() {
+		return getSelectedItem();
+	}
 	
 }

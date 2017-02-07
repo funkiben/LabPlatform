@@ -33,16 +33,16 @@ public abstract class LabComponent implements Drawable {
 	private int lastDrawY = -1;
 	private int lastDrawWidth = -1;
 	private int lastDrawHeight = -1;
-	private final int startingWidth;
-	private final int startingHeight;
+	private int scaleReferenceWidth;
+	private int scaleReferenceHeight;
 	private boolean jPanelInitCalled = false;
 	private boolean showBounds = false;
 	
 	public LabComponent(int width, int height) {
 		this.width = width;
 		this.height = height;
-		this.startingWidth = width;
-		this.startingHeight = height;
+		this.scaleReferenceWidth = width;
+		this.scaleReferenceHeight = height;
 	}
 	
 	private void updateRoot() {
@@ -88,12 +88,22 @@ public abstract class LabComponent implements Drawable {
 		return root;
 	}
 	
+	public void stretchToNewWidth(int width) {
+		this.width = width;
+	}
+	
+	public void stretchToNewHeight(int height) {
+		this.height = height;
+	}
+	
 	public void setWidth(int width) {
 		this.width = width;
+		this.scaleReferenceWidth = width;
 	}
 	
 	public void setHeight(int height) {
 		this.height = height;
+		this.scaleReferenceHeight = height;
 	}
 	
 	public int getWidth() {
@@ -177,11 +187,11 @@ public abstract class LabComponent implements Drawable {
 	}
 	
 	public double getWidthScaleRatio() {
-		return (double) width / startingWidth;
+		return (double) width / scaleReferenceWidth;
 	}
 	
 	public double getHeightScaleRatio() {
-		return (double) height / startingHeight;
+		return (double) height / scaleReferenceHeight;
 	}
 	
 	public void setShowBounds(boolean showBounds) {

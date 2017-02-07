@@ -4,8 +4,8 @@ import lab.LabFrame;
 import lab.component.HorizontalGraduation;
 import lab.component.VerticalGraduation;
 import lab.component.data.GraphDataSet;
+import lab.component.swing.input.SliderComponent;
 import lab.component.data.Graph;
-import lab.component.input.SliderComponent;
 
 public class GraphTestLab extends LabFrame {
 	
@@ -52,7 +52,7 @@ public class GraphTestLab extends LabFrame {
 	public void update() {
 		i += 0.05;
 		
-		p = lerp(p, slider.getValue() / 100.0 * graph.getvGraduation().getEnd(), 0.1f);
+		p = lerp(p, slider.getFloatValue() / 100.0 * graph.getvGraduation().getEnd(), 0.1f);
 		
 		set.addPoint(i, p);
 		
