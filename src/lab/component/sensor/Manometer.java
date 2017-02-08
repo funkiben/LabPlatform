@@ -26,12 +26,9 @@ public class Manometer extends GraduatedComponent {
 		
 		cyl1 = new GraduatedCylinder(width / 3, height - CONNECTOR_HEIGHT);
 		cyl1.setGraduation(new VerticalGraduation(0, 760, 40, 5));
-		cyl1.getGraduation().setRemovePointZero(true);
 		
 		cyl2 = new GraduatedCylinder(width / 3, height - CONNECTOR_HEIGHT);
 		cyl2.setGraduation(new VerticalGraduation(0, 760, 40, 5));
-		cyl2.getGraduation().setRemovePointZero(true);
-		
 
 		applyGraduationSettings();
 		

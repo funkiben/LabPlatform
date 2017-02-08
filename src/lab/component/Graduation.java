@@ -24,7 +24,7 @@ public abstract class Graduation implements Drawable {
 	protected Color color = Color.black;
 	protected int lineLength = 10;
 	protected int subLineLength = 5;
-	protected boolean removePointZero = false;
+	protected boolean removePointZero = true;
 	
 	public Graduation(double start, double end, double lineIntervals, double subLineIntervals) {
 		this.start = start;
