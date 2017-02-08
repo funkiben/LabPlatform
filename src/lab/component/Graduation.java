@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import draw.Drawable;
+import lab.SigFig;
 
 public abstract class Graduation implements Drawable {
 
@@ -153,6 +154,12 @@ public abstract class Graduation implements Drawable {
 	
 	public abstract int getBottomTick();
 	
-
+	protected static double round(double t) {
+		if (t < 1E-5) {
+			return 0;
+		}
+		
+		return Double.parseDouble(SigFig.sigfigalize(t, 4));
+	}
 	
 }

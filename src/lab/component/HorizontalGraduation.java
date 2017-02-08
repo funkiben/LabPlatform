@@ -8,11 +8,11 @@ import java.util.List;
 
 public class HorizontalGraduation extends Graduation {
 
-	public HorizontalGraduation(double start, double end, double lineIntervals, double subLineIntervals) {
+	public HorizontalGraduation(double start, double end, float lineIntervals, float subLineIntervals) {
 		super(start, end, lineIntervals, subLineIntervals);
 	}
 	
-	public HorizontalGraduation(double end, double lineIntervals, double subLineIntervals) {
+	public HorizontalGraduation(double end, float lineIntervals, float subLineIntervals) {
 		super(0, end, lineIntervals, subLineIntervals);
 	}
 	
@@ -34,23 +34,20 @@ public class HorizontalGraduation extends Graduation {
 		width = right.x - left.x; // top will have a lower y value than bottom (confusing)
 		range = end - start;
 		
+		range = round(range);
 		
 		g.setColor(color);
 		
-		float i;
-		
-		for (double j = 0; j <= range; j += subLineIntervals) {
-			
-			i = (float) j; // cast to float because of inaccuracies in adding doubles
+		for (double i = 0; round(i) <= range; i += subLineIntervals) {
 			
 			p = findLinePosition(edge, (int) ((i / range * width) + left.x));
-			
 			p.x += offset;
-			if (i % lineIntervals == 0) {
+			
+			if (round(i % lineIntervals) == 0) {
 				g.drawLine(p.x, p.y, p.x, (int) (p.y - lineLength));
 				
 				if (showLabels) {
-					String s = Integer.toString((int) (-range + i + end)) + (i == range ? suffix : "");
+					String s = round((-range + i + end)) + (i == range ? suffix : "");
 					g.drawString(s, p.x - metrics.stringWidth(s) / 2, (int) (p.y + (textHeight)) + textOffset);
 				}
 				
