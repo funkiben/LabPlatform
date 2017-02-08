@@ -48,6 +48,11 @@ public class HorizontalGraduation extends Graduation {
 				
 				if (showLabels) {
 					String s = round((-range + i + end)) + (i == range ? suffix : "");
+					
+					if (removePointZero) {
+						s = s.replace(".0", "");
+					}
+					
 					g.drawString(s, p.x - metrics.stringWidth(s) / 2, (int) (p.y + (textHeight)) + textOffset);
 				}
 				
