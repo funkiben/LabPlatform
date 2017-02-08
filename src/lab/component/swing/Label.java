@@ -5,12 +5,12 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-public class LabelComponent extends SwingComponent {
+public class Label extends SwingComponent {
 
 	private String labelText;
 	private final JLabel label;
 	
-	public LabelComponent(int width, int height, String text) {
+	public Label(int width, int height, String text) {
 		super(width,height);
 		
 		label = new JLabel();
@@ -18,7 +18,7 @@ public class LabelComponent extends SwingComponent {
 		
 	}
 	
-	public LabelComponent(int width, int height) {
+	public Label(int width, int height) {
 		this(width, height, "");
 	}
 	

@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-
 import lab.component.container.ContentState;
 import lab.substance.Substance;
 
@@ -32,11 +31,11 @@ public class SubstanceData {
 		substances = new ArrayList<Substance>();
 
 		try {
-			
+
 			InputStream is = SubstanceData.class.getResourceAsStream(csv);
 			InputStreamReader isr = new InputStreamReader(is);
 			br = new BufferedReader(isr);
-			
+
 			while ((line = br.readLine()) != null) {
 				Substance tempSubstance = new Substance();
 				// use comma as separator
@@ -47,7 +46,7 @@ public class SubstanceData {
 				} else if (substance[1] == "LIQUID") {
 					tempSubstance.setState(ContentState.LIQUID);
 				} else if (substance[1] == "GAS") {
-					
+
 					tempSubstance.setState(ContentState.GAS);
 				}
 				tempSubstance.setMeltingPoint(Double.parseDouble(substance[2]));

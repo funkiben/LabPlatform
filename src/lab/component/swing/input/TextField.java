@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-public class TextFieldComponent extends InputComponent implements ActionListener {
+public class TextField extends InputComponent implements ActionListener {
 
 	private final JTextField textField;
 
-	public TextFieldComponent(int width, int height, String defaultValue) {
+	public TextField(int width, int height, String defaultValue) {
 		super(width, height);
 
 		textField = new JTextField(defaultValue);

@@ -5,11 +5,11 @@ import javax.swing.JCheckBox;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class SwitchComponent extends InputComponent implements ChangeListener {
+public class Switch extends InputComponent implements ChangeListener {
 
 	private final JCheckBox switchField;
 	
-	public SwitchComponent(int width, int height) {
+	public Switch(int width, int height) {
 		
 		super(width, height);
 		

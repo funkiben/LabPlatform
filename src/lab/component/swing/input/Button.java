@@ -1,22 +1,24 @@
 package lab.component.swing.input;
 
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public abstract class ButtonComponent extends InputComponent implements ActionListener {
+public abstract class Button extends InputComponent implements ActionListener {
 	
 	private final JButton button;
 	
-	public ButtonComponent(int width, int height, String text) {
+	public Button(int width, int height, String text) {
 		super(width, height);
 		
 		button = new JButton(text);
 		
 		button.addActionListener(this);
-
+		
+		button.setMargin(new Insets(0, 0, 0, 0));
 	}
 	
 	public abstract void doSomething();

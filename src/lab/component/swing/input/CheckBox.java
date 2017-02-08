@@ -5,11 +5,11 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
 
-public class CheckBoxComponent extends InputComponent implements ItemListener {
+public class CheckBox extends InputComponent implements ItemListener {
 
 	private final JCheckBox checkBox;
 	
-	public CheckBoxComponent(int width, int height, String text) {
+	public CheckBox(int width, int height, String text) {
 		super(width, height);
 		
 		checkBox = new JCheckBox();
