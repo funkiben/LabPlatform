@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import lab.component.data.GraphDataSet;
 import lab.component.container.ContentState;
-import lab.component.swing.LabelComponent;
+import lab.component.swing.Label;
 
 public class Substance {
 	private boolean isReactant;
@@ -15,7 +15,7 @@ public class Substance {
 	private Color color;
 	private ContentState state;
 	private GraphDataSet set;
-	private LabelComponent connectedLabel;
+	private Label connectedLabel;
 
 	private double heatOfVaporization;
 	private double heatOfFusion;
@@ -86,11 +86,11 @@ public class Substance {
 		set = new GraphDataSet(dataSet.getName(), dataSet.isConnectPoints(), dataSet.isShowName());
 	}
 
-	public LabelComponent getConnectedLabel() {
+	public Label getConnectedLabel() {
 		return connectedLabel;
 	}
 
-	public void setConnectedLabel(LabelComponent connectedLabel) {
+	public void setConnectedLabel(Label connectedLabel) {
 		this.connectedLabel = connectedLabel;
 	}
 

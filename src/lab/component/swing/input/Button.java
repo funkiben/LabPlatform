@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public abstract class ButtonComponent extends InputComponent implements ActionListener {
+public abstract class Button extends InputComponent implements ActionListener {
 	
 	private final JButton button;
 	
-	public ButtonComponent(int width, int height, String text) {
+	public Button(int width, int height, String text) {
 		super(width, height);
 		
 		button = new JButton(text);

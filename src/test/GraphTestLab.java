@@ -4,7 +4,7 @@ import lab.LabFrame;
 import lab.component.HorizontalGraduation;
 import lab.component.VerticalGraduation;
 import lab.component.data.GraphDataSet;
-import lab.component.swing.input.SliderComponent;
+import lab.component.swing.input.Slider;
 import lab.component.data.Graph;
 
 public class GraphTestLab extends LabFrame {
@@ -18,7 +18,7 @@ public class GraphTestLab extends LabFrame {
 	
 	private final Graph graph;
 	private final GraphDataSet set;
-	private final SliderComponent slider;
+	private final Slider slider;
 	private double i = 0;
 	private double p = 0;
 	
@@ -33,7 +33,7 @@ public class GraphTestLab extends LabFrame {
 		
 		addComponent(graph);
 		
-		slider = new SliderComponent(750, 20, 0, 100, 1, SliderComponent.HORIZONTAL);
+		slider = new Slider(750, 20, 0, 100, 1, Slider.HORIZONTAL);
 		
 		set = new GraphDataSet("test", true, false);
 		
