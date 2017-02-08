@@ -1,16 +1,15 @@
 package lab.component.swing.input;
 
-import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
 
-public class CheckBoxComponent extends InputComponent implements ItemListener {
+public class CheckBox extends InputComponent implements ItemListener {
 
 	private final JCheckBox checkBox;
 	
-	public CheckBoxComponent(int width, int height, String text) {
+	public CheckBox(int width, int height, String text) {
 		super(width, height);
 		
 		checkBox = new JCheckBox();
@@ -25,7 +24,7 @@ public class CheckBoxComponent extends InputComponent implements ItemListener {
 	}
 
 	@Override
-	public Component getJComponent() {
+	public JCheckBox getJComponent() {
 		return checkBox;
 	}
 

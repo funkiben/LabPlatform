@@ -1,21 +1,21 @@
 package lab.component.swing.input;
 
 import lab.SigFig;
-import lab.component.swing.LabelComponent;
+import lab.component.swing.Label;
 
-public class LabeledSliderComponent extends SliderComponent {
+public class LabeledSlider extends Slider {
 
-	private final LabelComponent label;
+	private final Label label;
 	private final int sigfigs;
 	
-	public LabeledSliderComponent(int width, int height, float min, float max, float increment, int sigfigs, int orientation) {
+	public LabeledSlider(int width, int height, float min, float max, float increment, int sigfigs, int orientation) {
 		super(width, height, min, max, increment, orientation);
 		
 		this.sigfigs = sigfigs;
 		
 		setLayout(FREE_FORM);
 		
-		label = new LabelComponent(width / 4, height);
+		label = new Label(width / 4, height);
 		label.setOffsetX(width);
 		label.setOffsetY(-10);
 		
@@ -23,7 +23,7 @@ public class LabeledSliderComponent extends SliderComponent {
 		
 	}
 	
-	public LabelComponent getLabel() {
+	public Label getLabel() {
 		return label;
 	}
 	

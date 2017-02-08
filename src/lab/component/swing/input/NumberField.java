@@ -4,15 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
-import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
-public class NumberFieldComponent extends InputComponent implements ActionListener {
+public class NumberField extends InputComponent implements ActionListener {
 
 	private final JFormattedTextField textField;
 
-	public NumberFieldComponent(int width, int height, String format) {
+	public NumberField(int width, int height, String format) {
 		super(width, height);
 
 		textField = new JFormattedTextField(createFormatter(format));
@@ -21,7 +20,7 @@ public class NumberFieldComponent extends InputComponent implements ActionListen
 
 	}
 
-	public NumberFieldComponent(int width, int height, int nonDecimal, int decimal) {
+	public NumberField(int width, int height, int nonDecimal, int decimal) {
 		this(width, height, buildDecimal(nonDecimal, decimal));
 	}
 
@@ -55,7 +54,7 @@ public class NumberFieldComponent extends InputComponent implements ActionListen
 	}
 
 	@Override
-	public JComponent getJComponent() {
+	public JFormattedTextField getJComponent() {
 		return textField;
 	}
 

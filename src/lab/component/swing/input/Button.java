@@ -1,36 +1,34 @@
 package lab.component.swing.input;
 
-import java.awt.Button;
-import java.awt.Component;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class ButtonComponent extends InputComponent implements ActionListener {
+import javax.swing.JButton;
+
+public abstract class Button extends InputComponent implements ActionListener {
 	
-	private final Button button;
+	private final JButton button;
 	
-	public ButtonComponent(int width, int height, String text) {
+	public Button(int width, int height, String text) {
 		super(width, height);
 		
-		button = new Button(text);
+		button = new JButton(text);
 		
 		button.addActionListener(this);
-
+		
+		button.setMargin(new Insets(0, 0, 0, 0));
 	}
 	
 	public abstract void doSomething();
-
-	public Button getButton() {
-		return button;
-	}
 	
 	public void setFontSize(int size) {
 		button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
 	}
 	
 	@Override
-	public Component getJComponent() {
+	public JButton getJComponent() {
 		return button;
 	}
 	

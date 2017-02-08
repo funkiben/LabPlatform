@@ -30,7 +30,7 @@ public class BunsenBurner extends LabComponent {
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
 		g.setColor(Color.gray);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x, y + height / 7 - 1, width, height - height / 7 + 1);
 		g.setColor(Color.darkGray);
 		g.fillRect(x - width / 5, y + height - height / 10, width + width / 5 * 2, height / 10);
 	}

@@ -1,7 +1,6 @@
 package lab.component.swing.input;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -10,7 +9,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class SliderComponent extends InputComponent implements ChangeListener {
+public class Slider extends InputComponent implements ChangeListener {
 
 	public static final int HORIZONTAL = 0;
 	public static final int VERTICAL = 1;
@@ -20,7 +19,7 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 	private final float max;
 	private final float increment;
 
-	public SliderComponent(int width, int height, float min, float max, float increment, int orientation) {
+	public Slider(int width, int height, float min, float max, float increment, int orientation) {
 		
 		super(width, height);
 		
@@ -87,7 +86,7 @@ public class SliderComponent extends InputComponent implements ChangeListener {
 	}
 
 	@Override
-	public Component getJComponent() {
+	public JSlider getJComponent() {
 		return slider;
 	}
 	

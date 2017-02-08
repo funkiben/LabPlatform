@@ -14,10 +14,10 @@ import lab.component.data.GraphDataSet;
 import lab.component.data.Graph;
 import lab.component.sensor.Manometer;
 import lab.component.sensor.Thermometer;
-import lab.component.swing.input.ButtonComponent;
-import lab.component.swing.input.SliderComponent;
-import lab.component.swing.input.SwitchComponent;
-import lab.component.swing.input.NumberFieldComponent;
+import lab.component.swing.input.Button;
+import lab.component.swing.input.Slider;
+import lab.component.swing.input.Switch;
+import lab.component.swing.input.NumberField;
 
 public class TestLab extends LabFrame {
 
@@ -34,10 +34,10 @@ public class TestLab extends LabFrame {
 	private final GraduatedCylinder graduatedCylinder;
 	private final Thermometer thermometer;
 	private final Manometer manometer;
-	private final SliderComponent slider;
-	private final SwitchComponent switchC;
-	private final NumberFieldComponent textInput;
-	private final ButtonComponent button;
+	private final Slider slider;
+	private final Switch switchC;
+	private final NumberField textInput;
+	private final Button button;
 	private double t = 0;
 	
 	public TestLab(String name, int width, int height) {
@@ -105,13 +105,13 @@ public class TestLab extends LabFrame {
 		manometer.setShowValue(true);
 		addComponent(manometer);
 
-		slider = new SliderComponent(120, 20, 0, 25, 1, SliderComponent.HORIZONTAL);
+		slider = new Slider(120, 20, 0, 25, 1, Slider.HORIZONTAL);
 		slider.setOffsetX(60);
 		slider.setOffsetY(100);
 		addComponent(slider);
 		
 		
-		switchC = new SwitchComponent(120, 20) {
+		switchC = new Switch(120, 20) {
 			@Override
 			public void onAction() {
 				
@@ -127,14 +127,14 @@ public class TestLab extends LabFrame {
 		switchC.setOffsetX(5);
 		addComponent(switchC);
 		
-		textInput = new NumberFieldComponent(120, 20, 50, 25) {
+		textInput = new NumberField(120, 20, 50, 25) {
 			
 		};
 		textInput.setOffsetY(100);
 		textInput.setOffsetX(5);
 		addComponent(textInput);
 		
-		button = new ButtonComponent(50, 50, "Click me") {
+		button = new Button(50, 50, "Click me") {
 			@Override
 			public void doSomething() {
 				bulbLEGACY.setValue(bulbLEGACY.getValue() + 10);

@@ -3,14 +3,13 @@ package lab.component.swing.input;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComponent;
 import javax.swing.JTextField;
 
-public class TextFieldComponent extends InputComponent implements ActionListener {
+public class TextField extends InputComponent implements ActionListener {
 
 	private final JTextField textField;
 
-	public TextFieldComponent(int width, int height, String defaultValue) {
+	public TextField(int width, int height, String defaultValue) {
 		super(width, height);
 
 		textField = new JTextField(defaultValue);
@@ -35,7 +34,7 @@ public class TextFieldComponent extends InputComponent implements ActionListener
 	}
 	
 	@Override
-	public JComponent getJComponent() {
+	public JTextField getJComponent() {
 		return textField;
 	}
 
