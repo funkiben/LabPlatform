@@ -359,9 +359,9 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 		double a,b,c,d,da,db,dc,dd;
 		
 		if (e < 1) {
-			a = 0.2;
-			b = 0.25;
-			c = 0.5;
+			a = 0.2f;
+			b = 0.25f;
+			c = 0.5f;
 			
 			da = Math.abs(e - a);
 			db = Math.abs(e - b);
