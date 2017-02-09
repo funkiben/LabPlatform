@@ -17,6 +17,10 @@ public class Animator {
 		return animationMap.get(id);
 	}
 	
+	public boolean animationExists(String id) {
+		return animationMap.containsKey(id);
+	}
+	
 	public void animate() {
 		List<String> toRemove = new ArrayList<String>();
 		
