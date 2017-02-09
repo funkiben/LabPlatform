@@ -7,49 +7,8 @@ import javax.swing.JPanel;
 
 
 // this entire class is really messy :(
+// EDIT 2/9: its a little better now since! :)
 public class UserComponentResizing {
-
-	private static UserComponentResizing currentlyResizing = null;
-	private static UserComponentResizing currentlyHasHovering = null;
-	private static JPanel panel;
-	
-	private static void setCursorToN() {
-		panel.setCursor(new Cursor(Cursor.N_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToNW() {
-		panel.setCursor(new Cursor(Cursor.NW_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToW() {
-		panel.setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToSW() {
-		panel.setCursor(new Cursor(Cursor.SW_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToS() {
-		panel.setCursor(new Cursor(Cursor.S_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToSE() {
-		panel.setCursor(new Cursor(Cursor.SE_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToE() {
-		panel.setCursor(new Cursor(Cursor.E_RESIZE_CURSOR));
-	}
-	
-	private static void setCursorToNE() {
-		panel.setCursor(new Cursor(Cursor.NE_RESIZE_CURSOR));
-	}
-	
-	private static void resetCursor() {
-		panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	}
-	
-	
 
 	private final LabComponent component;
 	private int clickableAreaWidth = 5;
@@ -65,8 +24,7 @@ public class UserComponentResizing {
 	private int minWidth;
 	private int minHeight;
 	private boolean hasDrag = false;
-	private boolean hasHover = false;
-
+	
 	public UserComponentResizing(LabComponent component, int minWidth, int minHeight) {
 		this.component = component;
 		this.minWidth = minWidth;
@@ -84,6 +42,30 @@ public class UserComponentResizing {
 		NW_dragArea = dragAreas[5];
 		SW_dragArea = dragAreas[6];
 		SE_dragArea = dragAreas[7];
+		
+		N_dragArea.setHoverCursorIcon(Cursor.N_RESIZE_CURSOR);
+		N_dragArea.setDragCursorIcon(Cursor.N_RESIZE_CURSOR);
+
+		NE_dragArea.setHoverCursorIcon(Cursor.NE_RESIZE_CURSOR);
+		NE_dragArea.setDragCursorIcon(Cursor.NE_RESIZE_CURSOR);
+		
+		E_dragArea.setHoverCursorIcon(Cursor.E_RESIZE_CURSOR);
+		E_dragArea.setDragCursorIcon(Cursor.E_RESIZE_CURSOR);
+		
+		SE_dragArea.setHoverCursorIcon(Cursor.SE_RESIZE_CURSOR);
+		SE_dragArea.setDragCursorIcon(Cursor.SE_RESIZE_CURSOR);
+		
+		S_dragArea.setHoverCursorIcon(Cursor.S_RESIZE_CURSOR);
+		S_dragArea.setDragCursorIcon(Cursor.S_RESIZE_CURSOR);
+		
+		SW_dragArea.setHoverCursorIcon(Cursor.SW_RESIZE_CURSOR);
+		SW_dragArea.setDragCursorIcon(Cursor.SW_RESIZE_CURSOR);
+		
+		W_dragArea.setHoverCursorIcon(Cursor.W_RESIZE_CURSOR);
+		W_dragArea.setDragCursorIcon(Cursor.W_RESIZE_CURSOR);
+		
+		NW_dragArea.setHoverCursorIcon(Cursor.NW_RESIZE_CURSOR);
+		NW_dragArea.setDragCursorIcon(Cursor.NW_RESIZE_CURSOR);
 
 	}
 
@@ -150,13 +132,6 @@ public class UserComponentResizing {
 	private int clickHeight = -1, clickWidth = -1, clickOffsetX = -1, clickOffsetY = -1;
 
 	public void check(int x, int y, int width, int height) {
-		if (currentlyResizing != null) {
-			if (currentlyResizing != this) {
-				if (currentlyResizing.component.getZOrder() > component.getZOrder()) {
-					return;
-				}
-			}
-		}
 		
 		Point p = N_dragArea.getMousePosition();
 		
@@ -193,24 +168,6 @@ public class UserComponentResizing {
 			}
 		}
 		
-		if (hasDrag) {
-			if (currentlyResizing != null) {
-				if (currentlyResizing != this) {
-					if (currentlyResizing.component.getZOrder() < component.getZOrder()) {
-						currentlyResizing.hasDrag = false;
-						currentlyResizing = this;
-					} else {
-						hasDrag = false;
-						return;
-					}
-				}
-			} else {
-				currentlyResizing = this;
-			}
-		}
-		
-		checkForHovering();
-		
 		if (NE_dragArea.hasClick()) {
 			setClickState(width, height);
 
@@ -221,8 +178,6 @@ public class UserComponentResizing {
 
 			checkDimensions(false, true);
 			
-			setCursorToNE();
-
 		} else if (N_dragArea.hasClick()) {
 			setClickState(width, height);
 
@@ -232,8 +187,6 @@ public class UserComponentResizing {
 
 			checkDimensions(false, true);
 			
-			setCursorToN();
-
 		} else if (NW_dragArea.hasClick()) {
 			setClickState(width, height);
 
@@ -245,8 +198,6 @@ public class UserComponentResizing {
 
 			checkDimensions(true, true);
 			
-			setCursorToNW();
-
 		} else if (W_dragArea.hasClick()) {
 			setClickState(width, height);
 
@@ -255,8 +206,6 @@ public class UserComponentResizing {
 			component.setOffsetX(W_dragArea.getDragDelta().x + clickOffsetX);
 
 			checkDimensions(true, false);
-			
-			setCursorToW();
 
 		} else if (SW_dragArea.hasClick()) {
 			setClickState(width, height);
@@ -267,8 +216,6 @@ public class UserComponentResizing {
 			component.setOffsetX(SW_dragArea.getDragDelta().x + clickOffsetX);
 
 			checkDimensions(true, false);
-			
-			setCursorToSW();
 
 		} else if (S_dragArea.hasClick()) {
 			setClickState(width, height);
@@ -276,8 +223,6 @@ public class UserComponentResizing {
 			component.stretchToNewHeight(S_dragArea.getDragDelta().y + clickHeight);
 
 			checkDimensions();
-			
-			setCursorToS();
 
 		} else if (SE_dragArea.hasClick()) {
 			setClickState(width, height);
@@ -286,8 +231,6 @@ public class UserComponentResizing {
 			component.stretchToNewHeight(SE_dragArea.getDragDelta().y + clickHeight);
 
 			checkDimensions();
-			
-			setCursorToSE();
 
 		} else if (E_dragArea.hasClick()) {
 			setClickState(width, height);
@@ -295,79 +238,15 @@ public class UserComponentResizing {
 			component.stretchToNewWidth(E_dragArea.getDragDelta().x + clickWidth);
 
 			checkDimensions();
-			
-			setCursorToE();
 
 		} else {
 			clickWidth = -1;
 			clickHeight = -1;
 			clickOffsetX = -1;
 			clickOffsetY = -1;
-			
-			if (currentlyResizing != null) {
-				if (currentlyResizing == this) {
-					currentlyResizing = null;
-				}
-			}
 
 		}
 
-	}
-
-	private void checkForHovering() {
-		hasHover = false;
-		
-		for (ClickableArea a : dragAreas) {
-			if (a.hasHover()) {
-				hasHover = true;
-				break;
-			}
-		}
-		
-		if (hasHover) {
-			if (currentlyHasHovering != null) {
-				if (currentlyHasHovering != this) {
-					if (currentlyHasHovering.component.getZOrder() < component.getZOrder()) {
-						currentlyHasHovering.hasHover = false;
-						currentlyHasHovering = this;
-					} else {
-						hasHover = false;
-						return;
-					}
-				}
-			} else {
-				currentlyHasHovering = this;
-			}
-		}
-		
-		if (NE_dragArea.hasHover()) {
-			setCursorToNE();
-		} else if (N_dragArea.hasHover()) {
-			setCursorToN();
-		} else if (NW_dragArea.hasHover()) {
-			setCursorToNW();
-		} else if (W_dragArea.hasHover()) {
-			setCursorToW();
-		} else if (SW_dragArea.hasHover()) {
-			setCursorToSW();
-		} else if (S_dragArea.hasHover()) {
-			setCursorToS();
-		} else if (SE_dragArea.hasHover()) {
-			setCursorToSE();
-		} else if (E_dragArea.hasHover()) {
-			setCursorToE();
-		} else {
-			hasHover = false;
-			
-			if (currentlyHasHovering != null) {
-				if (currentlyHasHovering == this) {
-					currentlyHasHovering = null;
-					resetCursor();
-				}
-			} else {
-				resetCursor();
-			}
-		}
 	}
 	
 	private void checkDimensions(boolean x, boolean y) {
@@ -400,12 +279,8 @@ public class UserComponentResizing {
 	}
 
 	public void initializeMouseListeners(JPanel p) {
-		if (panel == null) {
-			panel = p;
-		}
-		
 		for (ClickableArea a : dragAreas) {
-			a.initializeMouseListeners(panel);
+			a.initializeMouseListeners(p);
 		}
 	}
 
