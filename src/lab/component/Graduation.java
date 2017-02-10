@@ -161,6 +161,7 @@ public abstract class Graduation implements Drawable {
 		draw(0, 0, width, height, g);
 	}
 	
+	
 	public abstract int getBottomTick();
 	
 	protected static double round(double t) {
@@ -171,4 +172,11 @@ public abstract class Graduation implements Drawable {
 		return Double.parseDouble(SigFig.sigfigalize(t, 4));
 	}
 	
+	// custom modulus method for decimals
+	protected static int modulus(double d1, double d2) {
+		d1 *= 100000;
+		d2 *= 100000;
+		
+		return (int) (d1 % d2);
+	}
 }
