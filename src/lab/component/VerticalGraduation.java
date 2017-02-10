@@ -7,7 +7,6 @@ import java.awt.Point;
 import java.util.List;
 
 import draw.Drawable;
-import lab.SigFig;
 
 public class VerticalGraduation extends Graduation implements Drawable {
 	
@@ -51,7 +50,13 @@ public class VerticalGraduation extends Graduation implements Drawable {
 				g.drawLine(p.x, p.y, (int) (p.x - lineLength), p.y);
 				
 				if (showLabels) {
-					g.drawString(round(range - i + start) + (i == range ? suffix : ""), p.x + 5 + textOffset, (int) (p.y + (textHeight / 2)));
+					String s = round(range - i + start) + (i == range ? suffix : "");
+					
+					if (removePointZero) {
+						s = s.replace(".0", "");
+					}
+					
+					g.drawString(s, p.x + 5 + textOffset, (int) (p.y + (textHeight / 2)));
 				}
 				
 			} else {

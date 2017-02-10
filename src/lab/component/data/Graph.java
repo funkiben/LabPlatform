@@ -48,7 +48,7 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 		vGraduation.setFontSize(9);
 		hGraduation.setFontSize(9);
 		
-		vGraduation.setTextOffset(-20);
+		vGraduation.setTextOffset(-22);
 		hGraduation.setTextOffset(5);
 		
 		setOffsetX(30);

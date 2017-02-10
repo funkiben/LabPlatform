@@ -24,6 +24,7 @@ public abstract class Graduation implements Drawable {
 	protected Color color = Color.black;
 	protected int lineLength = 10;
 	protected int subLineLength = 5;
+	protected boolean removePointZero = true;
 	
 	public Graduation(double start, double end, double lineIntervals, double subLineIntervals) {
 		this.start = start;
@@ -146,6 +147,14 @@ public abstract class Graduation implements Drawable {
 
 	public void setTextOffset(int textOffset) {
 		this.textOffset = textOffset;
+	}
+	
+	public void setRemovePointZero(boolean removePointZero) {
+		this.removePointZero = removePointZero;
+	}
+	
+	public boolean canRemovePointZero() {
+		return removePointZero;
 	}
 
 	public void draw(Graphics g, int width, int height) {
