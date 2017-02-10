@@ -51,7 +51,7 @@ public class MinimizableComponent extends LabComponent {
 		
 		if (isMinimized) {
 			
-			animator.addAnimation("stretch", new DoubleLinearAnimation((double) MINIMIZED_HEIGHT, 15.0) {
+			animator.addAnimation("stretch", new DoubleLinearAnimation((double) MINIMIZED_HEIGHT, 25.0) {
 				
 				@Override
 				public void setValue(Double d) {
@@ -67,7 +67,7 @@ public class MinimizableComponent extends LabComponent {
 			
 		} else {
 			
-			animator.addAnimation("stretch", new DoubleLinearAnimation((double) expandedHeight, 15.0) {
+			animator.addAnimation("stretch", new DoubleLinearAnimation((double) expandedHeight, 25.0) {
 				
 				@Override
 				public void setValue(Double d) {
