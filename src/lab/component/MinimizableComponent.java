@@ -30,8 +30,6 @@ public class MinimizableComponent extends LabComponent {
 		content.setOffsetY(minimizedHeight);
 		super.addChild(content);
 		
-		setShowBounds(true);
-		
 		expandedHeight = height;
 		this.minimizedHeight = minimizedHeight;
 		
@@ -111,11 +109,13 @@ public class MinimizableComponent extends LabComponent {
 
 	@Override
 	public void draw(int x, int y, int w, int h, Graphics g) {
-		g.setColor(Color.black);
-		g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 15));
-		g.drawString(title, x + 25, y + minimizedHeight - 5);
 		
-		g.drawRect(x, y, w, minimizedHeight);
+		g.setColor(Color.black);
+		g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+		g.drawString(title, x + 20, y + minimizedHeight - 5);
+		
+		g.setColor(Color.lightGray);
+		//g.drawRect(x, y, w, minimizedHeight);
 		
 		int[] xs = new int[3];
 		int[] ys = new int[3];
@@ -125,19 +125,20 @@ public class MinimizableComponent extends LabComponent {
 			xs[1] = x + 5;
 			xs[2] = x + 10;
 			
-			ys[0] = y + 5;
-			ys[1] = y + 15;
-			ys[2] = y + 10;
+			ys[0] = y + 2;
+			ys[1] = y + 12;
+			ys[2] = y + 7;
 		} else {
 			xs[0] = x + 5;
 			xs[1] = x + 15;
 			xs[2] = x + 10;
 			
-			ys[0] = y + 7;
-			ys[1] = y + 7;
-			ys[2] = y + 12;
+			ys[0] = y + 5;
+			ys[1] = y + 5;
+			ys[2] = y + 10;
 		}
 		
+		g.setColor(Color.black);
 		g.fillPolygon(xs, ys, 3);
 		
 		clickArea.check(x, y, w, h);
@@ -145,6 +146,9 @@ public class MinimizableComponent extends LabComponent {
 		if (clickArea.hasClick() && !animator.animationExists("stretch")) {
 			setMinimized(!isMinimized);
 		}
+		
+		g.setColor(Color.darkGray);
+		g.drawLine(x, y, x, y + h);
 		
 	}
 	
