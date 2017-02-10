@@ -20,7 +20,6 @@ public class MinimizableComponent extends LabComponent {
 	private final int expandedHeight;
 	private final Animator animator = new Animator();
 	private final int minimizedHeight;
-	private Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 15);
 	
 	public MinimizableComponent(String title, int width, int height, int minimizedHeight) {
 		super(width, height);
