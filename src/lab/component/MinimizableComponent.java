@@ -13,29 +13,29 @@ import lab.component.LabComponent;
 
 public class MinimizableComponent extends LabComponent {
 
-	private static final int MINIMIZED_HEIGHT = 30;
-	
 	private final EmptyComponent content;
 	private final String title;
 	private final ClickableArea clickArea;
 	private boolean isMinimized = false;
 	private final int expandedHeight;
 	private final Animator animator = new Animator();
+	private final int minimizedHeight;
 	
-	public MinimizableComponent(String title, int width, int height) {
+	public MinimizableComponent(String title, int width, int height, int minimizedHeight) {
 		super(width, height);
 
 		this.title = title;
 
-		content = new EmptyComponent(width, height - MINIMIZED_HEIGHT);
-		content.setOffsetY(MINIMIZED_HEIGHT);
+		content = new EmptyComponent(width, height - minimizedHeight);
+		content.setOffsetY(minimizedHeight);
 		super.addChild(content);
 		
 		setShowBounds(true);
 		
 		expandedHeight = height;
+		this.minimizedHeight = minimizedHeight;
 		
-		clickArea = new ClickableArea(this, 0, 0, width, MINIMIZED_HEIGHT);
+		clickArea = new ClickableArea(this, 0, 0, width, minimizedHeight);
 	}
 
 	public String getTitle() {
@@ -46,12 +46,16 @@ public class MinimizableComponent extends LabComponent {
 		return isMinimized;
 	}
 	
+	public int getMinimizedHeight() {
+		return minimizedHeight;
+	}
+	
 	public void setMinimized(boolean isMinimized) {
 		this.isMinimized = isMinimized;
 		
 		if (isMinimized) {
 			
-			animator.addAnimation("stretch", new DoubleLinearAnimation((double) MINIMIZED_HEIGHT, 25.0) {
+			animator.addAnimation("stretch", new DoubleLinearAnimation((double) minimizedHeight, 25.0) {
 				
 				@Override
 				public void setValue(Double d) {
@@ -109,8 +113,33 @@ public class MinimizableComponent extends LabComponent {
 	public void draw(int x, int y, int w, int h, Graphics g) {
 		g.setColor(Color.black);
 		g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 15));
-		g.drawString(title, x + 5, y + MINIMIZED_HEIGHT / 2);
-		g.drawRect(x, y, w, MINIMIZED_HEIGHT);
+		g.drawString(title, x + 25, y + minimizedHeight - 5);
+		
+		g.drawRect(x, y, w, minimizedHeight);
+		
+		int[] xs = new int[3];
+		int[] ys = new int[3];
+		
+		if (isMinimized) {
+			xs[0] = x + 5;
+			xs[1] = x + 5;
+			xs[2] = x + 10;
+			
+			ys[0] = y + 5;
+			ys[1] = y + 15;
+			ys[2] = y + 10;
+		} else {
+			xs[0] = x + 5;
+			xs[1] = x + 15;
+			xs[2] = x + 10;
+			
+			ys[0] = y + 7;
+			ys[1] = y + 7;
+			ys[2] = y + 12;
+		}
+		
+		g.fillPolygon(xs, ys, 3);
+		
 		clickArea.check(x, y, w, h);
 		
 		if (clickArea.hasClick() && !animator.animationExists("stretch")) {

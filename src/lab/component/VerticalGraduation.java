@@ -46,7 +46,7 @@ public class VerticalGraduation extends Graduation implements Drawable {
 			p = findLinePosition(edge, (int) ((i / range * height) + top.y));
 			p.y += offset;
 			
-			if (round(i % lineIntervals) == 0) {
+			if (modulus(round(i), round(lineIntervals)) == 0.0) {
 				g.drawLine(p.x, p.y, (int) (p.x - lineLength), p.y);
 				
 				if (showLabels) {

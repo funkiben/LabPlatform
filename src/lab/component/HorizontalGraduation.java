@@ -43,7 +43,7 @@ public class HorizontalGraduation extends Graduation {
 			p = findLinePosition(edge, (int) ((i / range * width) + left.x));
 			p.x += offset;
 			
-			if (round(i % lineIntervals) == 0) {
+			if (modulus(round(i), round(lineIntervals)) == 0) {
 				g.drawLine(p.x, p.y, p.x, (int) (p.y - lineLength));
 				
 				if (showLabels) {
