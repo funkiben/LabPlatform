@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import draw.Drawable;
+import lab.SigFig;
 
 public abstract class Graduation implements Drawable {
 
@@ -23,6 +24,7 @@ public abstract class Graduation implements Drawable {
 	protected Color color = Color.black;
 	protected int lineLength = 10;
 	protected int subLineLength = 5;
+	protected boolean removePointZero = true;
 	
 	public Graduation(double start, double end, double lineIntervals, double subLineIntervals) {
 		this.start = start;
@@ -146,13 +148,35 @@ public abstract class Graduation implements Drawable {
 	public void setTextOffset(int textOffset) {
 		this.textOffset = textOffset;
 	}
+	
+	public void setRemovePointZero(boolean removePointZero) {
+		this.removePointZero = removePointZero;
+	}
+	
+	public boolean canRemovePointZero() {
+		return removePointZero;
+	}
 
 	public void draw(Graphics g, int width, int height) {
 		draw(0, 0, width, height, g);
 	}
 	
+	
 	public abstract int getBottomTick();
 	
-
+	protected static double round(double t) {
+		if (t < 1E-5) {
+			return 0;
+		}
+		
+		return Double.parseDouble(SigFig.sigfigalize(t, 4));
+	}
 	
+	// custom modulus method for decimals
+	protected static int modulus(double d1, double d2) {
+		d1 *= 100000;
+		d2 *= 100000;
+		
+		return (int) (d1 % d2);
+	}
 }

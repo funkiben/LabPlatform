@@ -37,23 +37,26 @@ public class VerticalGraduation extends Graduation implements Drawable {
 		height = bottom.y - top.y; // top will have a lower y value than bottom (confusing)
 		range = end - start;
 		
+		range = round(range);
+		
 		g.setColor(color);
 		
-		float i;
-		
-		for (double j = 0; j <= range; j += subLineIntervals) {
-			
-			i = (float) j; // cast to float because of inaccuracies in adding doubles
+		for (double i = 0; round(i) <= range; i += subLineIntervals) {
 			
 			p = findLinePosition(edge, (int) ((i / range * height) + top.y));
 			p.y += offset;
 			
-			
-			if (i % lineIntervals == 0) {
+			if (modulus(round(i), round(lineIntervals)) == 0.0) {
 				g.drawLine(p.x, p.y, (int) (p.x - lineLength), p.y);
 				
 				if (showLabels) {
-					g.drawString(Integer.toString((int) (range - i + start)) + (i == range ? suffix : ""), p.x + 5 + textOffset, (int) (p.y + (textHeight / 2)));
+					String s = round(range - i + start) + (i == range ? suffix : "");
+					
+					if (removePointZero) {
+						s = s.replace(".0", "");
+					}
+					
+					g.drawString(s, p.x + 5 + textOffset, (int) (p.y + (textHeight / 2)));
 				}
 				
 			} else {

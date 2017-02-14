@@ -132,6 +132,11 @@ public abstract class LabComponent implements Drawable {
 		this.offsetY = offsetY;
 	}
 	
+	public void setOffset(int offsetX, int offsetY){
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+	}
+	
 	public int getZOrder() {
 		return zOrder;
 	}
