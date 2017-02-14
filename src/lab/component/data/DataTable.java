@@ -83,33 +83,69 @@ public class DataTable<E> extends LabComponent {
 		}
 	}
 	
+	public void setRow(int row, @SuppressWarnings("unchecked") E...e) {
+		for (int i = 0; i < columns; i++) {
+			setCell(i, row, e[i]);
+		}
+	}
+	
+	public void setRow(int row, int e) {
+		for (int i = 0; i < columns; i++) {
+			setCell(i, row, e);
+		}
+	}
+	
+	public void setRow(int row, int...e) {
+		for (int i = 0; i < columns; i++) {
+			setCell(i, row, e[i]);
+		}
+	}
+	
+	public void setRow(int row, double e) {
+		for (int i = 0; i < columns; i++) {
+			setCell(i, row, e);
+		}
+	}
+	
+	public void setRow(int row, double...e){
+		for (int i = 0; i < columns; i++){
+			setCell(i, row, e[i]);
+		}
+	}
+	
 	public void setColumn(int column, E e) {
 		for (int i = 0; i < rows; i++) {
 			setCell(column, i, e);
 		}
 	}
 
-	public void setRow(int row, double d) {
-		for (int i = 0; i < columns; i++) {
-			setCell(i, row, d);
-		}
-	}
-	
-	public void setRow(int row, double... d){
-		for (int i = 0; i < columns; i++){
-			setCell(i, row, d[i]);
-		}
-	}
-	
-	public void setColumn(int column, int n) {
+	public void setColumn(int column, @SuppressWarnings("unchecked") E...e) {
 		for (int i = 0; i < rows; i++) {
-			setCell(column, i, n);
+			setCell(column, i, e[i]);
 		}
 	}
 	
-	public void setColumn(int column, double... d){
+	public void setColumn(int column, int e) {
+		for (int i = 0; i < rows; i++) {
+			setCell(column, i, e);
+		}
+	}
+	
+	public void setColumn(int column, int...e) {
+		for (int i = 0; i < rows; i++) {
+			setCell(column, i, e[i]);
+		}
+	}
+	
+	public void setColumn(int column, double e){
 		for (int i = 0; i < rows; i++){
-			setCell(column, i, d[i]);
+			setCell(column, i, e);
+		}
+	}
+	
+	public void setColumn(int column, double...e){
+		for (int i = 0; i < rows; i++){
+			setCell(column, i, e[i]);
 		}
 	}
 	
