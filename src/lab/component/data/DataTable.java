@@ -95,7 +95,7 @@ public class DataTable<E> extends LabComponent {
 		}
 	}
 	
-	public void setRow(int row, double[] d){
+	public void setRow(int row, double... d){
 		for (int i = 0; i < columns; i++){
 			setCell(i, row, d[i]);
 		}
@@ -107,7 +107,7 @@ public class DataTable<E> extends LabComponent {
 		}
 	}
 	
-	public void setColumn(int column, double[] d){
+	public void setColumn(int column, double... d){
 		for (int i = 0; i < rows; i++){
 			setCell(column, i, d[i]);
 		}
