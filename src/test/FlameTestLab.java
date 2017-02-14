@@ -22,8 +22,9 @@ public class FlameTestLab extends LabFrame {
 		flame.setOffsetX(100);
 		flame.setOffsetY(100);
 		
-		flame.setIntensity(80);
+		flame.setIntensity(50);
 		flame.setNoiseIncrement(1);
+		flame.setNoiseFrequency(14.0f);
 		
 		addComponent(flame);
 		

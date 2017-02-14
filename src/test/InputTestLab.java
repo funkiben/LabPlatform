@@ -20,7 +20,7 @@ public class InputTestLab extends LabFrame {
 		super("Input Test Lab", 800, 800);
 		
 		
-		MinimizableComponent mc = new MinimizableComponent("Test Minimizable Component", 300, 500, 20);
+		MinimizableComponent mc = new MinimizableComponent("Test Minimizable Component", 300, 500, 15);
 		mc.setOffsetX(30);
 		mc.setOffsetY(30);
 		addComponent(mc);
