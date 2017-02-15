@@ -20,7 +20,7 @@ public abstract class LabFrame extends JFrame {
 	private boolean started = false;
 	private final LabComponent root;
 	
-	public LabFrame(String name, int width, int height) {
+	public LabFrame(String name, int width, int height, boolean startOpen) {
 		setSize(width, height);
 		setTitle(name);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,9 +30,11 @@ public abstract class LabFrame extends JFrame {
 		
 		add(canvas = new DrawCanvas());
 		
-		setVisible(true);
-		
-		
+		setVisible(startOpen);
+	}
+	
+	public LabFrame(String name, int width, int height) {
+		this(name, width, height, true);
 	}
 	
 	public void start(int fps) {

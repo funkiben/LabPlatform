@@ -1,7 +1,6 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.BunsenBurner;
 import lab.component.fx.Flame;
 
 public class FlameTestLab extends LabFrame {
