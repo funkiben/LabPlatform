@@ -16,7 +16,7 @@ public class Manometer extends GraduatedComponent {
 	private static final int CONNECTOR_HEIGHT = 30;
 	private static final Color MERCURY_COLOR = new Color(75, 75, 75);
 	
-	protected final GraduatedCylinder cyl1, cyl2;
+	private final GraduatedCylinder cyl1, cyl2;
 	
 	public Manometer(int width, int height) {
 		super(width, height);
@@ -60,14 +60,8 @@ public class Manometer extends GraduatedComponent {
 	@Override
 	public void setValue(double mmHg) {
 		
-		
 		cyl1.setValue(mmHg / 2);
 		cyl2.setValue(-mmHg / 2 + 760);
-		
-		// 360 mmHg pressure
-		// 560 mmHg right
-		// 200 mmHg left
-		
 		
 	}
 	

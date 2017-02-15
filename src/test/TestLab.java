@@ -127,9 +127,7 @@ public class TestLab extends LabFrame {
 		switchC.setOffsetX(5);
 		addComponent(switchC);
 		
-		textInput = new NumberField(120, 20, 50, 25) {
-			
-		};
+		textInput = new NumberField(120, 20, 0, 100, 3);
 		textInput.setOffsetY(100);
 		textInput.setOffsetX(5);
 		addComponent(textInput);

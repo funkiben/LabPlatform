@@ -1,5 +1,6 @@
 package lab.component.swing;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
@@ -46,6 +47,14 @@ public class Label extends SwingComponent {
 	
 	public void setFont(Font font) {
 		label.setFont(font);
+	}
+	
+	public void setColor(Color color) {
+		label.setForeground(color);
+	}
+	
+	public Color getColor(Color color) {
+		return label.getForeground();
 	}
 	
 	@Override

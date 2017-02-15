@@ -1,86 +1,95 @@
 package lab.component.swing.input;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-import javax.swing.JFormattedTextField;
-import javax.swing.text.MaskFormatter;
+import lab.SigFig;
+import lab.component.swing.Label;
 
-public class NumberField extends InputComponent implements ActionListener {
+public class NumberField extends TextField implements FocusListener {
 
-	private final JFormattedTextField textField;
-
-	public NumberField(int width, int height, String format) {
-		super(width, height);
-
-		textField = new JFormattedTextField(createFormatter(format));
-		textField.setColumns(format.length());
-		textField.addActionListener(this);
-
-	}
-
-	public NumberField(int width, int height, int nonDecimal, int decimal) {
-		this(width, height, buildDecimal(nonDecimal, decimal));
-	}
-
-	protected MaskFormatter createFormatter(String s) {
-
-		MaskFormatter formatter = null;
-
-		try {
-			formatter = new MaskFormatter(s);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		return formatter;
-	}
-
-	public double getDoubleValue() {
-		return (double) textField.getValue();
+	private double min;
+	private double max;
+	private Label errorLabel;
+	private int sigfigs;
+	
+	public NumberField(int width, double min, double max, int sigfigs, double value) {
+		super(width, 20, Double.toString(value));
+		
+		this.min = min;
+		this.max = max;
+		this.sigfigs = sigfigs;
+		
+		errorLabel = new Label(width, 20);
+		errorLabel.setOffset(0, 10);
+		errorLabel.setColor(Color.red);
+		errorLabel.setFontSize(9);
+		
+		setScaleChildren(false);
+		addChild(errorLabel);
+		
+		this.getJComponent().addFocusListener(this);
 	}
 	
-	public Object getValue() {
-		return getDoubleValue();
+	public NumberField(int width, double min, double max, int sigfigs) {
+		this(width, min, max, sigfigs, 0);
+	}
+	
+	public double getMin() {
+		return min;
 	}
 
-	public void setValue(double n) {
+	public void setMin(double min) {
+		this.min = min;
+	}
+
+	public double getMax() {
+		return max;
+	}
+
+	public void setMax(double max) {
+		this.max = max;
+	}
+	
+	public double getDoubleValue() {
+		return Double.parseDouble(getText());
+	}
+	
+	private void check() {
 		try {
-			textField.setValue(n);
-		} catch (Exception e) {
-			textField.setValue(0);
+			getDoubleValue();
+		} catch (NumberFormatException ex) {
+			errorLabel.setText("<html><p>Value must be a number.</p></html>");
+			return;
 		}
-	}
-
-	@Override
-	public JFormattedTextField getJComponent() {
-		return textField;
+		
+		if (getDoubleValue() > max || getDoubleValue() < min) {
+			errorLabel.setText("<html><p>Value must be between " + min + " and " + max + ".</p></html>");
+			return;
+		}
+		
+		errorLabel.setText("");
+		
+		setText(SigFig.sigfigalize(getDoubleValue(), sigfigs));
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		check();
+		
 		onChanged();
 	}
 
-	public void onChanged() {
-
+	@Override
+	public void focusGained(FocusEvent arg0) {
+		
 	}
 
-	private static String buildDecimal(int n, int d) {
-
-		String s = "";
-		for (int i = 0; i < n; i++) {
-			s += "#";
-		}
-		if (d > 0) {
-			s += ".";
-		}
-		for (int i = 0; i < d; i++) {
-			s += "#";
-		}
-		return s;
-
+	@Override
+	public void focusLost(FocusEvent arg0) {
+		check();
 	}
 
 }
