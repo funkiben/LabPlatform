@@ -13,6 +13,7 @@ public class InputTestLab extends LabFrame {
 
 	public static void main(String[] args) {
 		new InputTestLab();
+		
 	}
 	
 	
@@ -29,9 +30,11 @@ public class InputTestLab extends LabFrame {
 		mc.addChild(new EmptyComponent(250, 0));
 		
 		
-		mc.addChild(new NumberField(100, 20, "####"));
-		mc.addChild(new NumberField(100, 20, "####"));
-		mc.addChild(new NumberField(100, 20, "####"));
+		mc.addChild(new NumberField(100, 0, 20, 3, 4));
+		mc.addChild(new NumberField(100, 0, 20, 3, 4));
+		mc.addChild(new NumberField(100, 0, 20, 3, 4));
+		
+		addComponent(new NumberField(100, 0, 20, 3, 3));
 		
 		
 		mc.addChild(new TextField(100, 20, "Hey"));
