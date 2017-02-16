@@ -174,9 +174,12 @@ public abstract class Graduation implements Drawable {
 	
 	// custom modulus method for decimals
 	protected static int modulus(double d1, double d2) {
-		d1 *= 100000;
-		d2 *= 100000;
+		int n = (int) Math.log10(Math.min(d1, d2));
+		
+		d1 *= Math.pow(10, n);
+		d2 *= Math.pow(10, n);
 		
 		return (int) (d1 % d2);
 	}
+
 }
