@@ -8,7 +8,7 @@ import java.awt.event.FocusListener;
 import lab.SigFig;
 import lab.component.swing.Label;
 
-public class NumberField extends TextField implements FocusListener {
+public class DoubleField extends TextField implements FocusListener {
 
 	private double min;
 	private double max;
@@ -16,7 +16,7 @@ public class NumberField extends TextField implements FocusListener {
 	private final int sigfigs;
 	private final int scientificNotationMinPower;
 	
-	public NumberField(int width, double min, double max, int sigfigs, int scientificNotationMinPower, double value) {
+	public DoubleField(int width, double min, double max, int sigfigs, int scientificNotationMinPower, double value) {
 		super(width, 20, Double.toString(value));
 		
 		this.min = min;
@@ -35,11 +35,11 @@ public class NumberField extends TextField implements FocusListener {
 		this.getJComponent().addFocusListener(this);
 	}
 	
-	public NumberField(int width, double min, double max, int sigfigs, int scientificNotationMinPower) {
+	public DoubleField(int width, double min, double max, int sigfigs, int scientificNotationMinPower) {
 		this(width, min, max, sigfigs, scientificNotationMinPower, 0);
 	}
 	
-	public NumberField(int width, double min, double max, int sigfigs) {
+	public DoubleField(int width, double min, double max, int sigfigs) {
 		this(width, min, max, sigfigs, 1);
 	}
 	

@@ -4,7 +4,7 @@ import lab.LabFrame;
 import lab.component.EmptyComponent;
 import lab.component.MinimizableComponent;
 import lab.component.container.GraduatedCylinder;
-import lab.component.swing.input.NumberField;
+import lab.component.swing.input.DoubleField;
 import lab.component.swing.input.TextField;
 
 public class InputTestLab extends LabFrame {
@@ -30,11 +30,11 @@ public class InputTestLab extends LabFrame {
 		mc.addChild(new EmptyComponent(250, 0));
 		
 		
-		mc.addChild(new NumberField(100, 0, 20, 3, 4));
-		mc.addChild(new NumberField(100, 0, 20, 3, 4));
-		mc.addChild(new NumberField(100, 0, 20, 3, 4));
+		mc.addChild(new DoubleField(100, 0, 20, 3, 4));
+		mc.addChild(new DoubleField(100, 0, 20, 3, 4));
+		mc.addChild(new DoubleField(100, 0, 20, 3, 4));
 		
-		addComponent(new NumberField(100, 0, 20, 3, 3));
+		addComponent(new DoubleField(100, 0, 20, 3, 3));
 		
 		
 		mc.addChild(new TextField(100, 20, "Hey"));
