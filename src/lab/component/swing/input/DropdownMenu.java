@@ -5,20 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-public class DropdownMenu extends InputComponent implements ActionListener {
+public class DropdownMenu<E> extends InputComponent implements ActionListener {
 
-	private final JComboBox<String> dropdown;
+	private final JComboBox<E> dropdown;
 	
-	public DropdownMenu(int width, int height, String... args) {
+	@SafeVarargs
+	public DropdownMenu(int width, int height, E... args) {
 		super(width, height);
 		
-		dropdown = new JComboBox<String>(args);
+		dropdown = new JComboBox<E>(args);
 		
 		dropdown.addActionListener(this);
-	}
-	
-	public String getSelectedItem() {
-		return (String) dropdown.getSelectedItem();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -32,13 +29,14 @@ public class DropdownMenu extends InputComponent implements ActionListener {
 	}
 
 	@Override
-	public JComboBox<String> getJComponent() {
+	public JComboBox<E> getJComponent() {
 		return dropdown;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public String getValue() {
-		return getSelectedItem();
+	public E getValue() {
+		return (E) dropdown.getSelectedItem();
 	}
 
 	@Override
