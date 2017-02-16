@@ -46,8 +46,13 @@ public class CheckBox extends InputComponent implements ItemListener {
 	}
 	
 	@Override
-	public Object getValue() {
+	public Boolean getValue() {
 		return checkBox.isSelected();
 	}
 
+	@Override
+	public void setValue(Object v) {
+		checkBox.setSelected((Boolean) v);
+	}
+	
 }

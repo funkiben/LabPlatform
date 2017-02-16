@@ -13,14 +13,16 @@ public class NumberField extends TextField implements FocusListener {
 	private double min;
 	private double max;
 	private Label errorLabel;
-	private int sigfigs;
+	private final int sigfigs;
+	private final int scientificNotationMinPower;
 	
-	public NumberField(int width, double min, double max, int sigfigs, double value) {
+	public NumberField(int width, double min, double max, int sigfigs, int scientificNotationMinPower, double value) {
 		super(width, 20, Double.toString(value));
 		
 		this.min = min;
 		this.max = max;
 		this.sigfigs = sigfigs;
+		this.scientificNotationMinPower = scientificNotationMinPower;
 		
 		errorLabel = new Label(width, 20);
 		errorLabel.setOffset(0, 10);
@@ -33,8 +35,12 @@ public class NumberField extends TextField implements FocusListener {
 		this.getJComponent().addFocusListener(this);
 	}
 	
+	public NumberField(int width, double min, double max, int sigfigs, int scientificNotationMinPower) {
+		this(width, min, max, sigfigs, scientificNotationMinPower, 0);
+	}
+	
 	public NumberField(int width, double min, double max, int sigfigs) {
-		this(width, min, max, sigfigs, 0);
+		this(width, min, max, sigfigs, 1);
 	}
 	
 	public double getMin() {
@@ -51,6 +57,10 @@ public class NumberField extends TextField implements FocusListener {
 
 	public void setMax(double max) {
 		this.max = max;
+	}
+	
+	public int getSigFigs() {
+		return sigfigs;
 	}
 	
 	public double getDoubleValue() {
@@ -72,7 +82,7 @@ public class NumberField extends TextField implements FocusListener {
 		
 		errorLabel.setText("");
 		
-		setText(SigFig.sigfigalize(getDoubleValue(), sigfigs));
+		setText(SigFig.sigfigalize(getDoubleValue(), sigfigs, scientificNotationMinPower));
 	}
 
 	@Override

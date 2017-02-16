@@ -37,8 +37,13 @@ public class DropdownMenu extends InputComponent implements ActionListener {
 	}
 	
 	@Override
-	public Object getValue() {
+	public String getValue() {
 		return getSelectedItem();
+	}
+
+	@Override
+	public void setValue(Object v) {
+		dropdown.setSelectedItem(v);
 	}
 	
 }

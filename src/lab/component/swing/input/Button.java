@@ -41,6 +41,11 @@ public abstract class Button extends InputComponent implements ActionListener {
 	public Object getValue() {
 		return null;
 	}
+	
+	@Override
+	public void setValue(Object v) {
+		
+	}
 
 
 }

@@ -53,8 +53,13 @@ public class Slider extends InputComponent implements ChangeListener {
 		return slider.getValue() * increment + min;
 	}
 	
-	public Object getValue() {
+	@Override
+	public Float getValue() {
 		return getFloatValue();
+	}
+	
+	public void setValue(Object v) {
+		setValue((Float) v);
 	}
 	
 	public int getOrientation() {
