@@ -20,7 +20,8 @@ public class Flame extends LabComponent {
 	private double noiseIncrement = 1;
 	private float noiseFrequency = 8.0f;
 	private int intensity = 100;
-
+	private int seed = 0;
+	
 	public Flame(int width, int height, int resolutionX, int resolutionY) {
 		super(width, height);
 
@@ -91,6 +92,14 @@ public class Flame extends LabComponent {
 	public void setIntensity(int flameIntensity) {
 		this.intensity = flameIntensity;
 	}
+	
+	public int getSeed() {
+		return seed;
+	}
+	
+	public void setSeed(int seed) {
+		this.seed = seed;
+	}
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
@@ -105,7 +114,7 @@ public class Flame extends LabComponent {
 
 			for (int yi = 0; yi < resolutionY; yi++) {
 
-				colors[xi][yi] = getColor(xi, yi);
+				colors[xi][yi] = getColor(xi, yi + seed);
 
 				g.setColor(colors[xi][yi]);
 
