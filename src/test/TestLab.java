@@ -15,7 +15,7 @@ import lab.component.data.Graph;
 import lab.component.sensor.Manometer;
 import lab.component.sensor.Thermometer;
 import lab.component.swing.input.Button;
-import lab.component.swing.input.Slider;
+import lab.component.swing.input.DoubleSlider;
 import lab.component.swing.input.Switch;
 import lab.component.swing.input.DoubleField;
 
@@ -34,7 +34,7 @@ public class TestLab extends LabFrame {
 	private final GraduatedCylinder graduatedCylinder;
 	private final Thermometer thermometer;
 	private final Manometer manometer;
-	private final Slider slider;
+	private final DoubleSlider doubleSlider;
 	private final Switch switchC;
 	private final DoubleField textInput;
 	private final Button button;
@@ -105,10 +105,10 @@ public class TestLab extends LabFrame {
 		manometer.setShowValue(true);
 		addComponent(manometer);
 
-		slider = new Slider(120, 20, 0, 25, 1, Slider.HORIZONTAL);
-		slider.setOffsetX(60);
-		slider.setOffsetY(100);
-		addComponent(slider);
+		doubleSlider = new DoubleSlider(120, 20, 0, 25, 1, DoubleSlider.HORIZONTAL);
+		doubleSlider.setOffsetX(60);
+		doubleSlider.setOffsetY(100);
+		addComponent(doubleSlider);
 		
 		
 		switchC = new Switch(120, 20) {
@@ -154,7 +154,7 @@ public class TestLab extends LabFrame {
 		
 		t++;
 		
-		flask.setValue(slider.getFloatValue());
+		flask.setValue(doubleSlider.getValue());
 		
 		manometer.setValue((Math.sin(t / 100) + 1) * 760);
 		thermometer.setValue(((Math.sin(t / 100) + 1) * 130 / 2) - 30);

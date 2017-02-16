@@ -63,26 +63,27 @@ public class DoubleField extends TextField implements FocusListener {
 		return sigfigs;
 	}
 	
-	public double getDoubleValue() {
+	@Override
+	public Double getValue() {
 		return Double.parseDouble(getText());
 	}
 	
 	private void check() {
 		try {
-			getDoubleValue();
+			getValue();
 		} catch (NumberFormatException ex) {
 			errorLabel.setText("<html><p>Value must be a number.</p></html>");
 			return;
 		}
 		
-		if (getDoubleValue() > max || getDoubleValue() < min) {
+		if (getValue() > max || getValue() < min) {
 			errorLabel.setText("<html><p>Value must be between " + min + " and " + max + ".</p></html>");
 			return;
 		}
 		
 		errorLabel.setText("");
 		
-		setText(SigFig.sigfigalize(getDoubleValue(), sigfigs, scientificNotationMinPower));
+		setText(SigFig.sigfigalize(getValue(), sigfigs, scientificNotationMinPower));
 	}
 
 	@Override

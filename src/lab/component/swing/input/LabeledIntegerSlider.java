@@ -3,13 +3,13 @@ package lab.component.swing.input;
 import lab.SigFig;
 import lab.component.swing.Label;
 
-public class LabeledSlider extends Slider {
+public class LabeledIntegerSlider extends IntegerSlider {
 
 	private final Label label;
 	private final int sigfigs;
 	
-	public LabeledSlider(int width, int height, float min, float max, float increment, int sigfigs, int orientation) {
-		super(width, height, min, max, increment, orientation);
+	public LabeledIntegerSlider(int width, int height, int min, int max, int sigfigs, int orientation) {
+		super(width, height, min, max, orientation);
 		
 		this.sigfigs = sigfigs;
 		
@@ -35,7 +35,7 @@ public class LabeledSlider extends Slider {
 	
 	@Override
 	public void update() {
-		label.setText(SigFig.sigfigalize(getFloatValue(), sigfigs));
+		label.setText(SigFig.sigfigalize(getValue(), sigfigs));
 	}
 
 }

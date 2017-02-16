@@ -50,19 +50,20 @@ public class IntegerField extends TextField implements FocusListener {
 		this.max = max;
 	}
 	
-	public double getIntegerValue() {
+	@Override
+	public Integer getValue() {
 		return Integer.parseInt(getText());
 	}
 	
 	private void check() {
 		try {
-			getIntegerValue();
+			getValue();
 		} catch (NumberFormatException ex) {
 			errorLabel.setText("<html><p>Value must be a number.</p></html>");
 			return;
 		}
 		
-		if (getIntegerValue() > max || getIntegerValue() < min) {
+		if (getValue() > max || getValue() < min) {
 			errorLabel.setText("<html><p>Value must be between " + min + " and " + max + ".</p></html>");
 			return;
 		}

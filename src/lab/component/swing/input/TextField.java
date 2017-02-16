@@ -22,7 +22,7 @@ public class TextField extends InputComponent implements ActionListener {
 	}
 	
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return textField.getText();
 	}
 	

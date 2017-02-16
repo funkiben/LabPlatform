@@ -9,17 +9,17 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Slider extends InputComponent implements ChangeListener {
+public class DoubleSlider extends InputComponent implements ChangeListener {
 
 	public static final int HORIZONTAL = 0;
 	public static final int VERTICAL = 1;
 	
 	private final JSlider slider;
-	private final float min;
-	private final float max;
-	private final float increment;
+	private final double min;
+	private final double max;
+	private final double increment;
 
-	public Slider(int width, int height, float min, float max, float increment, int orientation) {
+	public DoubleSlider(int width, int height, double min, double max, double increment, int orientation) {
 		
 		super(width, height);
 		
@@ -35,31 +35,27 @@ public class Slider extends InputComponent implements ChangeListener {
 		
 	}
 	
-	public void setValue(float v) {
+	public void setValue(double v) {
 		v = Math.max(min, Math.min(max, v));
 		v -= min;
 		slider.setValue((int) (v / increment));
 	}
 	
-	public float getMin() {
+	public double getMin() {
 		return min;
 	}
 
-	public float getMax() {
+	public double getMax() {
 		return max;
-	}
-
-	public float getFloatValue() {
-		return slider.getValue() * increment + min;
 	}
 	
 	@Override
-	public Float getValue() {
-		return getFloatValue();
+	public Double getValue() {
+		return slider.getValue() * increment + min;
 	}
 	
 	public void setValue(Object v) {
-		setValue((Float) v);
+		setValue((Double) v);
 	}
 	
 	public int getOrientation() {
@@ -67,7 +63,7 @@ public class Slider extends InputComponent implements ChangeListener {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void addValueLabel(float value, String label) {
+	public void addValueLabel(double value, String label) {
 		Dictionary<Integer, JLabel> labels = slider.getLabelTable();
 		
 		if (labels == null) {
