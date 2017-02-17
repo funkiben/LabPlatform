@@ -65,12 +65,16 @@ public class DoubleField extends TextField implements FocusListener {
 	
 	@Override
 	public Double getValue() {
-		return Double.parseDouble(getText());
+		try {
+			return Double.parseDouble(getText());
+		} catch (NumberFormatException e) {
+			return 0.0;
+		}
 	}
 	
 	private void check() {
 		try {
-			getValue();
+			Double.parseDouble(getText());
 		} catch (NumberFormatException ex) {
 			errorLabel.setText("<html><p>Value must be a number.</p></html>");
 			return;

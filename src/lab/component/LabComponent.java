@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import draw.Drawable;
 
-public abstract class LabComponent implements Drawable, Cloneable {
+public abstract class LabComponent implements Drawable {
 	
 	public static final byte FREE_FORM = 0;
 	public static final byte PARAGRAPH = 1;
@@ -349,10 +349,6 @@ public abstract class LabComponent implements Drawable, Cloneable {
 			
 		}
 	}
-	
-    public LabComponent clone() throws CloneNotSupportedException {
-        return (LabComponent) super.clone();
-    }
 	
 	public static void drawCenteredString(Graphics g, String str, int x, int y) {
 		FontMetrics metrics = g.getFontMetrics();

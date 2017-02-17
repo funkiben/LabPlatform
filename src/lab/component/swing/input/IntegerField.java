@@ -52,12 +52,16 @@ public class IntegerField extends TextField implements FocusListener {
 	
 	@Override
 	public Integer getValue() {
-		return Integer.parseInt(getText());
+		try {
+			return Integer.parseInt(getText());
+		} catch (NumberFormatException e) {
+			return 0;
+		}
 	}
 	
 	private void check() {
 		try {
-			getValue();
+			Integer.parseInt(getText());
 		} catch (NumberFormatException ex) {
 			errorLabel.setText("<html><p>Value must be a number.</p></html>");
 			return;
