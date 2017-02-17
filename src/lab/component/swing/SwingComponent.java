@@ -15,7 +15,6 @@ public abstract class SwingComponent extends LabComponent {
 	
 	public SwingComponent(int width, int height) {
 		super(width, height);
-		
 	}
 
 	public boolean isEnabled() {

@@ -111,7 +111,7 @@ public class MinimizableComponent extends LabComponent {
 	public void draw(int x, int y, int w, int h, Graphics g) {
 		
 		g.setColor(Color.black);
-		g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
 		g.drawString(title, x + 20, y + minimizedHeight - 5);
 		
 		g.setColor(Color.lightGray);
