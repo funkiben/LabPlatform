@@ -16,8 +16,6 @@ public abstract class SwingComponent extends LabComponent {
 	public SwingComponent(int width, int height) {
 		super(width, height);
 		
-		setOffsetX(10);
-		setOffsetY(10);
 	}
 
 	public boolean isEnabled() {

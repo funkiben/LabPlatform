@@ -35,7 +35,7 @@ public class DoubleSlider extends InputComponent implements ChangeListener {
 		
 	}
 	
-	public void setValue(double v) {
+	public void setValue(Double v) {
 		v = Math.max(min, Math.min(max, v));
 		v -= min;
 		slider.setValue((int) (v / increment));
@@ -54,6 +54,7 @@ public class DoubleSlider extends InputComponent implements ChangeListener {
 		return slider.getValue() * increment + min;
 	}
 	
+	@Override
 	public void setValue(Object v) {
 		setValue((Double) v);
 	}

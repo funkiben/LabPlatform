@@ -23,7 +23,7 @@ public class BunsenBurner extends LabComponent {
 		addChild(flame);
 	}
 	
-	public Flame getFlames() {
+	public Flame getFlame() {
 		return flame;
 	}
 

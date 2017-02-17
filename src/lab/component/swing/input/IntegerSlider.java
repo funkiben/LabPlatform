@@ -52,7 +52,7 @@ public class IntegerSlider extends InputComponent implements ChangeListener {
 	}
 	
 	public void setValue(Object v) {
-		setValue((Integer) v);
+		slider.setValue((Integer) v);
 	}
 	
 	public int getOrientation() {

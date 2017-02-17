@@ -18,7 +18,7 @@ public class Flame extends LabComponent {
 	private final PerlinNoiseGenerator noise = new PerlinNoiseGenerator();
 	private double noiseShift = 0;
 	private double noiseIncrement = 1;
-	private float noiseFrequency = 8.0f;
+	private double noiseFrequency = 8.0;
 	private int intensity = 100;
 	private int seed = 0;
 	
@@ -77,11 +77,11 @@ public class Flame extends LabComponent {
 		this.noiseIncrement = noiseIncrement;
 	}
 
-	public float getNoiseFrequency() {
+	public double getNoiseFrequency() {
 		return noiseFrequency;
 	}
 
-	public void setNoiseFrequency(float noiseFrequency) {
+	public void setNoiseFrequency(double noiseFrequency) {
 		this.noiseFrequency = noiseFrequency;
 	}
 
@@ -138,7 +138,7 @@ public class Flame extends LabComponent {
 	}
 
 	private Color getColor(int x, int y) {
-		float f = noise.noise2(x / noiseFrequency, (float) (((float) y + noiseShift) / noiseFrequency));
+		float f = noise.noise2((float) (x / noiseFrequency), (float) (((float) y + noiseShift) / noiseFrequency));
 
 		double a = ((f + NOISE_MAX) / NOISE_RANGE * 255.0);
 		a -= ((double) (resolutionY - y) / resolutionY) * 255.0;

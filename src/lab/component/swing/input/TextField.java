@@ -28,7 +28,7 @@ public class TextField extends InputComponent implements ActionListener {
 	
 	@Override
 	public void setValue(Object v) {
-		textField.setText((String) v);
+		textField.setText(v.toString());
 	}
 
 	public void setText(String s) {
