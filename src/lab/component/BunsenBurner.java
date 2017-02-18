@@ -23,6 +23,18 @@ public class BunsenBurner extends LabComponent {
 		addChild(flame);
 	}
 	
+	@Override
+	public void setWidth(int width) {
+		super.setWidth(width);
+		flame.setWidth(width);
+	}
+	
+	@Override
+	public void setHeight(int height) {
+		super.setHeight(height);
+		flame.setHeight(height / 7);
+	}
+	
 	public Flame getFlame() {
 		return flame;
 	}
