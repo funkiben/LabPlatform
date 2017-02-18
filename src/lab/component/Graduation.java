@@ -165,7 +165,7 @@ public abstract class Graduation implements Drawable {
 	public abstract int getBottomTick();
 	
 	protected static double round(double t) {
-		if (t < 1E-5) {
+		if (Math.abs(t) < 1E-5) {
 			return 0;
 		}
 		
