@@ -19,9 +19,9 @@ public class MinimizableComponent extends LabComponent {
 	private boolean isMinimized = false;
 	private final int expandedHeight;
 	private final Animator animator = new Animator();
-	private final int minimizedHeight;
+	private final int minimizedHeight = 17;
 	
-	public MinimizableComponent(String title, int width, int height, int minimizedHeight) {
+	public MinimizableComponent(String title, int width, int height) {
 		super(width, height);
 
 		this.title = title;
@@ -31,7 +31,6 @@ public class MinimizableComponent extends LabComponent {
 		super.addChild(content);
 		
 		expandedHeight = height;
-		this.minimizedHeight = minimizedHeight;
 		
 		clickArea = new ClickableArea(this, 0, 0, width, minimizedHeight);
 	}
@@ -109,13 +108,12 @@ public class MinimizableComponent extends LabComponent {
 
 	@Override
 	public void draw(int x, int y, int w, int h, Graphics g) {
+		g.setColor(new Color(230, 230, 230));
+		g.fillRect(x, y, w, minimizedHeight);
 		
 		g.setColor(Color.black);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
 		g.drawString(title, x + 20, y + minimizedHeight - 5);
-		
-		g.setColor(Color.lightGray);
-		//g.drawRect(x, y, w, minimizedHeight);
 		
 		int[] xs = new int[3];
 		int[] ys = new int[3];
@@ -147,8 +145,8 @@ public class MinimizableComponent extends LabComponent {
 			setMinimized(!isMinimized);
 		}
 		
-		g.setColor(Color.darkGray);
-		g.drawLine(x, y, x, y + h);
+		//g.setColor(Color.darkGray);
+		//g.drawLine(x, y, x, y + h);
 		
 	}
 	
