@@ -1,11 +1,7 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.EmptyComponent;
-import lab.component.MinimizableComponent;
-import lab.component.container.GraduatedCylinder;
 import lab.component.swing.input.DoubleField;
-import lab.component.swing.input.TextField;
 
 public class InputTestLab extends LabFrame {
 	
@@ -21,24 +17,9 @@ public class InputTestLab extends LabFrame {
 		super("Input Test Lab", 800, 800);
 		
 		
-		MinimizableComponent mc = new MinimizableComponent("Test Minimizable Component", 300, 500, 15);
-		mc.setOffsetX(30);
-		mc.setOffsetY(30);
-		addComponent(mc);
-		
-		mc.addChild(new GraduatedCylinder(50, 250));
-		mc.addChild(new EmptyComponent(250, 0));
-		
-		
-		mc.addChild(new DoubleField(100, 0, 20, 3, 4));
-		mc.addChild(new DoubleField(100, 0, 20, 3, 4));
-		mc.addChild(new DoubleField(100, 0, 20, 3, 4));
-		
 		addComponent(new DoubleField(100, 0, 20, 3, 3));
 		
-		
-		mc.addChild(new TextField(100, 20, "Hey"));
-		
+	
 		
 		start(60);
 	}
