@@ -12,7 +12,7 @@ public class Label extends SwingComponent {
 	private final JLabel label;
 	
 	public Label(int width, int height, String text) {
-		super(width,height);
+		super(width, height);
 		
 		label = new JLabel();
 		labelText = text;
