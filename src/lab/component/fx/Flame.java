@@ -114,7 +114,7 @@ public class Flame extends LabComponent {
 
 			for (int yi = 0; yi < resolutionY; yi++) {
 
-				colors[xi][yi] = getColor(xi, yi + seed);
+				colors[xi][yi] = getColor(xi, yi);
 
 				g.setColor(colors[xi][yi]);
 
@@ -138,7 +138,7 @@ public class Flame extends LabComponent {
 	}
 
 	private Color getColor(int x, int y) {
-		float f = noise.noise2((float) (x / noiseFrequency), (float) (((float) y + noiseShift) / noiseFrequency));
+		float f = noise.noise2((float) (x / noiseFrequency), (float) (((float) y + noiseShift) / noiseFrequency) + seed);
 
 		double a = ((f + NOISE_MAX) / NOISE_RANGE * 255.0);
 		a -= ((double) (resolutionY - y) / resolutionY) * 255.0;
