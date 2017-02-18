@@ -2,7 +2,6 @@ package lab.component.sensor;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import lab.component.GraduatedComponent;
@@ -108,15 +107,6 @@ public class Manometer extends GraduatedComponent {
 		g.drawString("1 atm", x, y - 5);
 		g.drawString("gas", x + width / 3 * 2, y - 5);
 		
-		if (canShowValue()) {
-			FontMetrics metrics = g.getFontMetrics();
-			
-			g.setColor(Color.black);
-			
-			String str = (int) getValue() + "mm Hg";
-			
-			g.drawString(str, x + metrics.stringWidth(str) / 2, y + height + 20);
-		}
 	}
 
 }

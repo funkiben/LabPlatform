@@ -19,7 +19,7 @@ public class IntegerField extends TextField implements FocusListener {
 		this.min = min;
 		this.max = max;
 		
-		errorLabel = new Label(100, 20);
+		errorLabel = new Label(120, 20);
 		errorLabel.setOffset(width, 0);
 		errorLabel.setColor(Color.red);
 		errorLabel.setFontSize(9);

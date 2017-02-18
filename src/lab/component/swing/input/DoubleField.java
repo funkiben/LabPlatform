@@ -24,7 +24,7 @@ public class DoubleField extends TextField implements FocusListener {
 		this.sigfigs = sigfigs;
 		this.scientificNotationMinPower = scientificNotationMinPower;
 		
-		errorLabel = new Label(width, 20);
+		errorLabel = new Label(120, 20);
 		errorLabel.setOffset(width, 0);
 		errorLabel.setColor(Color.red);
 		errorLabel.setFontSize(9);

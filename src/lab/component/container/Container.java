@@ -12,7 +12,7 @@ public abstract class Container extends GraduatedComponent {
 
 	private Color contentColor = Color.green;
 	private ContentState contentState = ContentState.LIQUID;
-	private Color color = Color.lightGray;
+	private Color color = new Color(230, 230, 230);
 	private String label = null;
 	private int labelOffsetX;
 	private int labelOffsetY;

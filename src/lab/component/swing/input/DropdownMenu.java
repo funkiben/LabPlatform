@@ -21,10 +21,10 @@ public class DropdownMenu<E> extends InputComponent implements ActionListener {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		onSelectItem((String) ((JComboBox<String>) e.getSource()).getSelectedItem());
+		onSelectItem((E) ((JComboBox<E>) e.getSource()).getSelectedItem());
 	}
 	
-	public void onSelectItem(String item) {
+	public void onSelectItem(E item) {
 		
 	}
 

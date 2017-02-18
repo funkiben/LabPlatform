@@ -33,7 +33,7 @@ public class Beaker extends Container {
 		g.fillRoundRect(x, y, width, height, 20, 20);
 		
 		if (!isEmpty()) {
-			drawContent(x, y, width, height - 40, g);
+			drawContent(x, y + 40, width, height - 40, g);
 		}
 		
 		g.setColor(Color.white);
@@ -45,15 +45,9 @@ public class Beaker extends Container {
 		g.drawRoundRect(x, y, width, height, 20, 20);
 		
 		g.setColor(Color.white);
-		g.fillRect(x, y, width + 1, 20);
+		g.fillRect(x - 1, y - 1, width + 2, 22);
 		
 		getGraduation().draw(g, width, height);
-		
-		if (canShowValue()) {
-			g.setColor(Color.black);
-			g.drawString((int) getValue() + "mL", x, y + height + 20);
-		}
-		
 
 		drawLabel(x, y, width, height, g);
 		

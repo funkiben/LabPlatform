@@ -74,6 +74,8 @@ public class TestLab extends LabFrame {
 		
 		beaker = new Beaker(100, 200);
 		beaker.setContentColor(Color.blue);
+		beaker.setContentState(ContentState.SOLID);
+		beaker.setValue(10);
 		addComponent(beaker);
 		
 		flask = new Flask(100, 200);
@@ -97,12 +99,10 @@ public class TestLab extends LabFrame {
 		
 		thermometer = new Thermometer(300);
 		thermometer.setValue(10);
-		thermometer.setShowValue(true);
 		addComponent(thermometer);
 		
 		manometer = new Manometer(120, 400);
 		manometer.setOffsetX(100);
-		manometer.setShowValue(true);
 		addComponent(manometer);
 
 		doubleSlider = new DoubleSlider(120, 20, 0, 25, 1, DoubleSlider.HORIZONTAL);
