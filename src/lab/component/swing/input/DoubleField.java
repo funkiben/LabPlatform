@@ -25,7 +25,7 @@ public class DoubleField extends TextField implements FocusListener {
 		this.scientificNotationMinPower = scientificNotationMinPower;
 		
 		errorLabel = new Label(width, 20);
-		errorLabel.setOffset(0, 10);
+		errorLabel.setOffset(width, 0);
 		errorLabel.setColor(Color.red);
 		errorLabel.setFontSize(9);
 		
