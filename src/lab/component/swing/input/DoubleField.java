@@ -72,6 +72,11 @@ public class DoubleField extends TextField implements FocusListener {
 		}
 	}
 	
+	@Override
+	public void setValue(Object obj) {
+		setText(SigFig.sigfigalize((Double) obj, sigfigs, scientificNotationMinPower));
+	}
+	
 	private void check() {
 		try {
 			Double.parseDouble(getText());
