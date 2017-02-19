@@ -34,7 +34,7 @@ public class Flask extends Container {
 		g.fillRect(x, y, width, height);
 
 		if (!isEmpty()) {
-			drawContent(x, y, width, height - OPENING_SIZE, g);
+			drawContent(x, y + OPENING_SIZE, width, height - OPENING_SIZE, g);
 		}
 
 		int[] polyX = new int[4];
