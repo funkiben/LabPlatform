@@ -14,7 +14,7 @@ public class IntegerField extends TextField implements FocusListener {
 	private Label errorLabel;
 	
 	public IntegerField(int width, int min, int max, int value) {
-		super(width, 20, Double.toString(value));
+		super(width, Double.toString(value));
 		
 		this.min = min;
 		this.max = max;

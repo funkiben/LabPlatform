@@ -46,7 +46,6 @@ public abstract class SwingComponent extends LabComponent {
 					getJComponent().setSize(width, height);
 					getJComponent().setEnabled(enabled);
 					getJComponent().doLayout();
-					//LabFrame.inst.getDrawCanvas().repaint();
 				}
 			});
 			

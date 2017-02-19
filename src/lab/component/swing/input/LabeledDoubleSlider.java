@@ -6,21 +6,29 @@ import lab.component.swing.Label;
 public class LabeledDoubleSlider extends DoubleSlider {
 
 	private final Label label;
-	private final int sigfigs;
+	private int sigfigs;
 	
-	public LabeledDoubleSlider(int width, int height, double min, double max, double increment, int sigfigs, int orientation) {
-		super(width, height, min, max, increment, orientation);
+	public LabeledDoubleSlider(int width, double min, double max, double increment, int sigfigs, int orientation) {
+		super(width, min, max, increment, orientation);
 		
 		this.sigfigs = sigfigs;
 		
 		setLayout(FREE_FORM);
 		
-		label = new Label(width / 4, height);
+		label = new Label(width / 4, 20);
 		label.setOffsetX(width);
 		label.setOffsetY(-10);
 		
 		addChild(label);
 		
+	}
+	
+	public void setSigFigs(int sigfigs) {
+		this.sigfigs = sigfigs;
+	}
+	
+	public int getSigFigs() {
+		return sigfigs;
 	}
 	
 	public Label getLabel() {

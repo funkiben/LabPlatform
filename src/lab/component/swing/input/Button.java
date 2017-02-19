@@ -27,6 +27,26 @@ public abstract class Button extends InputComponent implements ActionListener {
 		button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
 	}
 	
+	public int getFontSize() {
+		return button.getFont().getSize();
+	}
+	
+	public void setFont(Font font) {
+		button.setFont(font);
+	}
+	
+	public Font getFont() {
+		return button.getFont();
+	}
+	
+	public String getText() {
+		return button.getText();
+	}
+	
+	public void setText(String text) {
+		button.setText(text);
+	}
+	
 	@Override
 	public JButton getJComponent() {
 		return button;

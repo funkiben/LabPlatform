@@ -105,7 +105,7 @@ public class TestLab extends LabFrame {
 		manometer.setOffsetX(100);
 		addComponent(manometer);
 
-		doubleSlider = new DoubleSlider(120, 20, 0, 25, 1, DoubleSlider.HORIZONTAL);
+		doubleSlider = new DoubleSlider(120, 0, 25, 1, DoubleSlider.HORIZONTAL);
 		doubleSlider.setOffsetX(60);
 		doubleSlider.setOffsetY(100);
 		addComponent(doubleSlider);

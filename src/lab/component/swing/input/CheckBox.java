@@ -22,6 +22,10 @@ public class CheckBox extends InputComponent implements ItemListener {
 	public boolean isSelected() {
 		return checkBox.isSelected();
 	}
+	
+	public void setSelected(boolean selected) {
+		checkBox.setSelected(selected);
+	}
 
 	@Override
 	public JCheckBox getJComponent() {

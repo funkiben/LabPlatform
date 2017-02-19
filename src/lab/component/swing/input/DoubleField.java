@@ -13,11 +13,11 @@ public class DoubleField extends TextField implements FocusListener {
 	private double min;
 	private double max;
 	private Label errorLabel;
-	private final int sigfigs;
-	private final int scientificNotationMinPower;
+	private int sigfigs;
+	private int scientificNotationMinPower;
 	
 	public DoubleField(int width, double min, double max, int sigfigs, int scientificNotationMinPower, double value) {
-		super(width, 20, Double.toString(value));
+		super(width, Double.toString(value));
 		
 		this.min = min;
 		this.max = max;
@@ -63,6 +63,18 @@ public class DoubleField extends TextField implements FocusListener {
 		return sigfigs;
 	}
 	
+	public void setSigFigs(int sigfigs) {
+		this.sigfigs = sigfigs;
+	}
+	
+	public int getScientificNotationMinPower() {
+		return scientificNotationMinPower;
+	}
+
+	public void setScientificNotationMinPower(int scientificNotationMinPower) {
+		this.scientificNotationMinPower = scientificNotationMinPower;
+	}
+
 	@Override
 	public Double getValue() {
 		try {

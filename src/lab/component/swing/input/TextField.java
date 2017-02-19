@@ -9,12 +9,16 @@ public class TextField extends InputComponent implements ActionListener {
 
 	private final JTextField textField;
 
-	public TextField(int width, int height, String defaultValue) {
-		super(width, height);
+	public TextField(int width, String defaultValue) {
+		super(width, 20);
 
 		textField = new JTextField(defaultValue);
 		textField.addActionListener(this);
 
+	}
+	
+	public TextField(int width) {
+		this(width, "");
 	}
 
 	public String getText() {

@@ -33,7 +33,7 @@ public class GraphTestLab extends LabFrame {
 		
 		addComponent(graph);
 		
-		doubleSlider = new DoubleSlider(750, 20, 0, 100, 1, DoubleSlider.HORIZONTAL);
+		doubleSlider = new DoubleSlider(750, 0, 100, 1, DoubleSlider.HORIZONTAL);
 		
 		set = new GraphDataSet("test", true, false);
 		
