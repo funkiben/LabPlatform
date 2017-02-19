@@ -37,11 +37,11 @@ public class IntegerSlider extends InputComponent implements ChangeListener {
 		slider.setValue(v);
 	}
 
-	public double getMin() {
+	public int getMin() {
 		return min;
 	}
 
-	public double getMax() {
+	public int getMax() {
 		return max;
 	}
 
