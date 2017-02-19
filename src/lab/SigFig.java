@@ -20,6 +20,10 @@ public class SigFig {
 			return "0";
 		}
 		
+		boolean isNegative = num < 0;
+		
+		num = Math.abs(num);
+		
 		sigfigs--;
 
 		String strNum = Double.toString(num);
@@ -76,7 +80,7 @@ public class SigFig {
 				strNum = strNum.substring(0, strNum.length() - 2);
 			}
 			
-			return strNum;
+			return (isNegative ? "-" : "") + strNum;
 			
 		} else {
 			
@@ -100,7 +104,7 @@ public class SigFig {
 			strNum += "E" + places;
 				
 			
-			return strNum;
+			return (isNegative ? "-" : "") + strNum;
 		}
 		
 	}
