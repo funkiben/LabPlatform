@@ -8,14 +8,12 @@ import javax.swing.JLabel;
 
 public class Label extends SwingComponent {
 
-	private String labelText;
 	private final JLabel label;
 	
 	public Label(int width, int height, String text) {
 		super(width, height);
 		
-		label = new JLabel();
-		labelText = text;
+		label = new JLabel(text);
 		
 	}
 	
@@ -29,16 +27,15 @@ public class Label extends SwingComponent {
 	}
 	
 	public void setText(String labelText) {
-		this.labelText = labelText;
 		label.setText(labelText);
 	}
 	
 	public String getText() {
-		return labelText;
+		return label.getText();
 	}
 	
 	public int getTextWidth() {
-		return label.getFontMetrics(label.getFont()).stringWidth(labelText);
+		return label.getFontMetrics(label.getFont()).stringWidth(label.getText());
 	}
 	
 	public void setFontSize(int size) {
@@ -49,6 +46,10 @@ public class Label extends SwingComponent {
 		label.setFont(font);
 	}
 	
+	public Font getFont() {
+		return label.getFont();
+	}
+	
 	public void setColor(Color color) {
 		label.setForeground(color);
 	}
@@ -56,11 +57,4 @@ public class Label extends SwingComponent {
 	public Color getColor(Color color) {
 		return label.getForeground();
 	}
-	
-	@Override
-	public void update() {
-		label.setText(labelText);
-	}
-	
-
 }

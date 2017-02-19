@@ -35,8 +35,6 @@ public class LabeledDoubleSlider extends DoubleSlider {
 		return label;
 	}
 	
-	
-	
 	public void onChange() {
 		
 	}
