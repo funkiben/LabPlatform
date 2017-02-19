@@ -41,7 +41,7 @@ public class DoubleSlider extends InputComponent implements ChangeListener {
 		v -= min;
 		slider.setValue((int) (v / increment));
 	}
-
+	
 	public double getMin() {
 		return min;
 	}

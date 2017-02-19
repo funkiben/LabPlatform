@@ -14,7 +14,7 @@ public class IntegerField extends TextField implements FocusListener {
 	private Label errorLabel;
 	
 	public IntegerField(int width, int min, int max, int value) {
-		super(width, Double.toString(value));
+		super(width, Integer.toString(value));
 		
 		this.min = min;
 		this.max = max;
@@ -32,6 +32,12 @@ public class IntegerField extends TextField implements FocusListener {
 	
 	public IntegerField(int width, int min, int max) {
 		this(width, min, max, 0);
+	}
+	
+	@Override
+	public void setWidth(int width) {
+		super.setWidth(width);
+		errorLabel.setOffsetX(width);
 	}
 	
 	public int getMin() {
@@ -57,6 +63,11 @@ public class IntegerField extends TextField implements FocusListener {
 		} catch (NumberFormatException e) {
 			return 0;
 		}
+	}
+	
+	@Override
+	public void setValue(Object obj) {
+		setText(obj.toString());
 	}
 	
 	private void check() {

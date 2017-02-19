@@ -16,8 +16,7 @@ public class LabeledDoubleSlider extends DoubleSlider {
 		setLayout(FREE_FORM);
 		
 		label = new Label(width / 4, 20);
-		label.setOffsetX(width);
-		label.setOffsetY(-10);
+		label.setOffset(width, 0);
 		
 		addChild(label);
 		

@@ -43,6 +43,12 @@ public class DoubleField extends TextField implements FocusListener {
 		this(width, min, max, sigfigs, 1);
 	}
 	
+	@Override
+	public void setWidth(int width) {
+		super.setWidth(width);
+		errorLabel.setOffsetX(width);
+	}
+	
 	public double getMin() {
 		return min;
 	}

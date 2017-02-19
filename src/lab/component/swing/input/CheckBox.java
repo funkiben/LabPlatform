@@ -19,6 +19,10 @@ public class CheckBox extends InputComponent implements ItemListener {
 		
 	}
 	
+	public CheckBox(int width, int height) {
+		this(width, height, "");
+	}
+	
 	public boolean isSelected() {
 		return checkBox.isSelected();
 	}
