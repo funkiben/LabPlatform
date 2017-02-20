@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-public class DropdownMenu<E> extends InputComponent implements ActionListener {
+public class Dropdown<E> extends InputComponent implements ActionListener {
 
 	private final JComboBox<E> dropdown;
 	
 	@SafeVarargs
-	public DropdownMenu(int width, int height, E... args) {
+	public Dropdown(int width, int height, E... args) {
 		super(width, height);
 		
 		dropdown = new JComboBox<E>(args);
