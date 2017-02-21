@@ -63,13 +63,13 @@ public class TextField extends InputComponent implements ActionListener, KeyList
 		
 	}
 	
-	public void onKeyTyped() {
+	public void onKeyTyped(int keyCode) {
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		onKeyTyped();
+		onKeyTyped(e.getKeyCode());
 	}
 
 	@Override
