@@ -2,10 +2,12 @@ package lab.component.swing.input;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
 
-public class TextField extends InputComponent implements ActionListener {
+public class TextField extends InputComponent implements ActionListener, KeyListener {
 
 	private final JTextField textField;
 
@@ -14,7 +16,7 @@ public class TextField extends InputComponent implements ActionListener {
 
 		textField = new JTextField(defaultValue);
 		textField.addActionListener(this);
-
+		textField.addKeyListener(this);
 	}
 	
 	public TextField(int width) {
@@ -43,6 +45,10 @@ public class TextField extends InputComponent implements ActionListener {
 		textField.setColumns(c);
 	}
 	
+	public boolean hasInput() {
+		return !textField.getText().isEmpty();
+	}
+	
 	@Override
 	public JTextField getJComponent() {
 		return textField;
@@ -54,7 +60,26 @@ public class TextField extends InputComponent implements ActionListener {
 	}
 	
 	public void onChanged() {
+		
+	}
+	
+	public void onKeyTyped() {
+		
+	}
 
+	@Override
+	public void keyTyped(KeyEvent e) {
+		onKeyTyped();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
 	}
 
 

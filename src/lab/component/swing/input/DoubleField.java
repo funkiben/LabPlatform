@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 
 import lab.SigFig;
 import lab.component.swing.Label;
@@ -92,10 +93,23 @@ public class DoubleField extends TextField implements FocusListener {
 	
 	@Override
 	public void setValue(Object obj) {
-		setText(SigFig.sigfigalize((Double) obj, sigfigs, scientificNotationMinPower));
+		if (sigfigs > 0) {
+			setText(SigFig.sigfigalize((Double) obj, sigfigs, scientificNotationMinPower));
+		} else {
+			setText(obj.toString());
+		}
+	}
+	
+	@Override
+	public boolean hasInput() {
+		return errorLabel.getText().equals("") && super.hasInput();
 	}
 	
 	private void check() {
+		if (getText().isEmpty()) {
+			return;
+		}
+		
 		try {
 			Double.parseDouble(getText());
 		} catch (NumberFormatException ex) {
@@ -110,14 +124,23 @@ public class DoubleField extends TextField implements FocusListener {
 		
 		errorLabel.setText("");
 		
-		setText(SigFig.sigfigalize(getValue(), sigfigs, scientificNotationMinPower));
+		if (sigfigs > 0) {
+			setText(SigFig.sigfigalize(getValue(), sigfigs, scientificNotationMinPower));
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		check();
+		super.actionPerformed(e);
 		
-		onChanged();
+		check();
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		super.keyTyped(e);
+		
+		check();
 	}
 
 	@Override

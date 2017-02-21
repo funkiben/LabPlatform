@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 
 import lab.component.swing.Label;
 
@@ -70,7 +71,16 @@ public class IntegerField extends TextField implements FocusListener {
 		setText(obj.toString());
 	}
 	
+	@Override
+	public boolean hasInput() {
+		return errorLabel.getText().equals("") && super.hasInput();
+	}
+	
 	private void check() {
+		if (getText().isEmpty()) {
+			return;
+		}
+		
 		try {
 			Integer.parseInt(getText());
 		} catch (NumberFormatException ex) {
@@ -89,9 +99,16 @@ public class IntegerField extends TextField implements FocusListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		check();
+		super.actionPerformed(e);
 		
-		onChanged();
+		check();
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		super.keyTyped(e);
+		
+		check();
 	}
 
 	@Override

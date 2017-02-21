@@ -1,7 +1,8 @@
 package lab.component.swing.input;
 
 import java.awt.Color;
-import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -29,6 +30,24 @@ public class ItemList<E> extends InputComponent implements ListSelectionListener
 		scrollPane.setViewportView(list);
 	}
 
+	public List<E> getItems() {
+		List<E> list = new ArrayList<E>();
+		
+		for (int i = 0; i < model.getSize(); i++) {
+			list.add(model.get(i));
+		}
+	
+		return list;
+	}
+	
+	public void setItems(List<E> items) {
+		model.clear();
+		
+		for (E e : items) {
+			model.addElement(e);
+		}
+	}
+	
 	public boolean contains(E elem) {
 		return model.contains(elem);
 	}
@@ -68,9 +87,9 @@ public class ItemList<E> extends InputComponent implements ListSelectionListener
 	public int getSelectedIndex() {
 		return list.getSelectedIndex();
 	}
-
+	
 	@Override
-	public Object getValue() {
+	public E getValue() {
 		return list.getSelectedValue();
 	}
 
@@ -80,10 +99,14 @@ public class ItemList<E> extends InputComponent implements ListSelectionListener
 	}
 
 	@Override
-	public Component getJComponent() {
+	public JScrollPane getJComponent() {
 		return scrollPane;
 	}
-
+	
+	public JList<E> getJList() {
+		return list;
+	}
+	
 	public void onValueChanged() {
 
 	}

@@ -32,6 +32,7 @@ public class InputTestLab extends LabFrame {
 		list.add("Test 3");
 		list.add("Test 4");
 		
+		
 		addComponent(list);
 		
 		start(60);
