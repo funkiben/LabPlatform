@@ -1,0 +1,2 @@
+1. Annotations/comments/JavaDocs
+2. Replace all KeyListener's, MouseListener's, or MouseMotionListener's with Adapters and delete associated unused methods (do this in editor too)
