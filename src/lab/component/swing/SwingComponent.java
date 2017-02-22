@@ -63,5 +63,9 @@ public abstract class SwingComponent extends LabComponent {
 		getJComponent().setVisible(visible);
 	}
 	
+	public boolean hasFocus() {
+		return getJComponent().hasFocus();
+	}
+	
 	public abstract Component getJComponent();
 }
