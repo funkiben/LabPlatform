@@ -6,35 +6,35 @@ public class RandomVector2Generator {
 	
 	private Vector2 start;
 	private Vector2 end;
-	private RandomVector2Type type;
+	private Vector2DistributionType type;
 	
-	public RandomVector2Generator(Vector2 start, Vector2 end, RandomVector2Type type) {
+	public RandomVector2Generator(Vector2 start, Vector2 end, Vector2DistributionType type) {
 		this.start = start;
 		this.end = end;
 		this.type = type;
 	}
 	
 	public RandomVector2Generator(Vector2 constant) {
-		this(constant, constant, RandomVector2Type.RECTANGLE);
+		this(constant, constant, Vector2DistributionType.RECTANGLE);
 	}
 	
-	public RandomVector2Generator(double startX, double startY, double endX, double endY, RandomVector2Type type) {
+	public RandomVector2Generator(double startX, double startY, double endX, double endY, Vector2DistributionType type) {
 		this(new Vector2(startX, startY), new Vector2(endX, endY), type);
 	}
 	
-	public RandomVector2Generator(double width, double height, RandomVector2Type type) {
+	public RandomVector2Generator(double width, double height, Vector2DistributionType type) {
 		this(0, 0, width, height, type);
 	}
 	
 	public RandomVector2Generator(double magnitude) {
-		this(0, magnitude, 0, 0, RandomVector2Type.RANDOM_DIRECTION);
+		this(0, magnitude, 0, 0, Vector2DistributionType.ELLIPSE_BORDER);
 	}
 
-	public RandomVector2Type getType() {
+	public Vector2DistributionType getType() {
 		return type;
 	}
 
-	public void setType(RandomVector2Type type) {
+	public void setType(Vector2DistributionType type) {
 		this.type = type;
 	}
 	
@@ -74,14 +74,14 @@ public class RandomVector2Generator {
 		
 		double x, y;
 		
-		if (type == RandomVector2Type.RECTANGLE) {
+		if (type == Vector2DistributionType.RECTANGLE) {
 			
 			x = Math.random() * getRangeX() + start.getX();
 			y = Math.random() * getRangeY() + start.getY();
 			
 			return new Vector2(x, y);
 			
-		} else if (type == RandomVector2Type.RANDOM_DIRECTION_AND_MAGNITUTDE) {
+		} else if (type == Vector2DistributionType.ELLIPSE) {
 			
 			double theta, w2, h2, radiusSqrt;
 			
@@ -96,7 +96,7 @@ public class RandomVector2Generator {
 				
 			return new Vector2(x, y);
 			
-		} else if (type == RandomVector2Type.RANDOM_DIRECTION) {
+		} else if (type == Vector2DistributionType.ELLIPSE_BORDER) {
 			
 			return start.rotate(Math.random() * 360);
 			

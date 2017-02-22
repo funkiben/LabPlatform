@@ -10,7 +10,7 @@ import lab.component.fx.Particle;
 import lab.component.fx.ParticleShape;
 import lab.component.fx.ParticleSystem;
 import lab.component.fx.RandomVector2Generator;
-import lab.component.fx.RandomVector2Type;
+import lab.component.fx.Vector2DistributionType;
 import lab.component.geo.Line;
 
 public class ParticleTestLab extends LabFrame implements MouseMotionListener {
@@ -33,7 +33,7 @@ public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 		
 		particles.setColorFade(5);
 		
-		particles.setVelocity(new RandomVector2Generator(-2, -3, 2, -5, RandomVector2Type.RANDOM_DIRECTION_AND_MAGNITUTDE));
+		particles.setVelocity(new RandomVector2Generator(-2, -3, 2, -5, Vector2DistributionType.ELLIPSE));
 		particles.setSpeedChange(-0.025);
 		
 		particles.setParticleWidth(5);
