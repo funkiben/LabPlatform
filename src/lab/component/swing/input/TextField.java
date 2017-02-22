@@ -34,6 +34,11 @@ public class TextField extends InputComponent implements ActionListener, KeyList
 	
 	@Override
 	public void setValue(Object v) {
+		if (v == null) {
+			textField.setText("");
+			return;
+		}
+		
 		textField.setText(v.toString());
 	}
 
