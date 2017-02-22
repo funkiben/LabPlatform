@@ -7,8 +7,10 @@ import java.awt.event.MouseMotionListener;
 import lab.LabFrame;
 import lab.Vector2;
 import lab.component.fx.Particle;
+import lab.component.fx.ParticleShape;
 import lab.component.fx.ParticleSystem;
 import lab.component.fx.RandomVector2Generator;
+import lab.component.fx.RandomVector2Type;
 import lab.component.geo.Line;
 
 public class ParticleTestLab extends LabFrame implements MouseMotionListener {
@@ -31,7 +33,7 @@ public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 		
 		particles.setColorFade(5);
 		
-		particles.setVelocity(new RandomVector2Generator(-2, -3, 2, -5, RandomVector2Generator.ELLIPSE));
+		particles.setVelocity(new RandomVector2Generator(-2, -3, 2, -5, RandomVector2Type.RANDOM_DIRECTION_AND_MAGNITUTDE));
 		particles.setSpeedChange(-0.025);
 		
 		particles.setParticleWidth(5);
@@ -42,7 +44,7 @@ public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 		
 		particles.setParticleSpawnRate(0.1);
 		
-		particles.setShape(Particle.ELLIPSE);
+		particles.setShape(ParticleShape.ELLIPSE);
 		
 		particles.setFriction(0.5);
 		

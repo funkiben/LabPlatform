@@ -9,9 +9,6 @@ import lab.Vector2;
 
 public class Particle {
 	
-	public static final int RECTANGLE = 0;
-	public static final int ELLIPSE = 1;
-	
 	private final ParticleSystem system;
 	private final Animator animator = new Animator();
 	
@@ -28,7 +25,7 @@ public class Particle {
 	private int lifetime;
 	private int life;
 	private Color color;
-	private int shape;
+	private ParticleShape shape;
 	private Color[] colors;
 	
 	public Particle(ParticleSystem system) {
@@ -158,9 +155,9 @@ public class Particle {
 		
 		g.setColor(color);
 		
-		if (shape == ELLIPSE) {
+		if (shape == ParticleShape.ELLIPSE) {
 			g.fillOval((int) dx - (int) (dw / 2), (int) dy - (int) (dh / 2), (int) dw, (int) dh);
-		} else if (shape == RECTANGLE) {
+		} else if (shape == ParticleShape.RECTANGLE) {
 			g.fillRect((int) dx - (int) (dw / 2), (int) dy - (int) (dh / 2), (int) dw, (int) dh);
 		}
 		

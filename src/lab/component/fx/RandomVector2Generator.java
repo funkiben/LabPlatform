@@ -4,41 +4,37 @@ import lab.Vector2;
 
 public class RandomVector2Generator {
 	
-	public static final int ELLIPSE = 0;
-	public static final int RECTANGLE = 1;
-	public static final int RANDOM_DIRECTION = 2;
-	
 	private Vector2 start;
 	private Vector2 end;
-	private int type;
+	private RandomVector2Type type;
 	
-	public RandomVector2Generator(Vector2 start, Vector2 end, int type) {
+	public RandomVector2Generator(Vector2 start, Vector2 end, RandomVector2Type type) {
 		this.start = start;
 		this.end = end;
 		this.type = type;
 	}
 	
 	public RandomVector2Generator(Vector2 constant) {
-		this(constant, constant, RECTANGLE);
+		this(constant, constant, RandomVector2Type.RECTANGLE);
 	}
 	
-	public RandomVector2Generator(double startX, double startY, double endX, double endY, int type) {
+	public RandomVector2Generator(double startX, double startY, double endX, double endY, RandomVector2Type type) {
 		this(new Vector2(startX, startY), new Vector2(endX, endY), type);
 	}
 	
-	public RandomVector2Generator(double width, double height, int type) {
+	public RandomVector2Generator(double width, double height, RandomVector2Type type) {
 		this(0, 0, width, height, type);
 	}
 	
 	public RandomVector2Generator(double magnitude) {
-		this(0, magnitude, 0, 0, RANDOM_DIRECTION);
+		this(0, magnitude, 0, 0, RandomVector2Type.RANDOM_DIRECTION);
 	}
 
-	public int getType() {
+	public RandomVector2Type getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(RandomVector2Type type) {
 		this.type = type;
 	}
 	
@@ -78,14 +74,14 @@ public class RandomVector2Generator {
 		
 		double x, y;
 		
-		if (type == RECTANGLE) {
+		if (type == RandomVector2Type.RECTANGLE) {
 			
 			x = Math.random() * getRangeX() + start.getX();
 			y = Math.random() * getRangeY() + start.getY();
 			
 			return new Vector2(x, y);
 			
-		} else if (type == ELLIPSE) {
+		} else if (type == RandomVector2Type.RANDOM_DIRECTION_AND_MAGNITUTDE) {
 			
 			double theta, w2, h2, radiusSqrt;
 			
@@ -100,7 +96,7 @@ public class RandomVector2Generator {
 				
 			return new Vector2(x, y);
 			
-		} else if (type == RANDOM_DIRECTION) {
+		} else if (type == RandomVector2Type.RANDOM_DIRECTION) {
 			
 			return start.rotate(Math.random() * 360);
 			
