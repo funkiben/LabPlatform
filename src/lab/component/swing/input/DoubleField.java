@@ -105,7 +105,7 @@ public class DoubleField extends TextField implements FocusListener {
 		return errorLabel.getText().equals("") && super.hasInput();
 	}
 	
-	private void check() {
+	private void check(boolean updateFormat) {
 		if (getText().isEmpty()) {
 			return;
 		}
@@ -124,7 +124,7 @@ public class DoubleField extends TextField implements FocusListener {
 		
 		errorLabel.setText("");
 		
-		if (sigfigs > 0) {
+		if (sigfigs > 0 && updateFormat) {
 			setText(SigFig.sigfigalize(getValue(), sigfigs, scientificNotationMinPower));
 		}
 	}
@@ -133,14 +133,14 @@ public class DoubleField extends TextField implements FocusListener {
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 		
-		check();
+		check(true);
 	}
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		super.keyTyped(e);
 		
-		check();
+		check(false);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class DoubleField extends TextField implements FocusListener {
 
 	@Override
 	public void focusLost(FocusEvent arg0) {
-		check();
+		check(true);
 	}
 
 }
