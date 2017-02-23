@@ -238,6 +238,14 @@ public class ParticleSystem extends LabComponent {
 		return on;
 	}
 	
+	public void setOn(boolean on) {
+		if (on) {
+			start();
+		} else {
+			stop();
+		}
+	}
+	
 	public int getActiveParticles() {
 		int n = 0;
 		
