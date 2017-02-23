@@ -17,6 +17,7 @@ public abstract class LabComponent implements Drawable {
 	public static final byte FREE_FORM = 0;
 	public static final byte PARAGRAPH = 1;
 	
+	private String identifier;
 	private int width;
 	private int height;
 	private int offsetX = 0;
@@ -88,6 +89,14 @@ public abstract class LabComponent implements Drawable {
 	
 	public LabComponent getRoot() {
 		return root;
+	}
+	
+	public String getIdentifier() {
+		return identifier;
+	}
+	
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 	
 	public void stretchToNewWidth(int width) {
