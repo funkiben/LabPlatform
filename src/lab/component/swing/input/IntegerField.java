@@ -60,10 +60,14 @@ public class IntegerField extends TextField implements FocusListener {
 	@Override
 	public Integer getValue() {
 		try {
-			return Integer.parseInt(getText());
+			return clamp(Integer.parseInt(getText()));
 		} catch (NumberFormatException e) {
 			return 0;
 		}
+	}
+	
+	private int clamp(int v) {
+		return Math.min(Math.max(v, min), max);
 	}
 	
 	@Override
@@ -77,18 +81,24 @@ public class IntegerField extends TextField implements FocusListener {
 	}
 	
 	private void check() {
-		if (getText().isEmpty()) {
+		check(getText());
+	}
+	
+	private void check(String text) {
+		if (text.isEmpty()) {
 			return;
 		}
 		
+		int value;
+		
 		try {
-			Integer.parseInt(getText());
+			value = Integer.parseInt(text);
 		} catch (NumberFormatException ex) {
 			errorLabel.setText("<html><p>Value must be a number.</p></html>");
 			return;
 		}
 		
-		if (getValue() > max || getValue() < min) {
+		if (value > max || value < min) {
 			errorLabel.setText("<html><p>Value must be between " + min + " and " + max + ".</p></html>");
 			return;
 		}
@@ -108,7 +118,7 @@ public class IntegerField extends TextField implements FocusListener {
 	public void keyTyped(KeyEvent e) {
 		super.keyTyped(e);
 		
-		check();
+		check(getText() + e.getKeyChar());
 	}
 
 	@Override

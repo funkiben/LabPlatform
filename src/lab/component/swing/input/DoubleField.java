@@ -85,10 +85,14 @@ public class DoubleField extends TextField implements FocusListener {
 	@Override
 	public Double getValue() {
 		try {
-			return Double.parseDouble(getText());
+			return clamp(Double.parseDouble(getText()));
 		} catch (NumberFormatException e) {
 			return 0.0;
 		}
+	}
+	
+	private double clamp(double v) {
+		return Math.min(Math.max(v, min), max);
 	}
 	
 	@Override
@@ -106,18 +110,24 @@ public class DoubleField extends TextField implements FocusListener {
 	}
 	
 	private void check(boolean updateFormat) {
-		if (getText().isEmpty()) {
+		check(getText(), updateFormat);
+	}
+	
+	private void check(String text, boolean updateFormat) {
+		if (text.isEmpty()) {
 			return;
 		}
 		
+		double value;
+		
 		try {
-			Double.parseDouble(getText());
+			value = Double.parseDouble(text);
 		} catch (NumberFormatException ex) {
 			errorLabel.setText("<html><p>Value must be a number.</p></html>");
 			return;
 		}
 		
-		if (getValue() > max || getValue() < min) {
+		if (value > max || value < min) {
 			errorLabel.setText("<html><p>Value must be between " + min + " and " + max + ".</p></html>");
 			return;
 		}
@@ -125,7 +135,7 @@ public class DoubleField extends TextField implements FocusListener {
 		errorLabel.setText("");
 		
 		if (sigfigs > 0 && updateFormat) {
-			setText(SigFig.sigfigalize(getValue(), sigfigs, scientificNotationMinPower));
+			setText(SigFig.sigfigalize(value, sigfigs, scientificNotationMinPower));
 		}
 	}
 
@@ -140,7 +150,7 @@ public class DoubleField extends TextField implements FocusListener {
 	public void keyTyped(KeyEvent e) {
 		super.keyTyped(e);
 		
-		check(false);
+		check(getText() + e.getKeyChar(), false);
 	}
 
 	@Override
