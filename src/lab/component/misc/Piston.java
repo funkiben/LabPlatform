@@ -1,4 +1,4 @@
-package lab.component;
+package lab.component.misc;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import lab.component.GraduatedComponent;
 import lab.util.ClickableArea;
 import lab.util.VerticalGraduation;
 

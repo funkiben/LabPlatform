@@ -1,8 +1,9 @@
-package lab.component;
+package lab.component.misc;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
+import lab.component.LabComponent;
 import lab.component.fx.Flame;
 
 public class BunsenBurner extends LabComponent {
