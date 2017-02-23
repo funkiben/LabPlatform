@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import draw.animation.Animator;
 import draw.animation.ColorLinearAnimation;
-import lab.Vector2;
+import lab.util.Vector2;
 
 public class Particle {
 	

@@ -1,4 +1,4 @@
-package lab.component;
+package lab.util;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import draw.Drawable;
-import lab.SigFig;
 
 public abstract class Graduation implements Drawable {
 

@@ -1,7 +1,7 @@
 package lab.component.swing.input;
 
-import lab.SigFig;
 import lab.component.swing.Label;
+import lab.util.SigFig;
 
 public class LabeledDoubleSlider extends DoubleSlider {
 

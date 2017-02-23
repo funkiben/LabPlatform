@@ -1,10 +1,10 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.HorizontalGraduation;
-import lab.component.VerticalGraduation;
 import lab.component.data.GraphDataSet;
 import lab.component.swing.input.DoubleSlider;
+import lab.util.HorizontalGraduation;
+import lab.util.VerticalGraduation;
 import lab.component.data.Graph;
 
 public class GraphTestLab extends LabFrame {

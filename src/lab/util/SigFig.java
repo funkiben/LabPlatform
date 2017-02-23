@@ -1,4 +1,4 @@
-package lab;
+package lab.util;
 
 public class SigFig {
 	

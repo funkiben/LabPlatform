@@ -3,8 +3,6 @@ package test;
 import java.awt.Color;
 
 import lab.LabFrame;
-import lab.component.HorizontalGraduation;
-import lab.component.VerticalGraduation;
 import lab.component.container.Beaker;
 import lab.component.container.BulbLEGACY;
 import lab.component.container.ContentState;
@@ -17,6 +15,8 @@ import lab.component.sensor.Thermometer;
 import lab.component.swing.input.Button;
 import lab.component.swing.input.DoubleSlider;
 import lab.component.swing.input.Switch;
+import lab.util.HorizontalGraduation;
+import lab.util.VerticalGraduation;
 import lab.component.swing.input.DoubleField;
 
 public class TestLab extends LabFrame {

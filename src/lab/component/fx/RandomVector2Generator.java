@@ -1,6 +1,6 @@
 package lab.component.fx;
 
-import lab.Vector2;
+import lab.util.Vector2;
 
 public class RandomVector2Generator {
 	

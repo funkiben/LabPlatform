@@ -6,8 +6,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 
-import lab.SigFig;
 import lab.component.swing.Label;
+import lab.util.SigFig;
 
 public class DoubleField extends TextField implements FocusListener {
 

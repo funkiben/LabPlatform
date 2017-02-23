@@ -5,13 +5,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import lab.LabFrame;
-import lab.Vector2;
 import lab.component.fx.Particle;
 import lab.component.fx.ParticleShape;
 import lab.component.fx.ParticleSystem;
 import lab.component.fx.RandomVector2Generator;
 import lab.component.fx.Vector2DistributionType;
 import lab.component.geo.Line;
+import lab.util.Vector2;
 
 public class ParticleTestLab extends LabFrame implements MouseMotionListener {
 	

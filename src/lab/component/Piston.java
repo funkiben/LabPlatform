@@ -8,6 +8,9 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import lab.util.ClickableArea;
+import lab.util.VerticalGraduation;
+
 public class Piston extends GraduatedComponent {
 
 	private Color gasColor = Color.red;

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import lab.Vector2;
 import lab.component.LabComponent;
+import lab.util.Vector2;
 
 public class ParticleSystem extends LabComponent {
 

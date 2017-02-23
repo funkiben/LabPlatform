@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
 
-import lab.PerlinNoiseGenerator;
 import lab.component.LabComponent;
+import lab.util.PerlinNoiseGenerator;
 
 public class Flame extends LabComponent {
 

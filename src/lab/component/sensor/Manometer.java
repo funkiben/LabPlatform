@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import lab.component.GraduatedComponent;
-import lab.component.Graduation;
-import lab.component.VerticalGraduation;
 import lab.component.container.ContentState;
 import lab.component.container.GraduatedCylinder;
+import lab.util.Graduation;
+import lab.util.VerticalGraduation;
 
 public class Manometer extends GraduatedComponent {
 	
