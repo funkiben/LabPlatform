@@ -243,7 +243,7 @@ public abstract class LabComponent implements Drawable {
 		return x >= lastDrawX && x <= lastDrawX + lastDrawWidth && y >= lastDrawY && y <= lastDrawY + lastDrawHeight;
 	}
 	
-	public void update() { // guarenteed to run at constant fps
+	public void update() { // guaranteed to run at constant fps
 		
 	}
 	
