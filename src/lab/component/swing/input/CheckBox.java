@@ -1,5 +1,6 @@
 package lab.component.swing.input;
 
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -14,6 +15,7 @@ public class CheckBox extends InputComponent implements ItemListener {
 		
 		checkBox = new JCheckBox();
 		checkBox.setText(text);
+		checkBox.setBackground(Color.white);
 		
 		checkBox.addItemListener(this);
 		
