@@ -55,28 +55,37 @@ public abstract class LabComponent implements Drawable {
 			c.updateRoot();
 		}
 	}
-	
-	public void addChild(LabComponent component) {
-		component.parent = this;
-		component.updateRoot();
-		
-		children.add(component);
-		
-		needsChildSort = true;
-	}
 
-	public void addChild(LabComponent...components) {
+	public void insertChild(int index, LabComponent...components) {
 		for (LabComponent component : components) {
-			addChild(component);
+			component.parent = this;
+			component.updateRoot();
+			
+			children.add(index, component);
+			
+			needsChildSort = true;
 		}
 	}
 	
-	public void removeChild(LabComponent component) {
-		children.remove(component);
-		component.parent = null;
-		component.updateRoot();
-		
-		needsChildSort = true;
+	public void addChild(LabComponent...components) {
+		for (LabComponent component : components) {
+			component.parent = this;
+			component.updateRoot();
+			
+			children.add(component);
+			
+			needsChildSort = true;
+		}
+	}
+	
+	public void removeChild(LabComponent...components) {
+		for (LabComponent component : components) {
+			children.remove(component);
+			component.parent = null;
+			component.updateRoot();
+			
+			needsChildSort = true;
+		}
 	}
 	
 	public List<LabComponent> getChildren() {
