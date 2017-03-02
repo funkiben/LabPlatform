@@ -126,6 +126,8 @@ public abstract class Container extends GraduatedComponent {
 			
 			g.setColor(contentColor);
 			g.fillPolygon(polyX, polyY, polyX.length);
+			g.setColor(Color.lightGray);
+			g.drawPolygon(polyX, polyY, polyX.length);
 			
 		} else if (contentState == ContentState.LIQUID) {
 			
