@@ -1,8 +1,8 @@
 package test;
 
 import lab.LabFrame;
-import lab.SigFig;
 import lab.component.data.DataTable;
+import lab.util.SigFig;
 
 public class DataTableTestLab extends LabFrame {
 	

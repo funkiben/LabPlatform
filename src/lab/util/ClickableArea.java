@@ -1,14 +1,15 @@
-package lab.component;
+package lab.util;
 
 import java.awt.Cursor;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
 
-public class ClickableArea implements MouseInputListener, MouseMotionListener {
+import lab.component.LabComponent;
+
+public class ClickableArea extends MouseAdapter {
 
 	private static ClickableArea currentHover = null;
 	private static ClickableArea currentDrag = null;

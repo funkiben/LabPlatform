@@ -1,8 +1,9 @@
-package lab.component;
+package lab.component.misc;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
+import lab.component.LabComponent;
 import lab.component.fx.Flame;
 
 public class BunsenBurner extends LabComponent {
@@ -23,7 +24,19 @@ public class BunsenBurner extends LabComponent {
 		addChild(flame);
 	}
 	
-	public Flame getFlames() {
+	@Override
+	public void setWidth(int width) {
+		super.setWidth(width);
+		flame.setWidth(width);
+	}
+	
+	@Override
+	public void setHeight(int height) {
+		super.setHeight(height);
+		flame.setHeight(height / 7);
+	}
+	
+	public Flame getFlame() {
 		return flame;
 	}
 

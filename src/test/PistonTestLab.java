@@ -1,7 +1,7 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.Piston;
+import lab.component.misc.Piston;
 
 public class PistonTestLab extends LabFrame {
 

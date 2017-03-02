@@ -15,9 +15,6 @@ public abstract class SwingComponent extends LabComponent {
 	
 	public SwingComponent(int width, int height) {
 		super(width, height);
-		
-		setOffsetX(10);
-		setOffsetY(10);
 	}
 
 	public boolean isEnabled() {
@@ -49,7 +46,6 @@ public abstract class SwingComponent extends LabComponent {
 					getJComponent().setSize(width, height);
 					getJComponent().setEnabled(enabled);
 					getJComponent().doLayout();
-					//LabFrame.inst.getDrawCanvas().repaint();
 				}
 			});
 			
@@ -65,6 +61,10 @@ public abstract class SwingComponent extends LabComponent {
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		getJComponent().setVisible(visible);
+	}
+	
+	public boolean hasFocus() {
+		return getJComponent().hasFocus();
 	}
 	
 	public abstract Component getJComponent();

@@ -49,8 +49,16 @@ public class Switch extends InputComponent implements ChangeListener {
 		}
 	}
 	
+	@Override
 	public Object getValue() {
 		return switchField.isSelected();
 	}
+	
+	@Override
+	public void setValue(Object v) {
+		switchField.setSelected((Boolean) v);
+	}
 
+	
+	
 }

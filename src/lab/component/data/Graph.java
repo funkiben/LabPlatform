@@ -15,10 +15,10 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import lab.Vector2;
-import lab.component.HorizontalGraduation;
 import lab.component.LabComponent;
-import lab.component.VerticalGraduation;
+import lab.util.HorizontalGraduation;
+import lab.util.Vector2;
+import lab.util.VerticalGraduation;
 
 public class Graph extends LabComponent implements MouseListener, MouseMotionListener {
 	

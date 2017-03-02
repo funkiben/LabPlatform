@@ -1,4 +1,4 @@
-package lab.component;
+package lab.util;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import draw.Drawable;
-import lab.SigFig;
 
 public abstract class Graduation implements Drawable {
 
@@ -165,7 +164,7 @@ public abstract class Graduation implements Drawable {
 	public abstract int getBottomTick();
 	
 	protected static double round(double t) {
-		if (t < 1E-5) {
+		if (Math.abs(t) < 1E-5) {
 			return 0;
 		}
 		
@@ -174,9 +173,12 @@ public abstract class Graduation implements Drawable {
 	
 	// custom modulus method for decimals
 	protected static int modulus(double d1, double d2) {
-		d1 *= 100000;
-		d2 *= 100000;
+		int n = (int) Math.log10(Math.min(d1, d2));
+		
+		d1 *= Math.pow(10, n);
+		d2 *= Math.pow(10, n);
 		
 		return (int) (d1 % d2);
 	}
+
 }

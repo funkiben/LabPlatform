@@ -9,70 +9,75 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Slider extends InputComponent implements ChangeListener {
+public class IntegerSlider extends InputComponent implements ChangeListener {
 
 	public static final int HORIZONTAL = 0;
 	public static final int VERTICAL = 1;
-	
-	private final JSlider slider;
-	private final float min;
-	private final float max;
-	private final float increment;
 
-	public Slider(int width, int height, float min, float max, float increment, int orientation) {
-		
-		super(width, height);
-		
-		slider = new JSlider(0, (int) ((max - min) / increment));
+	private final JSlider slider;
+	private int min;
+	private int max;
+
+	public IntegerSlider(int width, int min, int max, int orientation) {
+		super(width, 20);
+
+		slider = new JSlider(min, max);
 		slider.setValue(0);
 		slider.setOrientation(orientation);
 		slider.setBackground(Color.white);
 		slider.addChangeListener(this);
-		
+
 		this.min = min;
 		this.max = max;
-		this.increment = increment;
-		
+
 	}
-	
-	public void setValue(float v) {
+
+	public void setValue(int v) {
 		v = Math.max(min, Math.min(max, v));
-		v -= min;
-		slider.setValue((int) (v / increment));
+		slider.setValue(v);
 	}
-	
-	public float getMin() {
+
+	public int getMin() {
 		return min;
 	}
 
-	public float getMax() {
+	public int getMax() {
 		return max;
 	}
 
-	public float getFloatValue() {
-		return slider.getValue() * increment + min;
+	public void setMin(int min) {
+		this.min = min;
 	}
-	
-	public Object getValue() {
-		return getFloatValue();
+
+	public void setMax(int max) {
+		this.max = max;
 	}
-	
+
+	@Override
+	public Integer getValue() {
+		return slider.getValue();
+	}
+
+	public void setValue(Object v) {
+		slider.setValue((Integer) v);
+	}
+
 	public int getOrientation() {
 		return slider.getOrientation();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public void addValueLabel(float value, String label) {
+	public void addValueLabel(int value, String label) {
 		Dictionary<Integer, JLabel> labels = slider.getLabelTable();
-		
+
 		if (labels == null) {
 			labels = new Hashtable<Integer, JLabel>();
 		}
-		
-		labels.put(new Integer((int) ((value - min) / increment)), new JLabel(label));
-		
+
+		labels.put(value, new JLabel(label));
+
 		slider.setLabelTable(labels);
-		
+
 		slider.setPaintLabels(true);
 	}
 
@@ -80,14 +85,14 @@ public class Slider extends InputComponent implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		onChange();
 	}
-	
+
 	public void onChange() {
-		
+
 	}
 
 	@Override
 	public JSlider getJComponent() {
 		return slider;
 	}
-	
+
 }
