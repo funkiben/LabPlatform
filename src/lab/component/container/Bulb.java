@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import lab.component.VerticalGraduation;
+import lab.util.VerticalGraduation;
 
 public class Bulb extends Container {
 

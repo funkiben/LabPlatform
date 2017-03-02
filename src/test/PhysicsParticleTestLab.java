@@ -1,10 +1,10 @@
 package test;
 
 import lab.LabFrame;
-import lab.Vector2;
 import lab.component.LabComponent;
 import lab.component.geo.Line;
 import lab.component.geo.Oval;
+import lab.util.Vector2;
 
 public class PhysicsParticleTestLab extends LabFrame {
 

@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import lab.Vector2;
+import lab.util.Vector2;
 
 public class GraphDataSet {
 	

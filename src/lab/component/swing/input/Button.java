@@ -24,7 +24,35 @@ public abstract class Button extends InputComponent implements ActionListener {
 	public abstract void doSomething();
 	
 	public void setFontSize(int size) {
-		button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
+		button.setFont(button.getFont().deriveFont((float) size));
+	}
+	
+	public int getFontSize() {
+		return button.getFont().getSize();
+	}
+	
+	public void setFontStyle(FontStyle style) {
+		button.setFont(button.getFont().deriveFont(style.ordinal()));
+	}
+	
+	public FontStyle getFontStyle() {
+		return FontStyle.values()[button.getFont().getStyle()];
+	}
+	
+	public void setFont(Font font) {
+		button.setFont(font);
+	}
+	
+	public Font getFont() {
+		return button.getFont();
+	}
+	
+	public String getText() {
+		return button.getText().replaceFirst("<html>", "").replace("</html>", "");
+	}
+	
+	public void setText(String text) {
+		button.setText("<html>" + text + "</html>");
 	}
 	
 	@Override
@@ -40,6 +68,11 @@ public abstract class Button extends InputComponent implements ActionListener {
 	@Override
 	public Object getValue() {
 		return null;
+	}
+	
+	@Override
+	public void setValue(Object v) {
+		
 	}
 
 

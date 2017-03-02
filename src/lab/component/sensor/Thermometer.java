@@ -1,14 +1,13 @@
 package lab.component.sensor;
 
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
 import lab.component.GraduatedComponent;
-import lab.component.VerticalGraduation;
+import lab.util.VerticalGraduation;
 
 public class Thermometer extends GraduatedComponent {
 	
@@ -60,16 +59,6 @@ public class Thermometer extends GraduatedComponent {
 		if (getGraduation() != null) {
 			getGraduation().draw(g, width, height);
 		}
-		
-		
-		
-		if (canShowValue()) {
-			FontMetrics metrics = g.getFontMetrics();
-			
-			g.setColor(Color.black);
-			g.drawString((int) getValue() + "C", x - (metrics.stringWidth((int) getValue() + "C") / 4), y + height + 30);
-		}
-		
 		
 		
 	}

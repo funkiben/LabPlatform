@@ -9,6 +9,6 @@ public abstract class InputComponent extends SwingComponent {
 	}
 
 	public abstract Object getValue();
-
+	public abstract void setValue(Object v);
 
 }

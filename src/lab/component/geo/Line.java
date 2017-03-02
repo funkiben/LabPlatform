@@ -61,7 +61,7 @@ public class Line extends LabComponent {
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
-		g.setColor(Color.black);
+		g.setColor(color);
 		g.drawLine(startX, startY, endX, endY);
 
 	}

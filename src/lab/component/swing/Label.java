@@ -6,16 +6,17 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
+import lab.component.swing.input.FontStyle;
+
 public class Label extends SwingComponent {
 
-	private String labelText;
 	private final JLabel label;
+	private boolean wrap = false;
 	
 	public Label(int width, int height, String text) {
-		super(width,height);
+		super(width, height);
 		
-		label = new JLabel();
-		labelText = text;
+		label = new JLabel(text);
 		
 	}
 	
@@ -28,39 +29,60 @@ public class Label extends SwingComponent {
 		return label;
 	}
 	
-	public void setText(String labelText) {
-		this.labelText = labelText;
-		label.setText(labelText);
+	public void setText(String text) {
+		if (wrap) {
+			label.setText("<html>" + text + "</html>");
+		} else {
+			label.setText(text);
+		}
 	}
 	
 	public String getText() {
-		return labelText;
+		return label.getText().replaceFirst("<html>", "").replace("</html>", "");
 	}
 	
 	public int getTextWidth() {
-		return label.getFontMetrics(label.getFont()).stringWidth(labelText);
+		return label.getFontMetrics(label.getFont()).stringWidth(label.getText());
 	}
 	
 	public void setFontSize(int size) {
-		label.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
+		label.setFont(label.getFont().deriveFont((float) size));
+	}
+	
+	public int getFontSize() {
+		return label.getFont().getSize();
+	}
+	
+	public void setFontStyle(FontStyle style) {
+		label.setFont(label.getFont().deriveFont(style.ordinal()));
+	}
+	
+	public FontStyle getFontStyle() {
+		return FontStyle.values()[label.getFont().getStyle()];
 	}
 	
 	public void setFont(Font font) {
 		label.setFont(font);
 	}
 	
+	public Font getFont() {
+		return label.getFont();
+	}
+	
 	public void setColor(Color color) {
 		label.setForeground(color);
+	}
+	
+	public void setWrap(boolean wrap) {
+		this.wrap = wrap;
+		setText(label.getText());
+	}
+	
+	public boolean canWrap() {
+		return wrap;
 	}
 	
 	public Color getColor(Color color) {
 		return label.getForeground();
 	}
-	
-	@Override
-	public void update() {
-		label.setText(labelText);
-	}
-	
-
 }

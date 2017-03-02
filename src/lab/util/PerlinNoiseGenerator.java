@@ -1,4 +1,4 @@
-package lab;
+package lab.util;
 /*****************************************************************************
  *                        J3D.org Copyright (c) 2000
  *                               Java Source

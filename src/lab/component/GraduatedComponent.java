@@ -1,5 +1,7 @@
 package lab.component;
 
+import lab.util.Graduation;
+
 public abstract class GraduatedComponent extends MeasurableComponent {
 	
 	private Graduation graduation = null;

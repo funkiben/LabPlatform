@@ -2,14 +2,13 @@ package lab.component.sensor;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import lab.component.GraduatedComponent;
-import lab.component.Graduation;
-import lab.component.VerticalGraduation;
 import lab.component.container.ContentState;
 import lab.component.container.GraduatedCylinder;
+import lab.util.Graduation;
+import lab.util.VerticalGraduation;
 
 public class Manometer extends GraduatedComponent {
 	
@@ -28,8 +27,11 @@ public class Manometer extends GraduatedComponent {
 		cyl1.setGraduation(new VerticalGraduation(0, 760, 40, 5));
 		
 		cyl2 = new GraduatedCylinder(width / 3, height - CONNECTOR_HEIGHT);
-		cyl2.setGraduation(new VerticalGraduation(0, 760, 40, 5));
-
+		//cyl2.setGraduation(new VerticalGraduation(0, 760, 40, 5));
+		cyl2.setGraduation(cyl1.getGraduation());
+		
+		cyl1.getGraduation().setTextOffset(2);
+		
 		applyGraduationSettings();
 		
 		setValue(760);
@@ -50,11 +52,17 @@ public class Manometer extends GraduatedComponent {
 	@Override
 	public void setGraduation(Graduation graduation) {
 		cyl1.setGraduation(graduation);
-		cyl2.setGraduation(new VerticalGraduation(graduation));
+		//cyl2.setGraduation(new VerticalGraduation(graduation));
+		cyl2.setGraduation(graduation);
 		
 		applyGraduationSettings();
 		
 		super.setGraduation(graduation);
+	}
+	
+	@Override
+	public Graduation getGraduation() {
+		return cyl1.getGraduation();
 	}
 	
 	@Override
@@ -108,15 +116,6 @@ public class Manometer extends GraduatedComponent {
 		g.drawString("1 atm", x, y - 5);
 		g.drawString("gas", x + width / 3 * 2, y - 5);
 		
-		if (canShowValue()) {
-			FontMetrics metrics = g.getFontMetrics();
-			
-			g.setColor(Color.black);
-			
-			String str = (int) getValue() + "mm Hg";
-			
-			g.drawString(str, x + metrics.stringWidth(str) / 2, y + height + 20);
-		}
 	}
 
 }
