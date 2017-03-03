@@ -41,7 +41,7 @@ public class Thermometer extends GraduatedComponent {
 		g.drawOval(x + (width / 2) - ow / 2, y + height, ow, oh);
 		
 		
-		g.setColor(Color.lightGray);
+		g.setColor(new Color(230, 230, 230));
 		g.fillRect(x, y, width, height);
 		
 		g.setColor(Color.gray);
