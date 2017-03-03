@@ -25,7 +25,7 @@ public class Label extends SwingComponent {
 	}
 	
 	@Override
-	public Component getJComponent() {
+	public JLabel getJComponent() {
 		return label;
 	}
 	
