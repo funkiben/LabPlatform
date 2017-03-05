@@ -310,6 +310,15 @@ public class ParticleSystem extends LabComponent {
 		
 	}
 	
+	public void removeParticle() {
+		for (Particle particle : particles) {
+			if (particle.isActive()) {
+				particle.stop();
+				return;
+			}
+		}
+	}
+	
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
