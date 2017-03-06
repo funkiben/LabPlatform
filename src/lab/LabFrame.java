@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import draw.DrawThread;
 import draw.animation.Animator;
@@ -41,6 +42,20 @@ public abstract class LabFrame extends JFrame {
 		canvas.maxFPS = fps;
 		new DrawThread(canvas, fps);
 		started = true;
+	}
+	
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		
+		if (visible) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					canvas.repaint();
+				}
+			});
+		}
 	}
 	
 	public JPanel getDrawCanvas() {
