@@ -2,19 +2,33 @@ package lab.component;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.imageio.ImageIO;
 
-
-public class ImageComponent extends LabComponent{
+public class ImageComponent extends LabComponent {
 
 	private BufferedImage img;
+
 	public ImageComponent(int width, int height, String fileName) {
 		super(width, height);
-		img = null;
 		try {
-		    img = ImageIO.read(new File(fileName));
+			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
+			img = ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ImageComponent(String fileName) {
+		super(0, 0);
+		try {
+			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
+			img = ImageIO.read(is);
+			setWidth(img.getWidth());
+			setHeight(img.getHeight());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
