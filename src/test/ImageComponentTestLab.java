@@ -2,6 +2,7 @@ package test;
 
 import lab.LabFrame;
 import lab.component.ImageComponent;
+import lab.component.LabComponent;
 
 public class ImageComponentTestLab extends LabFrame {
 
@@ -13,7 +14,7 @@ public class ImageComponentTestLab extends LabFrame {
 
 	public ImageComponentTestLab() {
 		super("ImageComponent Test Lab", 800, 800);
-		getRoot().setLayout(0);
+		getRoot().setLayout(LabComponent.FREE_FORM);
 		ImageComponent image = new ImageComponent(500, 100, "/flask.gif");
 		image.setShowBounds(true);
 		image.setOffset(80, 200);
