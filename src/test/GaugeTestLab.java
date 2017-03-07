@@ -15,7 +15,7 @@ public class GaugeTestLab extends LabFrame{
 	public GaugeTestLab() {
 		super("Gauge Test Lab", 800, 500);
 		
-		PressureGauge gauge = new PressureGauge(200,200,"Pressure (mmHg)",5);
+		PressureGauge gauge = new PressureGauge(200,200,"Pressure","mmHg",5);
 		gauge.setOffset(100, 100);
 		addComponent(gauge);
 		
@@ -24,7 +24,6 @@ public class GaugeTestLab extends LabFrame{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 
