@@ -14,21 +14,22 @@ public class ImageComponent extends LabComponent {
 
 	public ImageComponent(int width, int height, String fileName) {
 		super(width, height);
-		try {
-			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
-			img = ImageIO.read(is);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		readImage(fileName);
 	}
 
 	public ImageComponent(String fileName) {
 		super(0, 0);
+		readImage(fileName);
+		if(img != null){
+			setWidth(img.getWidth());
+			setHeight(img.getHeight());
+		}
+	}
+	
+	private void readImage(String fileName){
 		try {
 			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
 			img = ImageIO.read(is);
-			setWidth(img.getWidth());
-			setHeight(img.getHeight());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +37,7 @@ public class ImageComponent extends LabComponent {
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
-		g.drawImage(img, width, height, null);
+		g.drawImage(img, x, y, width, height, null);
 	}
 
 }

@@ -13,8 +13,11 @@ public class ImageComponentTestLab extends LabFrame {
 
 	public ImageComponentTestLab() {
 		super("ImageComponent Test Lab", 800, 800);
-
-		ImageComponent image = new ImageComponent("/flask.gif");
+		getRoot().setLayout(0);
+		ImageComponent image = new ImageComponent(500, 100, "/flask.gif");
+		image.setShowBounds(true);
+		image.setOffset(80, 200);
+		
 		addComponent(image);
 		start(0);
 	}
