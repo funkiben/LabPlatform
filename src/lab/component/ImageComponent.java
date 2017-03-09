@@ -10,29 +10,37 @@ import javax.imageio.ImageIO;
 
 public class ImageComponent extends LabComponent {
 
-	private BufferedImage img;
+	private static BufferedImage readImage(String fileName) {
+		try {
+			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
+			return ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	private final BufferedImage img;
 
 	public ImageComponent(int width, int height, String fileName) {
 		super(width, height);
-		readImage(fileName);
+		img = readImage(fileName);
 	}
 
 	public ImageComponent(String fileName) {
 		super(0, 0);
-		readImage(fileName);
-		if(img != null){
+		
+		img = readImage(fileName);
+		
+		if (img != null) {
 			setWidth(img.getWidth());
 			setHeight(img.getHeight());
 		}
 	}
 	
-	private void readImage(String fileName){
-		try {
-			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
-			img = ImageIO.read(is);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public BufferedImage getImage() {	
+		return img;
 	}
 
 	@Override
