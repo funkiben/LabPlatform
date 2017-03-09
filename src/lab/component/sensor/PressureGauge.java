@@ -75,8 +75,6 @@ public class PressureGauge extends MeasurableComponent {
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
-		this.setValue(this.getValue() + .001);
-
 		gauge.setText(SigFig.sigfigalize(this.getValue(), sigfigs) + " " + units);
 
 		g.setColor(Color.black);
