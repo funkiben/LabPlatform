@@ -15,9 +15,13 @@ public class GaugeTestLab extends LabFrame{
 	public GaugeTestLab() {
 		super("Gauge Test Lab", 800, 500);
 		
-		PressureGauge gauge = new PressureGauge(200,200,"Pressure","mmHg",5);
-		gauge.setOffset(100, 100);
-		addComponent(gauge);
+		PressureGauge gauge1 = new PressureGauge(200,200,"Pressure of HI","mmHg",5);
+		gauge1.setOffset(50, 50);
+		addComponent(gauge1);
+		
+		PressureGauge gauge2 = new PressureGauge(200,200,"Pressure of HI","mmHg",5);
+		gauge2.setOffset(50, 50);
+		addComponent(gauge2);
 		
 		start(60);
 	}

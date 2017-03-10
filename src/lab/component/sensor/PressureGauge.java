@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.swing.SwingConstants;
@@ -15,70 +13,131 @@ import lab.component.LabComponent;
 import lab.component.MeasurableComponent;
 import lab.component.geo.Rectangle;
 import lab.component.swing.Label;
-import lab.substance.SubstanceData;
 import lab.util.SigFig;
 
 public class PressureGauge extends MeasurableComponent {
 
-	private Label titleText;
+	static {
+		try {
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
+					PressureGauge.class.getResourceAsStream("/DSEG14Classic-Regular.ttf")));
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private final Label titleLabel;
+	private final Label gaugeLabel;
 	private int sigfigs;
-	private Label gauge;
+	private int minPowerForScientificNotation;
 	private String units;
-
+	private Font font = new Font("DSEG14 Classic", Font.BOLD, 12);
+	
 	public PressureGauge(int width, int height, String title, String units, int sigfigs) {
+		this(width, height, title, units, sigfigs, 1);
+	}
+
+	public PressureGauge(int width, int height, String title, String units, int sigfigs, int minPowerForScientificNotation) {
 		super(width, height);
-		setValue(0);
+		
 		this.units = units;
+		this.minPowerForScientificNotation = minPowerForScientificNotation;
+		
 		setLayout(LabComponent.FREE_FORM);
 
 		this.sigfigs = sigfigs;
 
-		gauge = new Label(width / 2, height / 4);
-		gauge.setOffset((width - gauge.getWidth()) / 2, 2 * (height - gauge.getHeight()) / 3);
-		gauge.setShowBounds(true);
-		Rectangle gaugeBorder = new Rectangle(gauge.getWidth() + 10, gauge.getHeight() + 10);
-		gauge.addChild(gaugeBorder);
+		gaugeLabel = new Label(width / 2, height / 4);
+		gaugeLabel.setOffset((width - gaugeLabel.getWidth()) / 2, 2 * (height - gaugeLabel.getHeight()) / 3);
+		gaugeLabel.setShowBounds(true);
+		Rectangle gaugeBorder = new Rectangle(gaugeLabel.getWidth() + 10, gaugeLabel.getHeight() + 10);
+		gaugeLabel.addChild(gaugeBorder);
 		gaugeBorder.setFillColor(Color.white);
 		gaugeBorder.setOffset(-5, -3);
-		gauge.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
-		gauge.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
-		gauge.setWrap(true);
+		gaugeLabel.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
+		gaugeLabel.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
+		gaugeLabel.setWrap(true);
 
-		try {
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(
-					Font.createFont(Font.TRUETYPE_FONT, PressureGauge.class.getResourceAsStream("/DSEG14Classic-Regular.ttf")));
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
+		
+		gaugeLabel.setFont(font);
 
-		Font sevenSegment = new Font("DSEG14 Classic", Font.PLAIN, 12);
-		gauge.setFont(sevenSegment);
-
-		titleText = new Label(width / 2, height / 6, "<center>" + title + "</center>");
-		titleText.setOffset((width - titleText.getWidth()) / 2, 5 * (width - titleText.getWidth()) / 12);
-		titleText.setShowBounds(true);
-		Rectangle titleBorder = new Rectangle(titleText.getWidth() + 5, titleText.getHeight() + 5);
-		titleText.addChild(titleBorder);
+		titleLabel = new Label(width / 2, height / 6, "<center>" + title + "</center>");
+		titleLabel.setOffset((width - titleLabel.getWidth()) / 2, 5 * (width - titleLabel.getWidth()) / 12);
+		titleLabel.setShowBounds(true);
+		Rectangle titleBorder = new Rectangle(titleLabel.getWidth() + 5, titleLabel.getHeight() + 5);
+		titleLabel.addChild(titleBorder);
 		titleBorder.setFillColor(Color.white);
 		titleBorder.setOffset(-3, -1);
-		titleText.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
-		titleText.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
-		titleText.getJComponent().setFont(titleText.getJComponent().getFont().deriveFont(10f));
-		titleText.setWrap(true);
-		titleText.setFont(sevenSegment);
+		titleLabel.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
+		titleLabel.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.getJComponent().setFont(titleLabel.getJComponent().getFont().deriveFont(10f));
+		titleLabel.setWrap(true);
+		titleLabel.setFont(font);
 
-		addChild(titleText);
-		addChild(gauge);
+		addChild(titleLabel);
+		addChild(gaugeLabel);
 
 	}
 
+	public int getSigfigs() {
+		return sigfigs;
+	}
+
+	public void setSigfigs(int sigfigs) {
+		this.sigfigs = sigfigs;
+	}
+
+	public String getUnits() {
+		return units;
+	}
+
+	public void setUnits(String units) {
+		this.units = units;
+	}
+
+	public String getTitleText() {
+		return titleLabel.getText().replace("<center>", "").replaceAll("</center>", "");
+	}
+	
+	public void setTitleText(String title) {
+		titleLabel.setText("<center>" + title + "</center>");
+	}
+	
+	public int getMinPowerForScientificNotation() {
+		return minPowerForScientificNotation;
+	}
+
+	public void setMinPowerForScientificNotation(int minPowerForScientificNotation) {
+		this.minPowerForScientificNotation = minPowerForScientificNotation;
+	}
+	
+	public Label getGaugeLabel() {
+		return gaugeLabel;
+	}
+	
+	public Label getTitleLabel() {
+		return titleLabel;
+	}
+	
+	public Font getFont() {
+		return font;
+	}
+	
+	public void setFont(Font font) {
+		this.font = font;
+	}
+
+	@Override
+	public void setValue(double value) {
+		super.setValue(value);
+		
+		gaugeLabel.setText(SigFig.sigfigalize(value, sigfigs, minPowerForScientificNotation) + " " + units);
+
+	}
+	
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
-		this.setValue(this.getValue() + .001);
-
-		gauge.setText(SigFig.sigfigalize(this.getValue(), sigfigs) + " " + units);
-
 		g.setColor(Color.black);
 		g.fillOval(x, y, width, height);
 
@@ -90,9 +149,9 @@ public class PressureGauge extends MeasurableComponent {
 			g.fillOval(x + i, y + i, width - 2 * i, height - 2 * i);
 		}
 
-		gauge.getJComponent().setFont(gauge.getJComponent().getFont()
+		gaugeLabel.getJComponent().setFont(gaugeLabel.getJComponent().getFont()
 				.deriveFont((float) 1.1 * sigfigs * (float) (Math.sqrt(width * width + height * height)
-						/ Math.sqrt(gauge.getWidth() * gauge.getWidth() + gauge.getHeight() * gauge.getWidth()))));
+						/ Math.sqrt(gaugeLabel.getWidth() * gaugeLabel.getWidth() + gaugeLabel.getHeight() * gaugeLabel.getWidth()))));
 
 	}
 
