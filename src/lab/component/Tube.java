@@ -36,7 +36,7 @@ public class Tube extends LabComponent {
 	private int[] xs, ys;
 	
 	private Tube(int x, int y, double angle, int...xy) {
-		super(800, 800);
+		super(diameter, diameter);
 		
 		setOffset(x, y);
 		
