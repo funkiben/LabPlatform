@@ -61,19 +61,19 @@ public class DataTable<E> extends LabComponent {
 
 	public void setAll(E e) {
 		for (int x = 0; x < columns; x++) {
-			setRow(x, e);
+			setColumn(x, e);
 		}
 	}
 
 	public void setAll(double d) {
 		for (int x = 0; x < columns; x++) {
-			setRow(x, d);
+			setColumn(x, d);
 		}
 	}
 
 	public void setAll(int i) {
 		for (int x = 0; x < columns; x++) {
-			setRow(x, i);
+			setColumn(x, i);
 		}
 	}
 	
