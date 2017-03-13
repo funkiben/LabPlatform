@@ -4,6 +4,7 @@ import lab.LabFrame;
 import lab.component.EmptyComponent;
 import lab.component.container.Bulb;
 import lab.component.data.Graph;
+import lab.component.data.GraphDataSet;
 import lab.component.sensor.PressureGauge;
 import lab.component.sensor.Thermometer;
 import lab.component.swing.input.Button;
@@ -26,7 +27,9 @@ public class GaugeTestLab extends LabFrame{
 	private Dropdown<String> tempDropdown;
 	
 	private Button setTemperature;
-	private Button resetExperiment;
+	
+	private GraphDataSet h2Set;
+	private GraphDataSet i2Set;
 	
 	private Thermometer thermometer;
 	
@@ -62,19 +65,25 @@ public class GaugeTestLab extends LabFrame{
 		bulbReaction = new Bulb(250,250);
 		bulbContainer.addChild(bulbReaction);
 		
-		pressureH2 = new PressureGauge(175,175,"Pressure H2","kPa",5);
+		pressureH2 = new PressureGauge(175,175,"Pressure H2","atm",5);
 		pressureH2.setOffset(425,-175);
 		pressureH2.setFont(pressureH2.getFont().deriveFont(12f));
+		pressureH2.setValue(2.45f);
 		bulbContainer.addChild(pressureH2);
 		
-		pressureI2 = new PressureGauge(175,175,"Pressure I2","kPa",5);
+		pressureI2 = new PressureGauge(175,175,"Pressure I2","atm",5);
 		pressureI2.setOffset(425,25);
 		pressureI2.setFont(pressureI2.getFont().deriveFont(12f));
+		pressureI2.setValue(2.45f);
 		bulbContainer.addChild(pressureI2);
 		
 		addComponent(bulbContainer);
 		
-		pressureTime = new Graph(350, 350, "Pressure vs Time", "Time (s)", "Pressure (mmHg)", new VerticalGraduation(0,300,50,10), new HorizontalGraduation(0,300,50,10));
+		pressureTime = new Graph(350, 350, "Pressure vs Time", "Time (s)", "Pressure (atm)", new VerticalGraduation(0,2.45,.5,.1), new HorizontalGraduation(0,10,1,.5f));
+		h2Set = new GraphDataSet("H2",true,true);
+		i2Set = new GraphDataSet("   & I2",true,true);
+		pressureTime.addDataSet(h2Set);
+		pressureTime.addDataSet(i2Set);
 		pressureTime.setOffsetX(250);
 		addComponent(pressureTime);
 		
@@ -120,12 +129,17 @@ public class GaugeTestLab extends LabFrame{
 		return ((v2 - v1) * f + v1);
 	}
 	
+	private double reactionTime = 0;
+	
+	
+	
 	@Override
 	public void update() {
-		pressureI2.setValue(32123185313121841f);
-		pressureH2.setValue(11723612736127313f);
+		reactionTime = reactionTime + .015;
+		thermometer.setValue(lerp(thermometer.getValue(),reactionTemperature,0.0089f));
 		
-		thermometer.setValue(lerp(thermometer.getValue(),reactionTemperature,0.005f));
+		h2Set.addPoint(reactionTime, pressureH2.getValue());
+		i2Set.addPoint(reactionTime, pressureI2.getValue());
 		
 	}
 
