@@ -25,6 +25,7 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 	private final String title;
 	private final String xLabel;
 	private final String yLabel;
+	private int yLabelOffset = 0;
 	private final VerticalGraduation vGraduation;
 	private final HorizontalGraduation hGraduation;
 	private final Map<String,GraphDataSet> data = new HashMap<String,GraphDataSet>();
@@ -79,12 +80,20 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 		return title;
 	}
 
-	public String getxLabel() {
+	public String getXLabel() {
 		return xLabel;
 	}
 
-	public String getyLabel() {
+	public String getYLabel() {
 		return yLabel;
+	}
+	
+	public int getYLabelOffset() {
+		return yLabelOffset;
+	}
+	
+	public void setYLabelOffset(int yLabelOffset) {
+		this.yLabelOffset = yLabelOffset;
 	}
 	
 	public boolean canDrawXLines() {
@@ -306,7 +315,7 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 		
 		g.setColor(Color.black);
 		
-		g.drawString(yLabel, x - metrics.stringWidth(yLabel), y - 5);
+		g.drawString(yLabel, x - metrics.stringWidth(yLabel) + yLabelOffset, y - 5);
 		
 		g.drawString(xLabel, x + width + 4, y + height + 5);
 		
