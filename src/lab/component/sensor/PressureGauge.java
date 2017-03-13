@@ -32,7 +32,7 @@ public class PressureGauge extends MeasurableComponent {
 	private int sigfigs;
 	private int minPowerForScientificNotation;
 	private String units;
-	private Font font = new Font("DSEG14 Classic", Font.PLAIN, 15);
+	private Font font = new Font("DSEG14 Classic", Font.PLAIN, 13);
 	
 	public PressureGauge(int width, int height, String title, String units, int sigfigs) {
 		this(width, height, title, units, sigfigs, 1);
