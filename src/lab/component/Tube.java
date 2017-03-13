@@ -67,7 +67,7 @@ public class Tube extends LabComponent {
 		g.setColor(new Color(230, 230, 230));
 		g.fillPolygon(xsScaled, ysScaled, xs.length);
 		
-		g.setColor(Color.lightGray);
+		g.setColor(Color.black);
 		g.drawPolygon(xsScaled, ysScaled, xs.length);
 		
 	}
