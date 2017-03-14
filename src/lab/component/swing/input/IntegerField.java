@@ -3,12 +3,11 @@ package lab.component.swing.input;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 
 import lab.component.swing.Label;
 
-public class IntegerField extends TextField implements FocusListener {
+public class IntegerField extends TextField {
 
 	private int min;
 	private int max;
@@ -28,7 +27,6 @@ public class IntegerField extends TextField implements FocusListener {
 		setScaleChildren(false);
 		addChild(errorLabel);
 		
-		this.getJComponent().addFocusListener(this);
 	}
 	
 	public IntegerField(int width, int min, int max) {
@@ -120,14 +118,10 @@ public class IntegerField extends TextField implements FocusListener {
 		
 		check(getText() + e.getKeyChar());
 	}
-
+	
 	@Override
-	public void focusGained(FocusEvent arg0) {
-		
-	}
-
-	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void focusLost(FocusEvent e) {
+		super.focusLost(e);
 		check();
 	}
 
