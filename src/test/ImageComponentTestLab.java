@@ -15,7 +15,7 @@ public class ImageComponentTestLab extends LabFrame {
 	public ImageComponentTestLab() {
 		super("ImageComponent Test Lab", 800, 800);
 		getRoot().setLayout(LabComponent.FREE_FORM);
-		ImageComponent image = new ImageComponent(500, 100, "/flask.gif");
+		ImageComponent image = new ImageComponent(500, 100, "/test/flask.gif");
 		image.setShowBounds(true);
 		image.setOffset(80, 200);
 		
