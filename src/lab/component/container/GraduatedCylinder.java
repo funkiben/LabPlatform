@@ -40,7 +40,7 @@ public class GraduatedCylinder extends Container {
 			drawContent(x, y, width, height, g);
 		}
 
-		if (getGraduation() != null) {
+		if (canShowGraduation()) {
 			getGraduation().draw(g, width, height);
 		}
 

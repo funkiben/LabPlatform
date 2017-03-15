@@ -77,7 +77,7 @@ public class Flask extends Container {
 
 		g.drawLine(x, y + height, x + width, y + height);
 
-		if (getGraduation() != null) {
+		if (canShowGraduation()) {
 			getGraduation().draw(g, width, height);
 		}
 
