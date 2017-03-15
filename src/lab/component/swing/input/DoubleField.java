@@ -3,13 +3,12 @@ package lab.component.swing.input;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 
 import lab.component.swing.Label;
 import lab.util.SigFig;
 
-public class DoubleField extends TextField implements FocusListener {
+public class DoubleField extends TextField {
 
 	private double min;
 	private double max;
@@ -33,7 +32,6 @@ public class DoubleField extends TextField implements FocusListener {
 		setScaleChildren(false);
 		addChild(errorLabel);
 		
-		this.getJComponent().addFocusListener(this);
 	}
 	
 	public DoubleField(int width, double min, double max, int sigfigs, int scientificNotationMinPower) {
@@ -154,12 +152,8 @@ public class DoubleField extends TextField implements FocusListener {
 	}
 
 	@Override
-	public void focusGained(FocusEvent arg0) {
-		
-	}
-
-	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void focusLost(FocusEvent e) {
+		super.focusLost(e);
 		check(true);
 	}
 

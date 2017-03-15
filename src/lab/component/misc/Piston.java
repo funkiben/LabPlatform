@@ -18,6 +18,7 @@ public class Piston extends GraduatedComponent {
 	private double gasMass = 1.0;
 	private double transparencyModifier = 1.0;
 	private ClickableArea dragArea = new ClickableArea(this);
+	private boolean canDrag = true;
 
 	public Piston(int width, int height) {
 		super(width, height);
@@ -57,6 +58,14 @@ public class Piston extends GraduatedComponent {
 	public void setTransparencyModifier(double transparencyModifier) {
 		this.transparencyModifier = transparencyModifier;
 	}
+	
+	public boolean canDrag() {
+		return canDrag;
+	}
+	
+	public void setCanDrag(boolean canDrag) {
+		this.canDrag = canDrag;
+	}
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
@@ -73,14 +82,17 @@ public class Piston extends GraduatedComponent {
 		g.setColor(Color.lightGray);
 		g.fillRect(x, y, width, height);
 
-		double transparency = pistonY / height * transparencyModifier * 255;
 
-		transparency = Math.max(transparency, 0);
-		transparency = Math.min(transparency, 255);
-
-		g.setColor(new Color(gasColor.getRed(), gasColor.getGreen(), gasColor.getBlue(), (int) (transparency)));
-		g.fillRect(x, (int) (y + pistonY), width + 1, (int) (height - pistonY) + 1);
-
+		if (gasColor != null) {
+			double transparency = pistonY / height * transparencyModifier * 255;
+	
+			transparency = Math.max(transparency, 0);
+			transparency = Math.min(transparency, 255);
+	
+			g.setColor(new Color(gasColor.getRed(), gasColor.getGreen(), gasColor.getBlue(), (int) (transparency)));
+			g.fillRect(x, (int) (y + pistonY), width + 1, (int) (height - pistonY) + 1);
+		}
+		
 		g.setColor(Color.darkGray);
 		g.fillRect(x - 5, y - (int) pistonHeight, 5, height + (int) pistonHeight);
 		g.fillRect(x - 5, y + height, width + 10, 5);
@@ -93,10 +105,12 @@ public class Piston extends GraduatedComponent {
 			getGraduation().draw(g, width, height);
 		}
 
-		dragArea.checkRaw(x, (int) (pistonY - pistonHeight) + y, width, (int) pistonHeight);
-
-		if (dragArea.hasClick()) {
-			setValue(range - (double) (dragArea.getMousePosition().y - y) / height * range);
+		if (canDrag) {
+			dragArea.checkRaw(x, (int) (pistonY - pistonHeight) + y, width, (int) pistonHeight);
+	
+			if (dragArea.hasClick()) {
+				setValue(range - (double) (dragArea.getMousePosition().y - y) / height * range);
+			}
 		}
 
 		if (getValue() > range) {
