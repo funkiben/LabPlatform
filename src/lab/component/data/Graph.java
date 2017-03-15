@@ -306,7 +306,7 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 				
 			}
 			
-			if (dataSet.isShowName()) {
+			if (dataSet.isShowName() && dataSet.getPoints().size() > 0) {
 				g.drawString(dataSet.getName(), (int) (dx + metrics.stringWidth(dataSet.getName()) / 2), (int) dy + 2);
 			}
 			
