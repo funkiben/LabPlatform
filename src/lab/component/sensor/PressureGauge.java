@@ -123,10 +123,13 @@ public class PressureGauge extends MeasurableComponent {
 	
 	public Font getFont() {
 		return font;
+		
 	}
 	
 	public void setFont(Font font) {
 		this.font = font;
+		titleLabel.setFont(font);
+		gaugeLabel.setFont(font);
 	}
 
 	@Override
