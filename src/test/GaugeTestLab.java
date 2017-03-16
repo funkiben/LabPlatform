@@ -34,6 +34,10 @@ public class GaugeTestLab extends LabFrame{
 	private Thermometer thermometer;
 	
 	private double reactionTemperature;
+	private double H2Concentration = 2.45;
+	private double I2Concentration = 2.45;
+	private double HIConcentration = 0;
+	private double Kp;
 	
 	private static final long serialVersionUID = 7321300459079955237L;
 
@@ -48,6 +52,8 @@ public class GaugeTestLab extends LabFrame{
 		
 		
 		getRoot().setScaleChildren(true);
+		
+		Kp = 617.5;
 		
 		EmptyComponent bulbContainer = new EmptyComponent(450,300);
 		
@@ -113,9 +119,24 @@ public class GaugeTestLab extends LabFrame{
 			@Override
 			public void doSomething() {
 				reactionTemperature = Double.parseDouble((tempDropdown.getValue() + "").replaceAll("K", ""));
+				switch((int)reactionTemperature + "") {
+				case "298":
+					Kp = 617.5;
+				break;
+				case "500":
+					Kp = 131.6;
+				break;
+				case "700":
+					Kp = 68.6;
+				break;
+				case "1000":
+					Kp = 42.1;
+				break;
+				}
 				this.setEnabled(false);
 			}
 		};
+		setTemperature.setEnabled(false);
 		setTemperature.setOffsetY(25);
 		addComponent(setTemperature);
 		
@@ -131,16 +152,98 @@ public class GaugeTestLab extends LabFrame{
 	
 	private double reactionTime = 0;
 	
-	
+	private double Qp() {
+		return (HIConcentration * HIConcentration) / (H2Concentration * I2Concentration);
+	}
 	
 	@Override
 	public void update() {
 		reactionTime = reactionTime + .015;
-		thermometer.setValue(lerp(thermometer.getValue(),reactionTemperature,0.0089f));
+		pressureI2.setValue(I2Concentration);
+		pressureH2.setValue(H2Concentration);
+		
+		float rate = 0.0089f;
+		
+		thermometer.setValue(lerp(thermometer.getValue(),reactionTemperature,rate));
 		
 		h2Set.addPoint(reactionTime, pressureH2.getValue());
 		i2Set.addPoint(reactionTime, pressureI2.getValue());
+	
 		
+		double offset;
+		double Qc = Qp();
+
+		if (Qc > Kp) { // NEED MORE REACTANT, SHIFT BACKWARD
+
+			// Kc = (HI - 2x)^2 / (H2 + x)(I2 + x)
+			// Kc = (HI - 2x)(HI - 2x) / (H2 + x)(I2 + x)
+
+			// Kc = (4x^2 - (4*HI)x + (HI*HI)) / (x^2 + (I2+H2)x + (H2*I2))
+
+			double a1, b1, c1, a2, b2, c2;
+
+			// cross multiply and foil reactants
+			a1 = Kp;
+			b1 = Kp * (I2Concentration + H2Concentration);
+			c1 = Kp * H2Concentration * I2Concentration;
+
+			// foil products
+			a2 = 4;
+			b2 = -4 * HIConcentration;
+			c2 = HIConcentration * HIConcentration;
+
+			double[] zeros = findZeros(a1 - a2, b1 - b2, c1 - c2);
+			
+			offset = HIConcentration - 2 * zeros[0] > 0 ? zeros[0] : zeros[1];
+
+			
+			H2Concentration = lerp(H2Concentration, H2Concentration + offset, rate);
+			I2Concentration = lerp(I2Concentration, I2Concentration + offset, rate);
+			HIConcentration = lerp(HIConcentration, HIConcentration - 2 * offset, rate);
+
+
+		} else if (Qc < Kp) { // NEED MORE PRODUCT, SHIFT FORWARD
+			
+			// Kc = (HI + 2x)^2 / (H2 - x)(I2 - x)
+			// Kc = (HI + 2x)(HI + 2X) / (H2 - x)(I2 - x)
+			
+			// Kc = (4x^2 + (4*HI)x + (HI*HI)) / (x^2 - (H2+I2)x + (HI*I2))
+			
+			
+			double a1, b1, c1, a2, b2, c2;
+
+			// cross multiply and foil reactants
+			a1 = Kp;
+			b1 = Kp * -(I2Concentration + H2Concentration);
+			c1 = Kp * H2Concentration * I2Concentration;
+
+			// foil products
+			a2 = 4;
+			b2 = 4 * HIConcentration;
+			c2 = HIConcentration * HIConcentration;
+
+			double[] zeros = findZeros(a1 - a2, b1 - b2, c1 - c2);
+
+			
+			offset = H2Concentration - zeros[0] > 0 && I2Concentration - zeros[0] > 0 ? zeros[0] : zeros[1];
+			
+			H2Concentration = lerp(H2Concentration, H2Concentration - offset, rate);
+			I2Concentration = lerp(I2Concentration, I2Concentration - offset, rate);
+			HIConcentration = lerp(HIConcentration, HIConcentration + 2 * offset, rate);
+
+			
+		}
+		
+	}
+	
+	private static double[] findZeros(double a, double b, double c) {
+		double s = Math.sqrt((b * b) - 4 * a * c);
+
+		double[] zeros = new double[2];
+		zeros[0] = (-b + s) / (2 * a);
+		zeros[1] = (-b - s) / (2 * a);
+
+		return zeros;
 	}
 
 }
