@@ -17,6 +17,7 @@ public abstract class Container extends GraduatedComponent {
 	private int labelOffsetX;
 	private int labelOffsetY;
 	private int labelSize = 10;
+	private boolean showGraduation = true;
 	
 	public Container(int width, int height) {
 		super(width, height);
@@ -77,7 +78,15 @@ public abstract class Container extends GraduatedComponent {
 	public void setLabelSize(int labelSize) {
 		this.labelSize = labelSize;
 	}
+	
+	public boolean canShowGraduation() {
+		return showGraduation;
+	}
 
+	public void setShowGraduation(boolean showGraduation) {
+		this.showGraduation = showGraduation;
+	}
+	
 	@Override
 	public double getValue() {
 		if (contentState == ContentState.LIQUID) {

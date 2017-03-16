@@ -76,6 +76,8 @@ public class Bulb extends Container {
 		
 		setGraduation(new VerticalGraduation(0, 100, 10, 2));
 		
+		setShowGraduation(false);
+		
 	}
 	
 	@Override
@@ -99,7 +101,7 @@ public class Bulb extends Container {
 		g.fillRect(x, y, width, height);
 		
 		if (!isEmpty()) {
-			drawContent(x, y, width, height, g);
+			drawContent(x, y, width, height - 1, g);
 		}
 		
 		g.setColor(Color.white);
@@ -108,7 +110,9 @@ public class Bulb extends Container {
 		
 		g.setColor(Color.black);
 		
-		//getGraduation().draw(g, width, height);
+		if (canShowGraduation()) {
+			getGraduation().draw(g, width, height);
+		}
 		
 		for (int i = 1; i < VERTICES + 1; i++) {
 			g.drawLine(polyX1[i], polyY1[i], polyX1[i - 1], polyY1[i - 1]);

@@ -47,8 +47,10 @@ public class Beaker extends Container {
 		g.setColor(Color.white);
 		g.fillRect(x - 1, y - 1, width + 2, 22);
 		
-		getGraduation().draw(g, width, height);
-
+		if (canShowGraduation()) {
+			getGraduation().draw(g, width, height);
+		}
+		
 		drawLabel(x, y, width, height, g);
 		
 	}
