@@ -70,6 +70,11 @@ public abstract class Container extends GraduatedComponent {
 	public void setLabelOffsetY(int labelOffsetY) {
 		this.labelOffsetY = labelOffsetY;
 	}
+	
+	public void setLabelOffset(int labelOffsetX, int labelOffsetY) {
+		setLabelOffsetX(labelOffsetX);
+		setLabelOffsetY(labelOffsetY);
+	}
 
 	public int getLabelSize() {
 		return labelSize;
