@@ -44,8 +44,8 @@ public class Label extends SwingComponent {
 		return label.getFontMetrics(label.getFont()).stringWidth(label.getText());
 	}
 	
-	public void setFontSize(int size) {
-		label.setFont(label.getFont().deriveFont((float) size));
+	public void setFontSize(float size) {
+		label.setFont(label.getFont().deriveFont(size));
 	}
 	
 	public int getFontSize() {
@@ -72,6 +72,10 @@ public class Label extends SwingComponent {
 		label.setForeground(color);
 	}
 	
+	public Color getColor() {
+		return label.getForeground();
+	}
+	
 	public void setWrap(boolean wrap) {
 		this.wrap = wrap;
 		setText(label.getText());
@@ -81,7 +85,4 @@ public class Label extends SwingComponent {
 		return wrap;
 	}
 	
-	public Color getColor(Color color) {
-		return label.getForeground();
-	}
 }
