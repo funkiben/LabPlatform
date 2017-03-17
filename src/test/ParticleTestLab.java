@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import lab.LabFrame;
-import lab.component.fx.Particle;
 import lab.component.fx.ParticleShape;
 import lab.component.fx.ParticleSystem;
 import lab.component.fx.RandomVector2Generator;

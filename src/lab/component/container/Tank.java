@@ -13,7 +13,9 @@ public class Tank extends Container {
 	public Tank(int width, int height) {
 		super(width, height);
 
-		setGraduation(new VerticalGraduation(0, 100, 100, 100));
+		setGraduation(new VerticalGraduation(0, 100, 10, 2));
+		
+		setShowGraduation(false);
 		
 		setOffsetX(30);
 		setOffsetY(30);
@@ -41,11 +43,9 @@ public class Tank extends Container {
 			drawContent(x, y, width, height, g);
 		}
 		
-		/*
-		if (getGraduation() != null) {
+		if (canShowGraduation()) {
 			getGraduation().draw(g, width, height);
 		}
-		*/
 
 		drawLabel(x, y, width, height, g);
 

@@ -4,6 +4,7 @@ import lab.LabFrame;
 import lab.component.sensor.PressureGauge;
 
 public class GaugeTestLab extends LabFrame{
+	
 
 	private static final long serialVersionUID = 7321300459079955237L;
 
@@ -11,24 +12,28 @@ public class GaugeTestLab extends LabFrame{
 		new GaugeTestLab();
 	}
 	
+	private final PressureGauge pressureGauge;
 	
 	public GaugeTestLab() {
-		super("Gauge Test Lab", 800, 500);
+		super("Gauge Test Lab", 800, 800);
 		
-		PressureGauge gauge1 = new PressureGauge(200,200,"Pressure of HI","mmHg",5);
-		gauge1.setOffset(50, 50);
-		addComponent(gauge1);
+		pressureGauge = new PressureGauge(200, 200, "Test Gauge", "kPa", 3);
+		pressureGauge.setOffset(50, 50);
 		
-		PressureGauge gauge2 = new PressureGauge(200,200,"Pressure of HI","mmHg",5);
-		gauge2.setOffset(50, 50);
-		addComponent(gauge2);
+		addComponent(pressureGauge);
 		
-		start(60);
+		start(30);
 	}
-
+	
+	int t = 0;
+	
 	@Override
 	public void update() {
+		t++;
+		
+		pressureGauge.setValue((Math.sin(t / 100.0) + 1) * 101.325/2.0);
 		
 	}
+	
 
 }
