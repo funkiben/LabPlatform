@@ -32,8 +32,7 @@ public class PressureGauge extends MeasurableComponent {
 	private int sigfigs;
 	private int minPowerForScientificNotation;
 	private String units;
-	private Font font = new Font("DSEG14 Classic", Font.BOLD, 13);
-
+	
 	public PressureGauge(int width, int height, String title, String units, int sigfigs) {
 		this(width, height, title, units, sigfigs, 1);
 	}
@@ -60,7 +59,7 @@ public class PressureGauge extends MeasurableComponent {
 		gaugeLabel.setWrap(true);
 		gaugeLabel.setColor(Color.black);
 
-		gaugeLabel.setFont(font);
+		gaugeLabel.setFont(new Font("DSEG14 Classic", Font.BOLD, 13));
 
 		titleLabel = new Label(width / 2, height / 6, "<center>" + title + "</center>");
 		titleLabel.setOffset((width - titleLabel.getWidth()) / 2, 5 * (width - titleLabel.getWidth()) / 12);
@@ -72,7 +71,7 @@ public class PressureGauge extends MeasurableComponent {
 		titleLabel.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
 		titleLabel.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setWrap(true);
-		titleLabel.setFont(font.deriveFont(10.0f).deriveFont(Font.BOLD));
+		titleLabel.setFont(new Font("DSEG14 Classic", Font.BOLD, 10));
 		titleLabel.setColor(Color.BLACK);
 
 		addChild(titleLabel);
@@ -118,17 +117,6 @@ public class PressureGauge extends MeasurableComponent {
 
 	public Label getTitleLabel() {
 		return titleLabel;
-	}
-
-	public Font getFont() {
-		return font;
-
-	}
-
-	public void setFont(Font font) {
-		this.font = font;
-		titleLabel.setFont(font);
-		gaugeLabel.setFont(font);
 	}
 
 	@Override
