@@ -138,14 +138,10 @@ public class PressureGauge extends MeasurableComponent {
 			g.setColor(new Color((maxValue / maxRuns) * i, (maxValue / maxRuns) * i, (maxValue / maxRuns) * i));
 			g.fillOval(x + i, y + i, width - 2 * i, height - 2 * i);
 		}
-
-		/*
-		 * gaugeLabel.getJComponent().setFont(gaugeLabel.getJComponent().getFont
-		 * () .deriveFont((float) 1.1 * sigfigs * (float) (Math.sqrt(width *
-		 * width + height * height) / Math.sqrt(gaugeLabel.getWidth() *
-		 * gaugeLabel.getWidth() + gaugeLabel.getHeight() *
-		 * gaugeLabel.getWidth()))));
-		 */
+		
+		g.setColor(new Color(84, 140, 229));
+		g.fillOval(x + maxRuns, y + maxRuns, width - 2 * maxRuns, height - 2 * maxRuns);
+		
 	}
 
 }
