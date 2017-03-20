@@ -21,6 +21,17 @@ public class Animator {
 		return animationMap.containsKey(id);
 	}
 	
+	public boolean cancelAnimation(String id) {
+		Animation<?> anim = getAnimation(id);
+		
+		if (anim != null) {
+			anim.cancel();
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public void animate() {
 		List<String> toRemove = new ArrayList<String>();
 		

@@ -77,6 +77,10 @@ public class GraphDataSet {
 	public void clearPoints() {
 		points.clear();
 	}
+	
+	public int size() {
+		return points.size();
+	}
 
 
 	

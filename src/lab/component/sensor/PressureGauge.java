@@ -32,8 +32,7 @@ public class PressureGauge extends MeasurableComponent {
 	private int sigfigs;
 	private int minPowerForScientificNotation;
 	private String units;
-	private Font font = new Font("DSEG14 Classic", Font.BOLD, 13);
-
+	
 	public PressureGauge(int width, int height, String title, String units, int sigfigs) {
 		this(width, height, title, units, sigfigs, 1);
 	}
@@ -60,7 +59,7 @@ public class PressureGauge extends MeasurableComponent {
 		gaugeLabel.setWrap(true);
 		gaugeLabel.setColor(Color.black);
 
-		gaugeLabel.setFont(font);
+		gaugeLabel.setFont(new Font("DSEG14 Classic", Font.BOLD, 13));
 
 		titleLabel = new Label(width / 2, height / 6, "<center>" + title + "</center>");
 		titleLabel.setOffset((width - titleLabel.getWidth()) / 2, 5 * (width - titleLabel.getWidth()) / 12);
@@ -72,7 +71,7 @@ public class PressureGauge extends MeasurableComponent {
 		titleLabel.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
 		titleLabel.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setWrap(true);
-		titleLabel.setFont(font.deriveFont(10.0f).deriveFont(Font.BOLD));
+		titleLabel.setFont(new Font("DSEG14 Classic", Font.BOLD, 10));
 		titleLabel.setColor(Color.BLACK);
 
 		addChild(titleLabel);
@@ -120,17 +119,6 @@ public class PressureGauge extends MeasurableComponent {
 		return titleLabel;
 	}
 
-	public Font getFont() {
-		return font;
-
-	}
-
-	public void setFont(Font font) {
-		this.font = font;
-		titleLabel.setFont(font);
-		gaugeLabel.setFont(font);
-	}
-
 	@Override
 	public void setValue(double value) {
 		super.setValue(value);
@@ -150,14 +138,10 @@ public class PressureGauge extends MeasurableComponent {
 			g.setColor(new Color((maxValue / maxRuns) * i, (maxValue / maxRuns) * i, (maxValue / maxRuns) * i));
 			g.fillOval(x + i, y + i, width - 2 * i, height - 2 * i);
 		}
-
-		/*
-		 * gaugeLabel.getJComponent().setFont(gaugeLabel.getJComponent().getFont
-		 * () .deriveFont((float) 1.1 * sigfigs * (float) (Math.sqrt(width *
-		 * width + height * height) / Math.sqrt(gaugeLabel.getWidth() *
-		 * gaugeLabel.getWidth() + gaugeLabel.getHeight() *
-		 * gaugeLabel.getWidth()))));
-		 */
+		
+		g.setColor(new Color(84, 140, 229));
+		g.fillOval(x + maxRuns, y + maxRuns, width - 2 * maxRuns, height - 2 * maxRuns);
+		
 	}
 
 }
