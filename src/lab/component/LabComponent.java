@@ -280,12 +280,14 @@ public abstract class LabComponent implements Drawable {
 			g.drawRect(px, py, w, h);
 		}
 		
-		draw(px, py, w, h, g);
-		
-		if (layout == PARAGRAPH) {
-			drawParagraph(g, px, py, w, h, jPanel, overMaxFPS);
-		} else if (layout == FREE_FORM) {
-			drawFreeForm(g, px, py, w, h, jPanel, overMaxFPS);
+		if (children.size() > 0) {
+			if (layout == PARAGRAPH) {
+				drawParagraph(g, px, py, w, h, jPanel, overMaxFPS);
+			} else if (layout == FREE_FORM) {
+				drawFreeForm(g, px, py, w, h, jPanel, overMaxFPS);
+			}	
+		} else {
+			draw(px, py, w, h, g);
 		}
 		
 		lastDrawX = px;
@@ -299,7 +301,14 @@ public abstract class LabComponent implements Drawable {
 		int maxHeight = Integer.MIN_VALUE;
 		int x = 0, y = 0, swidth, sheight, sx, sy;
 		
+		boolean thisDrawn = false;
+		
 		for (LabComponent c : children) {
+			
+			if (c.getZOrder() >= 0 && !thisDrawn) {
+				thisDrawn = true;
+				draw(px, py, w, h, g);
+			}
 			
 			if (x + c.getWidth() + c.getOffsetX() > (scaleChildren ? width : w)) {
 				if (maxHeight == Integer.MIN_VALUE) {
@@ -343,7 +352,14 @@ public abstract class LabComponent implements Drawable {
 	private void drawFreeForm(Graphics g, int px, int py, int w, int h, JPanel panel, boolean overMaxFPS) {
 		int swidth, sheight, sx, sy;
 		
+		boolean thisDrawn = false;
+		
 		for (LabComponent c : children) {
+			
+			if (c.getZOrder() >= 0 && !thisDrawn) {
+				thisDrawn = true;
+				draw(px, py, w, h, g);
+			}
 			
 			if (scaleChildren) {
 				swidth = (int) ((double) c.getWidth() / width * w * getWidthScaleRatio());
