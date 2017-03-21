@@ -46,7 +46,7 @@ public class TestLab extends LabFrame {
 		VerticalGraduation vg = new VerticalGraduation(-20, 20, 5, 1);
 		HorizontalGraduation hg = new HorizontalGraduation(-20, 20, 5, 1);
 		
-		graph = new Graph(200, 200, "Test Graph", "m", "m", vg, hg);
+		graph = new Graph(200, 200, "Test Graph", "m", "m", hg, vg);
 		
 		GraphDataSet set = new GraphDataSet("test1", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {
