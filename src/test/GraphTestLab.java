@@ -29,7 +29,7 @@ public class GraphTestLab extends LabFrame {
 		HorizontalGraduation hg = new HorizontalGraduation(0, 20, 5, 1);
 		
 		
-		graph = new Graph(750, 500, "TEST GRAPH", "", "", vg, hg);
+		graph = new Graph(750, 500, "TEST GRAPH", "", "", hg, vg);
 		
 		addComponent(graph);
 		
