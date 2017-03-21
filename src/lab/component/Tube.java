@@ -7,6 +7,8 @@ import lab.util.Vector2;
 
 public class Tube extends LabComponent {
 
+	public static final Color DEFAULT_COLOR = new Color(230, 230, 230);
+	
 	private static int diameter = 10;
 	
 	public static void setDiameter(int diameter) {
@@ -33,7 +35,8 @@ public class Tube extends LabComponent {
 		);
 	}
 	
-	private int[] xs, ys;
+	private final int[] xs, ys;
+	private Color color = DEFAULT_COLOR;
 	
 	private Tube(int x, int y, double angle, int...xy) {
 		super(diameter, diameter);
@@ -56,7 +59,13 @@ public class Tube extends LabComponent {
 		
 	}
 	
+	public void setColor(Color color) {
+		this.color = color;
+	}
 	
+	public Color getColor() {
+		return color;
+	}
 
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
@@ -64,7 +73,7 @@ public class Tube extends LabComponent {
 		int[] xsScaled = scaleAndShift(xs, (double) width / getWidth(), x);
 		int[] ysScaled = scaleAndShift(ys, (double) height / getHeight(), y);
 		
-		g.setColor(new Color(230, 230, 230));
+		g.setColor(color);
 		g.fillPolygon(xsScaled, ysScaled, xs.length);
 		
 		g.setColor(Color.black);

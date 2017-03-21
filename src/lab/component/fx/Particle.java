@@ -78,7 +78,8 @@ public class Particle {
 	}
 	
 	private void checkForCollisions() {
-		Vector2 newPosition = position.add(velocity);
+		
+		Vector2 newPosition = position.add(velocity), p1, p2;
 		Vector2[] collisionEdge = null;
 		
 		for (Vector2[] edge : system.getCollidableEdges()) {
@@ -92,15 +93,18 @@ public class Particle {
 			return;
 		}
 		
-		if (collisionEdge[0].getY() == collisionEdge[1].getY()) {
-			collisionEdge[0] = collisionEdge[0].add(0, 0.01);
+		p1 = collisionEdge[0];
+		p2 = collisionEdge[1];
+		
+		if (p1.getX() == p2.getX()) {
+			p1 = p1.add(0.0001, 0);
 		}
 		
-		if (collisionEdge[0].getX() == collisionEdge[1].getX()) {
-			collisionEdge[0] = collisionEdge[0].add(0.01, 0);
+		if (p1.getY() == p2.getY()) {
+			p1 = p1.add(0, 0.0001);
 		}
 		
-		double m = (collisionEdge[1].getY() - collisionEdge[0].getY()) / (collisionEdge[1].getX() - collisionEdge[0].getX());
+		double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());
 		m = 1.0 / -m;
 		
 		Vector2 n = new Vector2(1, m);
@@ -109,6 +113,8 @@ public class Particle {
 		Vector2 w = velocity.subtract(u);
 		
 		velocity = w.multiply(system.getFriction()).subtract(u.multiply(system.getFriction()));
+		
+		
 	}
 	
 	
@@ -177,19 +183,19 @@ public class Particle {
 		y4 = v4.getY();
 
 		if (y1 == y2) {
-			x1 += 0.01;
+			x1 += 0.00001;
 		}
 
 		if (y3 == y4) {
-			x3 += 0.01;
+			x3 += 0.00001;
 		}
 
 		if (x1 == x2) {
-			y1 += 0.01;
+			y1 += 0.00001;
 		}
 
 		if (x3 == x4) {
-			y3 += 0.01;
+			y3 += 0.00001;
 		}
 
 		double denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);

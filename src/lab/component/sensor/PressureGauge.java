@@ -26,13 +26,12 @@ public class PressureGauge extends MeasurableComponent {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private final Label titleLabel;
 	private final Label gaugeLabel;
 	private int sigfigs;
 	private int minPowerForScientificNotation;
 	private String units;
-	private Font font = new Font("DSEG14 Classic", Font.PLAIN, 13);
 	
 	public PressureGauge(int width, int height, String title, String units, int sigfigs) {
 		this(width, height, title, units, sigfigs, 1);
@@ -40,41 +39,40 @@ public class PressureGauge extends MeasurableComponent {
 
 	public PressureGauge(int width, int height, String title, String units, int sigfigs, int minPowerForScientificNotation) {
 		super(width, height);
-		
+
 		this.units = units;
 		this.minPowerForScientificNotation = minPowerForScientificNotation;
-		
+
 		setLayout(LabComponent.FREE_FORM);
 
 		this.sigfigs = sigfigs;
 
-		gaugeLabel = new Label((int) (width / 1.5), height / 6);
+		gaugeLabel = new Label((int) (width / 1.6), height / 6);
 		gaugeLabel.setOffset((width - gaugeLabel.getWidth()) / 2, 2 * (height - gaugeLabel.getHeight()) / 3);
 		gaugeLabel.setShowBounds(true);
 		Rectangle gaugeBorder = new Rectangle(gaugeLabel.getWidth() + 10, gaugeLabel.getHeight() + 10);
 		gaugeLabel.addChild(gaugeBorder);
-		gaugeBorder.setFillColor(Color.black);
+		gaugeBorder.setFillColor(Color.white);
 		gaugeBorder.setOffset(-5, -3);
 		gaugeLabel.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
 		gaugeLabel.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
 		gaugeLabel.setWrap(true);
-		gaugeLabel.setColor(Color.green);
-		
-		gaugeLabel.setFont(font);
+		gaugeLabel.setColor(Color.black);
+
+		gaugeLabel.setFont(new Font("DSEG14 Classic", Font.BOLD, 13));
 
 		titleLabel = new Label(width / 2, height / 6, "<center>" + title + "</center>");
 		titleLabel.setOffset((width - titleLabel.getWidth()) / 2, 5 * (width - titleLabel.getWidth()) / 12);
 		titleLabel.setShowBounds(true);
 		Rectangle titleBorder = new Rectangle(titleLabel.getWidth() + 5, titleLabel.getHeight() + 5);
 		titleLabel.addChild(titleBorder);
-		titleBorder.setFillColor(Color.black);
+		titleBorder.setFillColor(Color.white);
 		titleBorder.setOffset(-3, -1);
 		titleLabel.getJComponent().setVerticalAlignment(SwingConstants.CENTER);
 		titleLabel.getJComponent().setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.getJComponent().setFont(titleLabel.getJComponent().getFont().deriveFont(10f));
 		titleLabel.setWrap(true);
-		titleLabel.setFont(font.deriveFont(12.0f));
-		titleLabel.setColor(Color.lightGray);
+		titleLabel.setFont(new Font("DSEG14 Classic", Font.BOLD, 10));
+		titleLabel.setColor(Color.BLACK);
 
 		addChild(titleLabel);
 		addChild(gaugeLabel);
@@ -100,11 +98,11 @@ public class PressureGauge extends MeasurableComponent {
 	public String getTitleText() {
 		return titleLabel.getText().replace("<center>", "").replaceAll("</center>", "");
 	}
-	
+
 	public void setTitleText(String title) {
 		titleLabel.setText("<center>" + title + "</center>");
 	}
-	
+
 	public int getMinPowerForScientificNotation() {
 		return minPowerForScientificNotation;
 	}
@@ -112,34 +110,22 @@ public class PressureGauge extends MeasurableComponent {
 	public void setMinPowerForScientificNotation(int minPowerForScientificNotation) {
 		this.minPowerForScientificNotation = minPowerForScientificNotation;
 	}
-	
+
 	public Label getGaugeLabel() {
 		return gaugeLabel;
 	}
-	
+
 	public Label getTitleLabel() {
 		return titleLabel;
-	}
-	
-	public Font getFont() {
-		return font;
-		
-	}
-	
-	public void setFont(Font font) {
-		this.font = font;
-		titleLabel.setFont(font);
-		gaugeLabel.setFont(font);
 	}
 
 	@Override
 	public void setValue(double value) {
 		super.setValue(value);
-		
-		gaugeLabel.setText(SigFig.sigfigalize(value, sigfigs, minPowerForScientificNotation) + " " + units);
 
+		gaugeLabel.setText("<html><center>" + SigFig.sigfigalize(value, sigfigs, minPowerForScientificNotation).replace(".", " . ") + "<br>" + units + "</center></html>");
 	}
-	
+
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
 		g.setColor(Color.black);
@@ -153,11 +139,9 @@ public class PressureGauge extends MeasurableComponent {
 			g.fillOval(x + i, y + i, width - 2 * i, height - 2 * i);
 		}
 		
-		/*
-		gaugeLabel.getJComponent().setFont(gaugeLabel.getJComponent().getFont()
-				.deriveFont((float) 1.1 * sigfigs * (float) (Math.sqrt(width * width + height * height)
-						/ Math.sqrt(gaugeLabel.getWidth() * gaugeLabel.getWidth() + gaugeLabel.getHeight() * gaugeLabel.getWidth()))));
-		 */
+		g.setColor(new Color(84, 140, 229));
+		g.fillOval(x + maxRuns, y + maxRuns, width - 2 * maxRuns, height - 2 * maxRuns);
+		
 	}
 
 }

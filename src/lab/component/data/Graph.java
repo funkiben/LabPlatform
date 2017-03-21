@@ -56,8 +56,10 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 		setOffsetY(30);
 	}
 	
-	public void addDataSet(GraphDataSet set) {
-		data.put(set.getName(), set);
+	public void addDataSet(GraphDataSet...sets) {
+		for (GraphDataSet set : sets) {
+			data.put(set.getName(), set);
+		}
 	}
 	
 	public void removeDataSet(String name) {
