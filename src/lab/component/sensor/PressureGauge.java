@@ -47,7 +47,7 @@ public class PressureGauge extends MeasurableComponent {
 
 		this.sigfigs = sigfigs;
 
-		gaugeLabel = new Label((int) (width / 1.5), height / 6);
+		gaugeLabel = new Label((int) (width / 1.6), height / 6);
 		gaugeLabel.setOffset((width - gaugeLabel.getWidth()) / 2, 2 * (height - gaugeLabel.getHeight()) / 3);
 		gaugeLabel.setShowBounds(true);
 		Rectangle gaugeBorder = new Rectangle(gaugeLabel.getWidth() + 10, gaugeLabel.getHeight() + 10);

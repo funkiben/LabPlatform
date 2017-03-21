@@ -18,8 +18,8 @@ public class IntegerSlider extends InputComponent implements ChangeListener {
 	private int min;
 	private int max;
 
-	public IntegerSlider(int width, int min, int max, int orientation) {
-		super(width, 20);
+	public IntegerSlider(int size, int min, int max, int orientation) {
+		super(orientation == HORIZONTAL ? size : 20, orientation == VERTICAL ? size : 20);
 
 		slider = new JSlider(min, max);
 		slider.setValue(0);
