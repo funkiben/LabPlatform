@@ -19,8 +19,8 @@ public class DoubleSlider extends InputComponent implements ChangeListener {
 	private double max;
 	private double increment;
 
-	public DoubleSlider(int width, double min, double max, double increment, int orientation) {
-		super(width, 20);
+	public DoubleSlider(int size, double min, double max, double increment, int orientation) {
+		super(orientation == HORIZONTAL ? size : 20, orientation == VERTICAL ? size : 20);
 
 		this.min = min;
 		this.max = max;
