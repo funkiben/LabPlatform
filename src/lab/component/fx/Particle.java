@@ -83,26 +83,23 @@ public class Particle {
 	
 	private void checkForCollisions(Vector2 oldPosition, Vector2 newPosition) {
 		
-		/*
-		Vector2 intersect, p1, p2;
+		Vector2 intersect;
 		
 		for (Vector2[] edge : system.getCollidableEdges()) {
 			
 			intersect = getLineIntersectionPoint(oldPosition, newPosition, edge[0], edge[1]);
 			
 			if (intersect != null) {
-				p1 = edge[0];
-				p2 = edge[1];
 				
-				if (p1.getX() == p2.getX()) {
-					p1 = p1.add(0.0001, 0);
+				if (edge[0].getX() == edge[1].getX()) {
+					edge[0] = edge[0].add(0.0001, 0);
 				}
 				
-				if (p1.getY() == p2.getY()) {
-					p1 = p1.add(0, 0.0001);
+				if (edge[0].getY() == edge[1].getY()) {
+					edge[0] = edge[0].add(0, 0.0001);
 				}
 				
-				double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());
+				double m = (edge[1].getY() - edge[0].getY()) / (edge[1].getX() - edge[0].getX());
 				m = 1.0 / -m;
 				
 				Vector2 n = new Vector2(1, m);
@@ -112,17 +109,17 @@ public class Particle {
 				
 				velocity = w.multiply(system.getFriction()).subtract(u.multiply(system.getFriction()));
 				
-				oldPosition = intersect;
 				newPosition = intersect.add(velocity);
 				
 				checkForCollisions(oldPosition, newPosition);
-				break;
+				return;
 			}
 		}
 		
 		position = oldPosition;
-		*/
 		
+		
+		/*
 		Vector2 p1, p2;
 		Vector2[] collisionEdge = null;
 		
@@ -158,7 +155,7 @@ public class Particle {
 		
 		Vector2 u = n.multiply(velocity.dot(n) / n.dot(n));
 		Vector2 w = velocity.subtract(u);
-		
+		*/
 		velocity = w.multiply(system.getFriction()).subtract(u.multiply(system.getFriction()));
 		
 		
@@ -229,28 +226,15 @@ public class Particle {
 		x4 = v4.getX();
 		y4 = v4.getY();
 
-		if (y1 == y2) {
-			x1 += 0.00001;
-		}
-
-		if (y3 == y4) {
-			x3 += 0.00001;
-		}
-
-		if (x1 == x2) {
-			y1 += 0.00001;
-		}
-
-		if (x3 == x4) {
-			y3 += 0.00001;
-		}
-
 		double denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
+		
 		if (denom == 0.0) { // Lines are parallel.
 			return null;
 		}
+		
 		double ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
 		double ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
+		
 		if (ua >= 0.0f && ua <= 1.0f && ub >= 0.0f && ub <= 1.0f) {
 			// Get the intersection point.
 			return new Vector2(x1 + ua * (x2 - x1), y1 + ua * (y2 - y1));
