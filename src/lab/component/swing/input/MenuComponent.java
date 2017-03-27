@@ -1,50 +1,43 @@
 package lab.component.swing.input;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
-public class MenuComponent extends InputComponent{
+public class MenuComponent extends InputComponent {
 	private JMenuBar menuBar;
-	private HashMap<String, JMenu> menu;
-	private HashMap<String, Object> menuItem;
-	
+	private Map<String, JMenu> menu;
+	private Map<String, JMenuItem> menuItem;
+
 	public MenuComponent(int width, int height) {
 		super(width, height);
 		menuBar = new JMenuBar();
 		menu = new HashMap<String, JMenu>();
-		menuItem = new HashMap<String, Object>();
+		menuItem = new HashMap<String, JMenuItem>();
 	}
-	
-	public void addMenu(String name){
+
+	public void addMenu(String name) {
 		JMenu newMenu = new JMenu(name);
 		menuBar.add(newMenu);
 		menu.put(name, newMenu);
 	}
-		
-	public void addMenuItem(String text, String menuName){
+
+	public void addMenuItem(String text, String menuName, ActionListener e) {
 		JMenuItem newMenuItem = new JMenuItem(text);
+		newMenuItem.addActionListener(e);
 		menu.get(menuName).add(newMenuItem);
 		menuItem.put(text, newMenuItem);
 	}
-	
-	public void addRadioButtonMenuItem(String text, String menuName, boolean selected){
-		JRadioButtonMenuItem newRadioButtonMenuItem = new JRadioButtonMenuItem(text);
-		newRadioButtonMenuItem.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
+	public void addRadioButtonMenuItem(String text, String menuName, boolean selected, ActionListener e) {
+		JRadioButtonMenuItem newRadioButtonMenuItem = new JRadioButtonMenuItem(text);
+		newRadioButtonMenuItem.addActionListener(e);
 		newRadioButtonMenuItem.setSelected(selected);
 		menu.get(menuName).add(newRadioButtonMenuItem);
 		menuItem.put(text, newRadioButtonMenuItem);
@@ -57,13 +50,11 @@ public class MenuComponent extends InputComponent{
 
 	@Override
 	public void setValue(Object v) {
-		
+
 	}
 
 	public Component getJComponent() {
 		return menuBar;
 	}
-	
-	
 
 }
