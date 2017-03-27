@@ -155,9 +155,9 @@ public class Particle {
 		
 		Vector2 u = n.multiply(velocity.dot(n) / n.dot(n));
 		Vector2 w = velocity.subtract(u);
-		*/
-		velocity = w.multiply(system.getFriction()).subtract(u.multiply(system.getFriction()));
 		
+		velocity = w.multiply(system.getFriction()).subtract(u.multiply(system.getFriction()));
+		*/
 		
 	}
 	
