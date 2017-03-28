@@ -1,7 +1,7 @@
 package test;
 
 import lab.LabFrame;
-import lab.component.swing.input.DoubleField;
+import lab.component.swing.input.field.DoubleField;
 
 public class InputTestLab extends LabFrame {
 	

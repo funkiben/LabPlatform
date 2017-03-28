@@ -13,11 +13,11 @@ import lab.component.data.Graph;
 import lab.component.sensor.Manometer;
 import lab.component.sensor.Thermometer;
 import lab.component.swing.input.Button;
-import lab.component.swing.input.DoubleSlider;
 import lab.component.swing.input.Switch;
+import lab.component.swing.input.field.DoubleField;
+import lab.component.swing.input.slider.DoubleSlider;
 import lab.util.HorizontalGraduation;
 import lab.util.VerticalGraduation;
-import lab.component.swing.input.DoubleField;
 
 public class TestLab extends LabFrame {
 
@@ -46,7 +46,7 @@ public class TestLab extends LabFrame {
 		VerticalGraduation vg = new VerticalGraduation(-20, 20, 5, 1);
 		HorizontalGraduation hg = new HorizontalGraduation(-20, 20, 5, 1);
 		
-		graph = new Graph(200, 200, "Test Graph", "m", "m", vg, hg);
+		graph = new Graph(200, 200, "Test Graph", "m", "m", hg, vg);
 		
 		GraphDataSet set = new GraphDataSet("test1", true, false);
 		for (double i = -50; i <= 50; i+=0.1) {

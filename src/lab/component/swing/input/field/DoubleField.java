@@ -1,4 +1,4 @@
-package lab.component.swing.input;
+package lab.component.swing.input.field;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

@@ -1,1 +1,5 @@
 1. Annotations/comments/JavaDocs
+
+2. Interfaces and abstract classes for everything!
+
+3. Replace all overridable methods with event and listeners

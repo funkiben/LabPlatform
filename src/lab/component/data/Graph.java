@@ -33,7 +33,7 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 	private boolean drawXLines = true;
 	private boolean drawYLines = true;
 	
-	public Graph(int width, int height, String title, String xLabel, String yLabel, VerticalGraduation vGraduation, HorizontalGraduation hGraduation) {
+	public Graph(int width, int height, String title, String xLabel, String yLabel, HorizontalGraduation hGraduation, VerticalGraduation vGraduation) {
 		super(width, height);
 		this.vGraduation = vGraduation;
 		this.hGraduation = hGraduation;
