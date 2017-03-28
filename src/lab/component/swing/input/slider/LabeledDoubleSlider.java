@@ -1,4 +1,4 @@
-package lab.component.swing.input;
+package lab.component.swing.input.slider;
 
 import lab.component.swing.Label;
 import lab.util.SigFig;

@@ -1,10 +1,12 @@
-package lab.component.swing.input;
+package lab.component.swing.input.slider;
 
 import java.awt.Color;
 
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import lab.component.swing.input.InputComponent;
 
 public abstract class Slider extends InputComponent implements ChangeListener {
 
