@@ -1,4 +1,4 @@
-package lab.component.swing.input;
+package lab.component.swing.input.field;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
+
+import lab.component.swing.input.InputComponent;
 
 public class TextField extends InputComponent implements ActionListener, KeyListener, FocusListener {
 

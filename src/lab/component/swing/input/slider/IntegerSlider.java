@@ -1,4 +1,4 @@
-package lab.component.swing.input;
+package lab.component.swing.input.slider;
 
 import java.util.Dictionary;
 import java.util.Hashtable;

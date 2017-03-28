@@ -13,11 +13,11 @@ import lab.component.data.Graph;
 import lab.component.sensor.Manometer;
 import lab.component.sensor.Thermometer;
 import lab.component.swing.input.Button;
-import lab.component.swing.input.DoubleSlider;
 import lab.component.swing.input.Switch;
+import lab.component.swing.input.field.DoubleField;
+import lab.component.swing.input.slider.DoubleSlider;
 import lab.util.HorizontalGraduation;
 import lab.util.VerticalGraduation;
-import lab.component.swing.input.DoubleField;
 
 public class TestLab extends LabFrame {
 
