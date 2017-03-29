@@ -24,6 +24,8 @@ public class IntegerField extends TextField {
 		errorLabel.setColor(Color.red);
 		errorLabel.setFontSize(9);
 		
+		setValue(min);
+		
 		setScaleChildren(false);
 		addChild(errorLabel);
 		
