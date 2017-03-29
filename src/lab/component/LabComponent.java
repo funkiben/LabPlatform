@@ -347,6 +347,10 @@ public abstract class LabComponent implements Drawable {
 			}
 			
 		}
+		
+		if (!thisDrawn) {
+			draw(px, py, w, h, g);
+		}
 	}
 	
 	private void drawFreeForm(Graphics g, int px, int py, int w, int h, JPanel panel, boolean overMaxFPS) {
@@ -381,6 +385,10 @@ public abstract class LabComponent implements Drawable {
 				c.update();
 			}
 			
+		}
+		
+		if (!thisDrawn) {
+			draw(px, py, w, h, g);
 		}
 	}
 	
