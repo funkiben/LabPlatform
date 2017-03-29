@@ -8,15 +8,20 @@ public class LabeledDoubleSlider extends DoubleSlider {
 	private final Label label;
 	private int sigfigs;
 	
-	public LabeledDoubleSlider(int width, double min, double max, double increment, int sigfigs, int orientation) {
-		super(width, min, max, increment, orientation);
+	public LabeledDoubleSlider(int size, double min, double max, double increment, int sigfigs, int orientation) {
+		super(size, min, max, increment, orientation);
 		
 		this.sigfigs = sigfigs;
 		
 		setLayout(FREE_FORM);
 		
-		label = new Label(width / 4, 20);
-		label.setOffset(width, 0);
+		label = new Label(size / 4, 20);
+
+		if (orientation == Slider.HORIZONTAL) {
+			label.setOffset(size, 0);
+		} else {
+			label.setOffset(20, 0);
+		}
 		
 		addChild(label);
 		
