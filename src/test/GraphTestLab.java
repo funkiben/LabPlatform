@@ -2,7 +2,7 @@ package test;
 
 import lab.LabFrame;
 import lab.component.data.GraphDataSet;
-import lab.component.swing.input.DoubleSlider;
+import lab.component.swing.input.slider.DoubleSlider;
 import lab.util.HorizontalGraduation;
 import lab.util.VerticalGraduation;
 import lab.component.data.Graph;

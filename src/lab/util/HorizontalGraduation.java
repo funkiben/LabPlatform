@@ -8,11 +8,11 @@ import java.util.List;
 
 public class HorizontalGraduation extends Graduation {
 
-	public HorizontalGraduation(double start, double end, float lineIntervals, float subLineIntervals) {
+	public HorizontalGraduation(double start, double end, double lineIntervals, double subLineIntervals) {
 		super(start, end, lineIntervals, subLineIntervals);
 	}
 	
-	public HorizontalGraduation(double end, float lineIntervals, float subLineIntervals) {
+	public HorizontalGraduation(double end, double lineIntervals, double subLineIntervals) {
 		super(0, end, lineIntervals, subLineIntervals);
 	}
 	

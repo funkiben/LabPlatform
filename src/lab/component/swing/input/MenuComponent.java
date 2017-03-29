@@ -42,6 +42,22 @@ public class MenuComponent extends InputComponent {
 		menu.get(menuName).add(newRadioButtonMenuItem);
 		menuItem.put(text, newRadioButtonMenuItem);
 	}
+	
+	public void setMenuItemText(String menuItemName, String text){
+		menuItem.get(menuItemName).setText(text);
+	}
+	
+	public String getMenuItemText(String menuItemName){
+		return menuItem.get(menuItemName).getText();
+	}
+	
+	public void setRadioButtonSelected(String menuItemName, boolean selected){
+		menuItem.get(menuItemName).setSelected(selected);
+	}
+	
+	public boolean radioButtonSelected(String menuItemName){
+		return menuItem.get(menuItemName).isSelected();
+	}
 
 	@Override
 	public Object getValue() {

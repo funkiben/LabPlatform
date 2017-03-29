@@ -1,39 +1,27 @@
-package lab.component.swing.input;
+package lab.component.swing.input.slider;
 
-import java.awt.Color;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 import javax.swing.JLabel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-public class DoubleSlider extends InputComponent implements ChangeListener {
-
-	public static final int HORIZONTAL = 0;
-	public static final int VERTICAL = 1;
-
-	private final JSlider slider;
+public class DoubleSlider extends Slider {
+	
 	private double min;
 	private double max;
 	private double increment;
 
 	public DoubleSlider(int size, double min, double max, double increment, int orientation) {
-		super(orientation == HORIZONTAL ? size : 20, orientation == VERTICAL ? size : 20);
+		super(size, orientation);
 
 		this.min = min;
 		this.max = max;
 		this.increment = increment;
 		
-		slider = new JSlider();
 		slider.setMinimum(0);
 		setMaxSliderValue();
 		slider.setValue(0);
-		slider.setOrientation(orientation);
-		slider.setBackground(Color.white);
-		slider.addChangeListener(this);
-
+		
 	}
 
 	public void setValue(Double v) {
@@ -83,10 +71,6 @@ public class DoubleSlider extends InputComponent implements ChangeListener {
 		setValue((Double) v);
 	}
 
-	public int getOrientation() {
-		return slider.getOrientation();
-	}
-
 	@SuppressWarnings("unchecked")
 	public void addValueLabel(double value, String label) {
 		Dictionary<Integer, JLabel> labels = slider.getLabelTable();
@@ -100,20 +84,6 @@ public class DoubleSlider extends InputComponent implements ChangeListener {
 		slider.setLabelTable(labels);
 
 		slider.setPaintLabels(true);
-	}
-
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		onChange();
-	}
-
-	public void onChange() {
-
-	}
-
-	@Override
-	public JSlider getJComponent() {
-		return slider;
 	}
 
 }
