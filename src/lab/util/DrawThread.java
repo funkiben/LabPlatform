@@ -1,4 +1,4 @@
-package lab.component;
+package lab.util;
 
 
 import javax.swing.JPanel;

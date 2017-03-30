@@ -6,8 +6,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import lab.component.Drawable;
-
 public abstract class Graduation implements Drawable {
 
 	protected double start;
