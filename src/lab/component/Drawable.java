@@ -1,4 +1,4 @@
-package draw;
+package lab.component;
 
 import java.awt.Graphics;
 

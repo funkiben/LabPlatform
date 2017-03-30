@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import draw.DrawThread;
+import lab.component.DrawThread;
 import lab.component.EmptyComponent;
 import lab.component.LabComponent;
 import lab.util.animation.Animator;
