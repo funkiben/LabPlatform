@@ -1,4 +1,4 @@
-package draw.animation;
+package lab.util.animation;
 
 public abstract class DoubleLerpAnimation extends LerpAnimation<Double> {
 	

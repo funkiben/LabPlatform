@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import draw.DrawThread;
-import draw.animation.Animator;
 import lab.component.EmptyComponent;
 import lab.component.LabComponent;
+import lab.util.animation.Animator;
 
 public abstract class LabFrame extends JFrame {
 	
