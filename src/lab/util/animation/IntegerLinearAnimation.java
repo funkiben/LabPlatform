@@ -1,4 +1,4 @@
-package draw.animation;
+package lab.util.animation;
 
 public abstract class IntegerLinearAnimation extends LinearAnimation<Integer> {
 

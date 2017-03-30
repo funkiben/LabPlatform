@@ -3,9 +3,9 @@ package lab.component.fx;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import draw.animation.Animator;
-import draw.animation.ColorLinearAnimation;
 import lab.util.Vector2;
+import lab.util.animation.Animator;
+import lab.util.animation.ColorLinearAnimation;
 
 public class Particle {
 	

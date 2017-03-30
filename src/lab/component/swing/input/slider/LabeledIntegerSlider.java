@@ -6,28 +6,31 @@ public class LabeledIntegerSlider extends IntegerSlider {
 
 	private final Label label;
 
-	public LabeledIntegerSlider(int width, int min, int max, int orientation) {
-		super(width, min, max, orientation);
-		
+	public LabeledIntegerSlider(int size, int min, int max, int orientation) {
+		super(size, min, max, orientation);
+
 		setLayout(FREE_FORM);
-		
-		label = new Label(width / 4, 20);
-		label.setOffset(width, 0);
-		
+
+		label = new Label(size / 4, 20);
+
+		if (orientation == Slider.HORIZONTAL) {
+			label.setOffset(size, 0);
+		} else {
+			label.setOffset(20, 0);
+		}
+
 		addChild(label);
-		
+
 	}
-	
+
 	public Label getLabel() {
 		return label;
 	}
-	
-	
-	
+
 	public void onChange() {
-		
+
 	}
-	
+
 	@Override
 	public void update() {
 		label.setText(getValue().toString());
