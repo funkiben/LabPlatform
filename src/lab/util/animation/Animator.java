@@ -1,4 +1,4 @@
-package draw.animation;
+package lab.util.animation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +30,14 @@ public class Animator {
 		}
 		
 		return false;
+	}
+	
+	public void cancelAll() {
+		for (Animation<?> anim : animationMap.values()) {
+			anim.cancel();
+		}
+		
+		animationMap.clear();
 	}
 	
 	public void animate() {
