@@ -111,8 +111,11 @@ public class Vector2 {
 	}
 	
 	public double dot(Vector2 other) {
-		//return x * other.y + y * other.x;
 		return x * other.x + y * other.y;
+	}
+	
+	public double cross(Vector2 other) {
+		return x * other.y - y * other.x;
 	}
 	
 	@Override

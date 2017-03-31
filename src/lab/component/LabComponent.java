@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import draw.Drawable;
+import lab.util.Drawable;
 
 public abstract class LabComponent implements Drawable {
 	

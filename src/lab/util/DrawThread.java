@@ -1,4 +1,4 @@
-package draw;
+package lab.util;
 
 
 import javax.swing.JPanel;
