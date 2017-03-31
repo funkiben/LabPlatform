@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import lab.LabFrame;
 import lab.component.container.Beaker;
-import lab.component.container.BulbLEGACY;
+import lab.component.container.Bulb;
 import lab.component.container.ContentState;
 import lab.component.container.Flask;
 import lab.component.container.GraduatedCylinder;
@@ -29,7 +29,7 @@ public class TestLab extends LabFrame {
 	
 	private final Graph graph;
 	private final Beaker beaker;
-	private final BulbLEGACY bulbLEGACY;
+	private final Bulb bulbLEGACY;
 	private final Flask flask;
 	private final GraduatedCylinder graduatedCylinder;
 	private final Thermometer thermometer;
@@ -90,7 +90,7 @@ public class TestLab extends LabFrame {
 		graduatedCylinder.setValue(10);
 		addComponent(graduatedCylinder);
 		
-		bulbLEGACY = new BulbLEGACY(200);
+		bulbLEGACY = new Bulb(200, 200);
 		bulbLEGACY.setContentState(ContentState.SOLID);
 		bulbLEGACY.setContentColor(new Color(240, 240, 240));
 		bulbLEGACY.setValue(10);
