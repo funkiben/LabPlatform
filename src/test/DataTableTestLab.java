@@ -1,5 +1,7 @@
 package test;
 
+import java.awt.Color;
+
 import lab.LabFrame;
 import lab.component.data.DataTable;
 import lab.util.SigFig;
@@ -25,7 +27,10 @@ public class DataTableTestLab extends LabFrame {
 		//dataTable.setAll(new Double(342543));
 		//dataTable.setCell(0, 4, new Double(232));
 		//dataTable.setColumn(2, new Double(234));
-		dataTable.setRow(2, 4435345);
+		dataTable.setRow(2, 4435345.0D);
+		
+		dataTable.setRowColor(2, Color.blue);
+		dataTable.setColumnColor(2, Color.green);
 		
 		for (int i = 0; i < 5; i++) {
 			dataTable.setColumnTitle(i, "COLUMNs");
@@ -46,8 +51,7 @@ public class DataTableTestLab extends LabFrame {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }

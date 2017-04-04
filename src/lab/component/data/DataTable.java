@@ -17,6 +17,7 @@ public class DataTable<E> extends LabComponent {
 	private final int columns;
 	private final int type;
 	private final E[][] data;
+	private final Color[][] colors; // this should probably be combined into a cell class with data
 	private final String[] rowTitles;
 	private final String[] columnTitles;
 	private Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
@@ -31,6 +32,7 @@ public class DataTable<E> extends LabComponent {
 		this.type = type;
 		
 		data = (E[][]) new Comparable[columns][rows];
+		colors = new Color[columns][rows];
 		
 		rowTitles = new String[rows];
 		columnTitles = new String[columns];
@@ -55,6 +57,10 @@ public class DataTable<E> extends LabComponent {
 		data[x][y] = (E) new Integer(i);
 	}
 	
+	public void setCellColor(int x, int y, Color color) {
+		colors[x][y] = color;
+	}
+	
 	public E getCell(int x, int y) {
 		return data[x][y];
 	}
@@ -74,6 +80,12 @@ public class DataTable<E> extends LabComponent {
 	public void setAll(int i) {
 		for (int x = 0; x < columns; x++) {
 			setColumn(x, i);
+		}
+	}
+	
+	public void setAllCellColors(Color color) {
+		for (int x = 0; x < columns; x++) {
+			setColumnColor(x, color);
 		}
 	}
 	
@@ -113,6 +125,18 @@ public class DataTable<E> extends LabComponent {
 		}
 	}
 	
+	public void setRowColor(int row, Color color) {
+		for (int i = 0; i < columns; i++){
+			setCellColor(i, row, color);
+		}
+	}
+	
+	public void setRowColors(int row, Color...colors) {
+		for (int i = 0; i < columns; i++){
+			setCellColor(i, row, colors[i]);
+		}
+	}
+	
 	public void setColumn(int column, E e) {
 		for (int i = 0; i < rows; i++) {
 			setCell(column, i, e);
@@ -149,6 +173,18 @@ public class DataTable<E> extends LabComponent {
 		}
 	}
 	
+	public void setColumnColor(int column, Color color) {
+		for (int i = 0; i < rows; i++){
+			setCellColor(column, i, color);
+		}
+	}
+	
+	public void setColumnColors(int column, Color...colors) {
+		for (int i = 0; i < rows; i++){
+			setCellColor(column, i, colors[i]);
+		}
+	}
+	
 	public String getString(E e) {
 		return e.toString();
 	}
@@ -177,19 +213,34 @@ public class DataTable<E> extends LabComponent {
 		return columnTitles[column];
 	}
 	
+	private Color getColor(int x, int y) {
+		if (x >= 0 && x < columns && y >= 0 && y < rows) {
+			Color color = colors[x][y];
+			
+			if (colors[x][y] != null) {
+				return color;
+			}
+			
+		}
+			
+		return Color.black;
+	}
+	
 	@Override
 	public void draw(int x, int y, int width, int height, Graphics g) {
 		double cellWidth = 1.0 / columns * width;
 		double cellHeight = 1.0 / rows * height;
-		
-		g.setColor(Color.black);
 		
 		if (type == NO_TITLES) {
 			
 			for (int yi = 0; yi < rows; yi++) {
 				for (int xi = 0; xi < columns; xi++) {
 					
+					g.setColor(Color.black);
+					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
+
+					g.setColor(getColor(xi - 1, yi - 1));
 					
 					if (data[xi][yi] != null) {
 						drawCenteredString(g, getString(data[xi][yi]), (int) (xi * cellWidth) + x + (int) (cellWidth / 2), (int) (yi * cellHeight) + y + (int) (cellHeight / 2));
@@ -204,8 +255,12 @@ public class DataTable<E> extends LabComponent {
 			
 			for (int yi = 0; yi < rows; yi++) {
 				for (int xi = 0; xi < columns + 1; xi++) {
+
+					g.setColor(Color.black);
 					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
+
+					g.setColor(getColor(xi - 1, yi - 1));
 					
 					if (xi != 0) {
 						
@@ -229,8 +284,12 @@ public class DataTable<E> extends LabComponent {
 			
 			for (int yi = 0; yi < rows + 1; yi++) {
 				for (int xi = 0; xi < columns; xi++) {
+
+					g.setColor(Color.black);
 					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
+
+					g.setColor(getColor(xi - 1, yi - 1));
 					
 					if (yi != 0) {
 						
@@ -253,8 +312,12 @@ public class DataTable<E> extends LabComponent {
 			
 			for (int yi = 0; yi < rows + 1; yi++) {
 				for (int xi = 0; xi < columns + 1; xi++) {
+
+					g.setColor(Color.black);
 					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
+
+					g.setColor(getColor(xi - 1, yi - 1));
 					
 					if (yi != 0 && xi != 0) {
 						
