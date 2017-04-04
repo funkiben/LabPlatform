@@ -151,14 +151,14 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 		g.drawLine(x, y + height, x + width, y + height);
 		g.drawLine(x, y, x , y + height);
 		
-		g.setColor(Color.gray);
+		g.setColor(Color.black);
 		
-		if (0 > hGraduation.getStart() && 0 < hGraduation.getEnd()) {
+		if (0 >= hGraduation.getStart() && 0 <= hGraduation.getEnd()) {
 			p = HorizontalGraduation.findLinePosition(hGraduation.getEdge(), hGraduation.getBottomTick() + (int) ((double) (hRange - hGraduation.getEnd()) / hRange * width));
 			g.drawLine(p.x, p.y, p.x, p.y - height);
 		}
 		
-		if (0 > vGraduation.getStart() && 0 < vGraduation.getEnd()) {
+		if (0 >= vGraduation.getStart() && 0 <= vGraduation.getEnd()) {
 			p = VerticalGraduation.findLinePosition(vGraduation.getEdge(), vGraduation.getBottomTick() - (int) ((double) (vRange - vGraduation.getEnd()) / vRange * height));
 			g.drawLine(p.x, p.y, p.x + width, p.y);
 		}
