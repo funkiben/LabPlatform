@@ -248,7 +248,7 @@ public class DataTable<E> extends LabComponent {
 					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
 
-					g.setColor(getColor(xi - 1, yi - 1));
+					g.setColor(getColor(xi, yi));
 					
 					if (data[xi][yi] != null) {
 						drawCenteredString(g, getString(data[xi][yi]), (int) (xi * cellWidth) + x + (int) (cellWidth / 2), (int) (yi * cellHeight) + y + (int) (cellHeight / 2));
@@ -268,7 +268,7 @@ public class DataTable<E> extends LabComponent {
 					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
 
-					g.setColor(getColor(xi - 1, yi - 1));
+					g.setColor(getColor(xi - 1, yi));
 					
 					if (xi != 0) {
 						
@@ -297,7 +297,7 @@ public class DataTable<E> extends LabComponent {
 					
 					g.drawRect((int) (xi * cellWidth) + x, (int) (yi * cellHeight) + y, (int) cellWidth, (int) cellHeight);
 
-					g.setColor(getColor(xi - 1, yi - 1));
+					g.setColor(getColor(xi, yi - 1));
 					
 					if (yi != 0) {
 						

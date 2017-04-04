@@ -14,10 +14,13 @@ public class DataTableTestLab extends LabFrame {
 		new DataTableTestLab();
 	}
 	
+	
+	private final DataTable<Double> dataTable;
+	
 	public DataTableTestLab() {
 		super("Data Table Test Lab", 800, 800);
 		
-		DataTable<Double> dataTable = new DataTable<Double>(400, 400, 10, 5, DataTable.ROW_AND_COLUMN_TITLES) {
+		dataTable = new DataTable<Double>(400, 400, 10, 5, DataTable.ROW_AND_COLUMN_TITLES) {
 			@Override
 			public String getString(Double d) {
 				return SigFig.sigfigalize(d, 3);
@@ -28,9 +31,13 @@ public class DataTableTestLab extends LabFrame {
 		//dataTable.setCell(0, 4, new Double(232));
 		//dataTable.setColumn(2, new Double(234));
 		dataTable.setRow(2, 4435345.0D);
+		dataTable.setRow(1, 43.0D);
+		dataTable.setRow(0, 564.0D);
 		
 		dataTable.setRowColor(2, Color.blue);
 		dataTable.setColumnColor(2, Color.green);
+		dataTable.setRowColor(0, Color.red);
+		dataTable.setColumnColor(0, Color.yellow);
 		
 		for (int i = 0; i < 5; i++) {
 			dataTable.setColumnTitle(i, "COLUMNs");
