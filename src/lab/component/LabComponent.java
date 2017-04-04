@@ -17,7 +17,7 @@ public abstract class LabComponent implements Drawable {
 	public static final byte FREE_FORM = 0;
 	public static final byte PARAGRAPH = 1;
 	
-	private String identifier;
+	private String identifier = "";
 	private int width;
 	private int height;
 	private int offsetX = 0;
@@ -26,7 +26,7 @@ public abstract class LabComponent implements Drawable {
 	private boolean visible = true;
 	private int layout = PARAGRAPH;
 	private boolean scaleChildren = true;
-	private List<LabComponent> children = new ArrayList<LabComponent>();
+	private final List<LabComponent> children = new ArrayList<LabComponent>();
 	private LabComponent parent = null;
 	private LabComponent root = null;
 	private boolean needsChildSort = false;
