@@ -26,9 +26,9 @@ public class Vector2 {
 		this.y = y;
 	}
 	
-	public void set(Vector2 Vector2) {
-		x = Vector2.x;
-		y = Vector2.y;
+	public void set(Vector2 other) {
+		x = other.x;
+		y = other.y;
 	}
 	
 	public void set(double x, double y) {
@@ -40,16 +40,16 @@ public class Vector2 {
 		return new Vector2(this.x + x, this.y + y);
 	}
 	
-	public Vector2 add(Vector2 loc) {
-		return add(loc.getX(), loc.getY());
+	public Vector2 add(Vector2 other) {
+		return add(other.getX(), other.getY());
 	}
 	
 	public Vector2 subtract(double x, double y) {
 		return add(-x, -y);
 	}
 	
-	public Vector2 subtract(Vector2 loc) {
-		return subtract(loc.getX(), loc.getY());
+	public Vector2 subtract(Vector2 other) {
+		return subtract(other.getX(), other.getY());
 	}
 	
 	public Vector2 multiply(double m) {
@@ -71,33 +71,35 @@ public class Vector2 {
 		return new Vector2(x * c - y * s, x * s + y * c);
 	}
 	
-	public double angleBetween(Vector2 Vector2) {
-		return Math.atan2(y - Vector2.getY(), x - Vector2.getX()) * 180.0 / Math.PI;
+	public double angleBetween(Vector2 other) {
+		return Math.atan2(y - other.getY(), x - other.getX()) * 180.0 / Math.PI;
 	}
 	
 	public double angle() {
 		return Math.atan2(y, x) * 180.0 / Math.PI;
 	}
 	
-	public double distanceSqrt(Vector2 Vector2) {
-		return Math.pow(x - Vector2.getX(), 2) + Math.pow(y - Vector2.getY(), 2);
+	public double distanceSqrt(Vector2 other) {
+		double dx = x - other.getX(), dy = y = other.getY();
+		
+		return dx * dx + dy * dy;
 	}
 	
-	public double distance(Vector2 Vector2) {
-		return Math.sqrt(distanceSqrt(Vector2));
+	public double distance(Vector2 other) {
+		return Math.sqrt(distanceSqrt(other));
 	}
 	
 	public double length() {
-		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		return Math.sqrt(x * x + y * y);
 	}
 	
 	public double lengthSqrt() {
-		return Math.pow(x, 2) + Math.pow(y, 2);
+		return x * x + y * y;
 	}
 	
 	public Vector2 normalize(double length) {
-		double l = length();
-        return new Vector2((x / l) * length, (y / l) * length);
+		double l = fastInverseSqrt(x * x + y * y);
+		return new Vector2((x * l) * length, (y * l) * length);
 	}
 	
 	public Vector2 normalize() {
@@ -105,9 +107,7 @@ public class Vector2 {
 	}
 	
 	public Vector2 extend(double amount) {
-		double length = length();
-		double newLength = length + amount;
-		return new Vector2((x / length) * newLength, (y / length) * newLength);
+		return normalize(length() + amount);
 	}
 	
 	public double dot(Vector2 other) {
@@ -169,6 +169,26 @@ public class Vector2 {
 		return new Vector2(x, y);
 		
 	}
+	
+	private static float fastInverseSqrt(float x) {
+	    float xhalf = 0.5f * x;
+	    int i = Float.floatToIntBits(x);
+	    i = 0x5f3759df - (i >> 1);
+	    x = Float.intBitsToFloat(i);
+	    x *= (1.5f - xhalf * x * x);
+	    return x;
+	}
+	
+	private static double fastInverseSqrt(double x) {
+	    double xhalf = 0.5d * x;
+	    long i = Double.doubleToLongBits(x);
+	    i = 0x5fe6ec85e7de30daL - (i >> 1);
+	    x = Double.longBitsToDouble(i);
+	    x *= (1.5d - xhalf * x * x);
+	    return x;
+	}
+	
+	
 	
 	
 
