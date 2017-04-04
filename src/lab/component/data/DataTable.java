@@ -213,6 +213,14 @@ public class DataTable<E> extends LabComponent {
 		return columnTitles[column];
 	}
 	
+	public int getColumnNumber(){
+		return columns;
+	}
+	
+	public int getRowNumber(){
+		return rows;
+	}
+	
 	private Color getColor(int x, int y) {
 		if (x >= 0 && x < columns && y >= 0 && y < rows) {
 			Color color = colors[x][y];
