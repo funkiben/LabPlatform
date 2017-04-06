@@ -11,19 +11,28 @@ public class GraphDataSet {
 	private String name;
 	private boolean connectPoints;
 	private boolean showName;
-	private Color color = Color.red;
-	private List<Vector2> points = new ArrayList<Vector2>();
+	private Color color;
+	private List<Vector2> points;
 	
  	public GraphDataSet(String name, boolean connectPoints, boolean showName) {
-		this.name = name;
-		this.connectPoints = connectPoints;
-		this.showName = showName;
+		this(name, connectPoints, showName, Color.red);
+	}
+ 	
+ 	public GraphDataSet(String name, boolean connectPoints, boolean showName, Color color) {
+		this(name, connectPoints, showName, color, new ArrayList<Vector2>());
 	}
  	
  	public GraphDataSet(String name, boolean connectPoints, boolean showName, List<Vector2> points) {
-		this(name, connectPoints, showName);
-		
+		this(name, connectPoints, showName, Color.red, points);
+	}
+ 	
+ 	public GraphDataSet(String name, boolean connectPoints, boolean showName, Color color, List<Vector2> points) {
+		this.name = name;
+		this.connectPoints = connectPoints;
+		this.showName = showName;
+		this.color = color;
 		this.points = points;
+		
 	}
 
 	public String getName() {
