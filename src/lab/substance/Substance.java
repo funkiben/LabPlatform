@@ -7,27 +7,20 @@ import lab.component.container.ContentState;
 import lab.component.swing.Label;
 
 public class Substance {
+	
 	private boolean isReactant;
-	private double amount;
-	private String name; // done
-	private String units;
-
 	private Color color;
 	private ContentState state;
+	private double amount, heatOfVaporization, heatOfFusion, boilingPoint, meltingPoint, boilPressure, molarMass;
 	private GraphDataSet set;
 	private Label connectedLabel;
-
-	private double heatOfVaporization;
-	private double heatOfFusion;
-	private double boilingPoint;
-	private double meltingPoint;
-	private double boilPressure;
-	private double molarMass;
-
-	private String formula;
-
+	private String name, units, formula;
+	
 	public Substance() {
-
+		color = Color.WHITE;
+		state = ContentState.SOLID;
+		set = null;
+		connectedLabel =null;
 	}
 
 	public Substance(String name, double amount, boolean isReactant) {
