@@ -10,15 +10,23 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
-//creates a file menu at the top of a window
+/**
+ * @author James Tanner
+ * @version 1.0
+ * @since 1.0
+ */
 public class MenuComponent extends InputComponent {
 
-	// create menu bar and maps for sub menus
 	private JMenuBar menuBar;
 	private Map<String, JMenu> menu;
 	private Map<String, JMenuItem> menuItem;
 
-	// initialize menu bar and maps
+	/**
+	 * Creates a MenuComponent for a file menu.
+	 * 
+	 * @param width Specifies the width of the MenuComponent. Usually the width of the frame.
+	 * @param height Specifies the height of the MenuComponent.
+	 */
 	public MenuComponent(int width, int height) {
 		super(width, height);
 		menuBar = new JMenuBar();
@@ -26,14 +34,24 @@ public class MenuComponent extends InputComponent {
 		menuItem = new HashMap<String, JMenuItem>();
 	}
 
-	// add a menu to the menu bar
+	/**
+	 * Creates a JMenu, and adds it to the MenuComponent.
+	 * 
+	 * @param name Name of the JMenu.
+	 */
 	public void addMenu(String name) {
 		JMenu newMenu = new JMenu(name);
 		menuBar.add(newMenu);
 		menu.put(name, newMenu);
 	}
 
-	// add a menu item to the menu
+	/**
+	 * Creates a JMenuItem, and adds it to the specified JMenu.
+	 * 
+	 * @param text Text on the JMenuItem.
+	 * @param menuName Name of the JMenu to add the JMenuItem to.
+	 * @param e Detects clicks on the JMenuItem.
+	 */
 	public void addMenuItem(String text, String menuName, ActionListener e) {
 		JMenuItem newMenuItem = new JMenuItem(text);
 		newMenuItem.addActionListener(e);
@@ -41,7 +59,14 @@ public class MenuComponent extends InputComponent {
 		menuItem.put(text, newMenuItem);
 	}
 
-	// add a radio button menu item to a menu
+	/**
+	 * Creates a JRadioButtonMenuItem, and adds it to the specified JMenu.
+	 * 
+	 * @param text Text on the JRadioButtonMenuItem.
+	 * @param menuName Specifies a JMenu to add the JRadioButtonMenuItem to.
+	 * @param selected Initial selected value.
+	 * @param e Detects clicks on the JRadioButtonMenuItem.
+	 */
 	public void addRadioButtonMenuItem(String text, String menuName, boolean selected, ActionListener e) {
 		JRadioButtonMenuItem newRadioButtonMenuItem = new JRadioButtonMenuItem(text);
 		newRadioButtonMenuItem.addActionListener(e);
@@ -50,22 +75,34 @@ public class MenuComponent extends InputComponent {
 		menuItem.put(text, newRadioButtonMenuItem);
 	}
 
-	// set a menu item's text
+	/**
+	 * @param menuItemName Specifies the JMenuItem that is changing.
+	 * @param text Specifies the text on the JMenuItem.
+	 */
 	public void setMenuItemText(String menuItemName, String text) {
 		menuItem.get(menuItemName).setText(text);
 	}
 
-	// get a menu item's text
+	/**
+	 * @param menuItemName Specifies a JMenuItem.
+	 * @return The JMenuItem's text.
+	 */
 	public String getMenuItemText(String menuItemName) {
 		return menuItem.get(menuItemName).getText();
 	}
 
-	// set a radio button to selected
+	/**
+	 * @param Specifies a JRadioButtonMenuItem.
+	 * @param selected Specifies whether the JRadioButtonMenuItem is selected or not.
+	 */
 	public void setRadioButtonSelected(String menuItemName, boolean selected) {
 		menuItem.get(menuItemName).setSelected(selected);
 	}
 
-	// return if the the radio button is selected
+	/**
+	 * @param menuItemName Specifies a JRadioButtonMenuItem.
+	 * @return Returns true if the JRadioButtonMenuItem is selected.
+	 */
 	public boolean radioButtonSelected(String menuItemName) {
 		return menuItem.get(menuItemName).isSelected();
 	}
