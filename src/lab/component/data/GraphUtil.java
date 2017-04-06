@@ -6,6 +6,7 @@ import lab.util.Vector2;
 
 public class GraphUtil {
 	
+	public static double[] getLineOfBestFit(List<Vector2> points) {
 		
 		int n = points.size();
 		
