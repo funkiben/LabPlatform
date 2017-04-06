@@ -8,18 +8,32 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-//creates image component from an image file
+/**
+ * @author James Tanner
+ * @version 1.0
+ * @since 1.0
+ */
 public class ImageComponent extends LabComponent {
 
 	private final BufferedImage img;
 
-	// create image component with custom width and height
+	/**
+	 * Creates an ImageComponent with custom width and height values.
+	 * 
+	 * @param width Specifies the width of the image.
+	 * @param height Specifies the height of the image.
+	 * @param fileName Specifies the name of the image resource file.
+	 */
 	public ImageComponent(int width, int height, String fileName) {
 		super(width, height);
 		img = readImage(fileName);
 	}
 
-	// create image component with default width and height
+	/**
+	 * Creates an ImageComponent with the width and height of the image file.
+	 * 
+	 * @param fileName Specifies the name of the image resource file.
+	 */
 	public ImageComponent(String fileName) {
 		super(0, 0);
 		img = readImage(fileName);
@@ -28,8 +42,7 @@ public class ImageComponent extends LabComponent {
 			setHeight(img.getHeight());
 		}
 	}
-
-	// try to read the image
+	
 	private static BufferedImage readImage(String fileName) {
 		try {
 			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
@@ -40,6 +53,9 @@ public class ImageComponent extends LabComponent {
 		return null;
 	}
 
+	/**
+	 * @return A BufferedImage associated with this image component.
+	 */
 	public BufferedImage getImage() {
 		return img;
 	}
