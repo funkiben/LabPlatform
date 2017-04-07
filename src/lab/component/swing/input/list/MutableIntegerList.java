@@ -3,7 +3,7 @@ package lab.component.swing.input.list;
 import lab.component.swing.input.field.IntegerField;
 import lab.component.swing.input.field.TextField;
 
-public class MutableIntegerList extends PrimitiveMutableList<Integer> {
+public class MutableIntegerList extends SingleFieldMutableList<Integer> {
 
 	public MutableIntegerList(int width, int height, int min, int max) {
 		super(width, height);

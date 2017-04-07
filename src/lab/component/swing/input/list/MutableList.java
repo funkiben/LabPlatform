@@ -154,17 +154,8 @@ public abstract class MutableList<E> extends InputComponent {
 	public boolean hasFocus() {
 		return itemList.hasFocus() || addButton.hasFocus() || entryHasFocus();
 	}
-
-	class EntryFieldKeyListener extends KeyAdapter {
-		@Override
-		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_ENTER && addButton.isEnabled()) {
-				addButton.doSomething();
-			}
-		}
-	}
 	
-	class ListKeyListener extends KeyAdapter {
+	private class ListKeyListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent ev) {
 			if (ev.getKeyCode() == KeyEvent.VK_DELETE) {
@@ -175,7 +166,7 @@ public abstract class MutableList<E> extends InputComponent {
 		}
 	}
 	
-	class ListMouseListener extends MouseAdapter {
+	private class ListMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if (e.isPopupTrigger()) {
