@@ -13,7 +13,6 @@ import javax.swing.event.ListSelectionListener;
 
 import lab.component.swing.input.InputComponent;
 
-// this class is pretty much a replica of ItemList
 public abstract class ItemList<E> extends InputComponent implements ListSelectionListener {
 
 	private final JScrollPane scrollPane = new JScrollPane();

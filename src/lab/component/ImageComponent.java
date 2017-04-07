@@ -44,11 +44,20 @@ public class ImageComponent extends LabComponent {
 	}
 	
 	private static BufferedImage readImage(String fileName) {
+		InputStream is = null;
 		try {
-			InputStream is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
+			is = new BufferedInputStream(ImageComponent.class.getResourceAsStream(fileName));
 			return ImageIO.read(is);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if(is != null){
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return null;
 	}

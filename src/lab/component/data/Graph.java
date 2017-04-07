@@ -299,7 +299,7 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 						continue;
 					}
 					
-					g.drawOval((int) dx - 2, (int) dy, 4, 4);
+					g.drawOval((int) dx - 2, (int) dy - 2, 4, 4);
 					
 				}
 				

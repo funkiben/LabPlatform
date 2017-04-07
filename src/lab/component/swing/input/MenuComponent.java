@@ -75,18 +75,34 @@ public class MenuComponent extends InputComponent {
 		menuItem.put(text, newRadioButtonMenuItem);
 	}
 
+	/**
+	 * @param menuItemName Specifies the JMenuItem that is changing.
+	 * @param text Specifies the text on the JMenuItem.
+	 */
 	public void setMenuItemText(String menuItemName, String text) {
 		menuItem.get(menuItemName).setText(text);
 	}
 
+	/**
+	 * @param menuItemName Specifies a JMenuItem.
+	 * @return The JMenuItem's text.
+	 */
 	public String getMenuItemText(String menuItemName) {
 		return menuItem.get(menuItemName).getText();
 	}
 
+	/**
+	 * @param Specifies a JRadioButtonMenuItem.
+	 * @param selected Specifies whether the JRadioButtonMenuItem is selected or not.
+	 */
 	public void setRadioButtonSelected(String menuItemName, boolean selected) {
 		menuItem.get(menuItemName).setSelected(selected);
 	}
 
+	/**
+	 * @param menuItemName Specifies a JRadioButtonMenuItem.
+	 * @return Returns true if the JRadioButtonMenuItem is selected.
+	 */
 	public boolean radioButtonSelected(String menuItemName) {
 		return menuItem.get(menuItemName).isSelected();
 	}

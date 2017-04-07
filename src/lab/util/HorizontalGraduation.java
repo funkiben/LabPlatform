@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.util.List;
 
 public class HorizontalGraduation extends Graduation {
-
+	
 	public HorizontalGraduation(double start, double end, double lineIntervals, double subLineIntervals) {
 		super(start, end, lineIntervals, subLineIntervals);
 	}
@@ -47,7 +47,7 @@ public class HorizontalGraduation extends Graduation {
 				g.drawLine(p.x, p.y, p.x, (int) (p.y - lineLength));
 				
 				if (showLabels) {
-					String s = round((-range + i + end)) + (i == range ? suffix : "");
+					String s = SigFig.sigfigalize(round((-range + i + end)), sigfigs, minPowerForScientificNotation) + (i == range ? suffix : "");
 					
 					if (removePointZero) {
 						s = s.replace(".0", "");
