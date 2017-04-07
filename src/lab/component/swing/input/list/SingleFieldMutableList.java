@@ -1,8 +1,5 @@
 package lab.component.swing.input.list;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import lab.component.swing.input.field.TextField;
 
 public abstract class SingleFieldMutableList<E> extends MutableList<E> {
@@ -39,15 +36,6 @@ public abstract class SingleFieldMutableList<E> extends MutableList<E> {
 	
 	public boolean entryHasFocus() {
 		return entryField.hasFocus();
-	}
-	
-	private class EntryFieldKeyListener extends KeyAdapter {
-		@Override
-		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_ENTER && getAddButton().isEnabled()) {
-				getAddButton().doSomething();
-			}
-		}
 	}
 	
 	
