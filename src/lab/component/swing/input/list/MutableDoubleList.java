@@ -3,7 +3,7 @@ package lab.component.swing.input.list;
 import lab.component.swing.input.field.DoubleField;
 import lab.component.swing.input.field.TextField;
 
-public class MutableDoubleList extends PrimitiveMutableList<Double> {
+public class MutableDoubleList extends SingleFieldMutableList<Double> {
 
 	public MutableDoubleList(int width, int height, double min, double max) {
 		super(width, height);

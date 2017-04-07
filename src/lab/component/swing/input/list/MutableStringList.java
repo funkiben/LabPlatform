@@ -2,7 +2,7 @@ package lab.component.swing.input.list;
 
 import lab.component.swing.input.field.TextField;
 
-public class MutableStringList extends PrimitiveMutableList<String> {
+public class MutableStringList extends SingleFieldMutableList<String> {
 
 	public MutableStringList(int width, int height) {
 		super(width, height);
