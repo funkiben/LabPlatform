@@ -22,6 +22,8 @@ public abstract class Graduation implements Drawable {
 	protected int lineLength = 10;
 	protected int subLineLength = 5;
 	protected boolean removePointZero = true;
+	protected int sigfigs = 3;
+	protected int minPowerForScientificNotation = 3;
 	
 	public Graduation(double start, double end, double lineIntervals, double subLineIntervals) {
 		this.start = start;
@@ -152,6 +154,22 @@ public abstract class Graduation implements Drawable {
 	
 	public boolean canRemovePointZero() {
 		return removePointZero;
+	}
+	
+	public int getSigfigs() {
+		return sigfigs;
+	}
+
+	public void setSigfigs(int sigfigs) {
+		this.sigfigs = sigfigs;
+	}
+
+	public int getMinPowerForScientificNotation() {
+		return minPowerForScientificNotation;
+	}
+
+	public void setMinPowerForScientificNotation(int minPowerForScientificNotation) {
+		this.minPowerForScientificNotation = minPowerForScientificNotation;
 	}
 
 	public void draw(Graphics g, int width, int height) {

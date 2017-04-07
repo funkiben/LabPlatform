@@ -48,7 +48,7 @@ public class VerticalGraduation extends Graduation implements Drawable {
 				g.drawLine(p.x, p.y, (int) (p.x - lineLength), p.y);
 				
 				if (showLabels) {
-					String s = round(range - i + start) + (i == range ? suffix : "");
+					String s = SigFig.sigfigalize(round(range - i + start), sigfigs, minPowerForScientificNotation) + (i == range ? suffix : "");
 					
 					if (removePointZero) {
 						s = s.replace(".0", "");
