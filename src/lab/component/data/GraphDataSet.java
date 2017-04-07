@@ -13,6 +13,8 @@ public class GraphDataSet {
 	private boolean showName;
 	private Color color;
 	private List<Vector2> points;
+	private int nameOffsetX;
+	private int nameOffsetY;
 	
  	public GraphDataSet(String name, boolean connectPoints, boolean showName) {
 		this(name, connectPoints, showName, Color.red);
@@ -74,7 +76,23 @@ public class GraphDataSet {
 	public void setPoints(List<Vector2> points) {
 		this.points = points;
 	}
-	
+
+	public int getNameOffsetX() {
+		return nameOffsetX;
+	}
+
+	public void setNameOffsetX(int nameOffsetX) {
+		this.nameOffsetX = nameOffsetX;
+	}
+
+	public int getNameOffsetY() {
+		return nameOffsetY;
+	}
+
+	public void setNameOffsetY(int nameOffsetY) {
+		this.nameOffsetY = nameOffsetY;
+	}
+
 	public void addPoint(Vector2 point) {
 		points.add(point);
 	}
