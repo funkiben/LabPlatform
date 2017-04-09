@@ -92,6 +92,10 @@ public abstract class LabComponent implements Drawable {
 		return new ArrayList<LabComponent>(children);
 	}
 	
+	public LabComponent getChild(int index) {
+		return children.get(index);
+	}
+	
 	public LabComponent getParent() {
 		return parent;
 	}
