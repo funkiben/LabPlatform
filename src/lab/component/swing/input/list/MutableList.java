@@ -40,9 +40,12 @@ public abstract class MutableList<E> extends InputComponent {
 		addButton = new Button(60, 20, "Add") {
 			@Override
 			public void doSomething() {
-				itemList.add(getEntry());
+				E e = getEntry();
+				itemList.add(e);
 				clearEntry();
 				addButton.setEnabled(false);
+				
+				onAddValue(e);
 				
 				JScrollBar scrollBar = itemList.getJComponent().getVerticalScrollBar();
 				scrollBar.setValue(scrollBar.getMaximum());
@@ -61,6 +64,8 @@ public abstract class MutableList<E> extends InputComponent {
 		deleteMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				for (int i : itemList.getSelectedIndices()) {
+					onRemoveValue(itemList.getItemAt(i));
+					
 					itemList.remove(i);
 				}
 			}
@@ -71,6 +76,10 @@ public abstract class MutableList<E> extends InputComponent {
 
 	public List<E> getItems() {
 		return itemList.getItems();
+	}
+	
+	public int size() {
+		return itemList.size();
 	}
 
 	public void setItems(List<E> items) {
@@ -136,6 +145,14 @@ public abstract class MutableList<E> extends InputComponent {
 		return addButton;
 	}
 
+	public void onAddValue(E e) {
+		
+	}
+	
+	public void onRemoveValue(E e) {
+		
+	}
+	
 	public abstract E getEntry();
 	public abstract void clearEntry();
 	public abstract boolean entryHasFocus();

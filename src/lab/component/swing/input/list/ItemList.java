@@ -55,6 +55,10 @@ public abstract class ItemList<E> extends InputComponent implements ListSelectio
 	public E getItemAt(int index) {
 		return model.elementAt(index);
 	}
+	
+	public int size() {
+		return getItems().size();
+	}
 
 	public void setItemAt(E element, int index) {
 		model.setElementAt(element, index);
