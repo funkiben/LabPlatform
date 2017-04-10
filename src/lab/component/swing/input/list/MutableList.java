@@ -190,6 +190,8 @@ public abstract class MutableList<E> extends InputComponent {
 		public void keyPressed(KeyEvent ev) {
 			if (ev.getKeyCode() == KeyEvent.VK_DELETE) {
 				for (E e : itemList.getSelectedValues()) {
+					onRemoveValue(e);
+					
 					itemList.remove(e);
 				}
 			}
