@@ -101,6 +101,10 @@ public class GraphDataSet {
 		points.add(new Vector2(x, y));
 	}
 	
+	public void removePoint(Vector2 point) {
+		points.remove(point);
+	}
+	
 	public void clearPoints() {
 		points.clear();
 	}
