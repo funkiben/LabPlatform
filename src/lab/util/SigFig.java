@@ -20,6 +20,10 @@ public class SigFig {
 			return "0";
 		}
 		
+		if (sigfigs <= -1) {
+			return Double.toString(num);
+		}
+		
 		boolean isNegative = num < 0;
 		
 		num = Math.abs(num);

@@ -88,8 +88,18 @@ public abstract class LabComponent implements Drawable {
 		}
 	}
 	
+	public void removeChild(int...index) {
+		for (int i : index) {
+			removeChild(getChild(i));
+		}
+	}
+	
 	public List<LabComponent> getChildren() {
 		return new ArrayList<LabComponent>(children);
+	}
+	
+	public LabComponent getChild(int index) {
+		return children.get(index);
 	}
 	
 	public LabComponent getParent() {

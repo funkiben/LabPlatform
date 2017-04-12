@@ -40,9 +40,12 @@ public abstract class MutableList<E> extends InputComponent {
 		addButton = new Button(60, 20, "Add") {
 			@Override
 			public void doSomething() {
-				itemList.add(getEntry());
+				E e = getEntry();
+				itemList.add(e);
 				clearEntry();
 				addButton.setEnabled(false);
+				
+				onAddValue(e);
 				
 				JScrollBar scrollBar = itemList.getJComponent().getVerticalScrollBar();
 				scrollBar.setValue(scrollBar.getMaximum());
@@ -61,6 +64,8 @@ public abstract class MutableList<E> extends InputComponent {
 		deleteMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				for (int i : itemList.getSelectedIndices()) {
+					onRemoveValue(itemList.getItemAt(i));
+					
 					itemList.remove(i);
 				}
 			}
@@ -71,6 +76,10 @@ public abstract class MutableList<E> extends InputComponent {
 
 	public List<E> getItems() {
 		return itemList.getItems();
+	}
+	
+	public int size() {
+		return itemList.size();
 	}
 
 	public void setItems(List<E> items) {
@@ -136,6 +145,14 @@ public abstract class MutableList<E> extends InputComponent {
 		return addButton;
 	}
 
+	public void onAddValue(E e) {
+		
+	}
+	
+	public void onRemoveValue(E e) {
+		
+	}
+	
 	public abstract E getEntry();
 	public abstract void clearEntry();
 	public abstract boolean entryHasFocus();
@@ -154,28 +171,34 @@ public abstract class MutableList<E> extends InputComponent {
 	public boolean hasFocus() {
 		return itemList.hasFocus() || addButton.hasFocus() || entryHasFocus();
 	}
+	
+	protected class EntryFieldKeyListener extends KeyAdapter {
+		public EntryFieldKeyListener() {
+			
+		}
 
-	class EntryFieldKeyListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_ENTER && addButton.isEnabled()) {
-				addButton.doSomething();
+			if (e.getKeyCode() == KeyEvent.VK_ENTER && getAddButton().isEnabled()) {
+				getAddButton().doSomething();
 			}
 		}
 	}
 	
-	class ListKeyListener extends KeyAdapter {
+	private class ListKeyListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent ev) {
 			if (ev.getKeyCode() == KeyEvent.VK_DELETE) {
 				for (E e : itemList.getSelectedValues()) {
+					onRemoveValue(e);
+					
 					itemList.remove(e);
 				}
 			}
 		}
 	}
 	
-	class ListMouseListener extends MouseAdapter {
+	private class ListMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if (e.isPopupTrigger()) {
