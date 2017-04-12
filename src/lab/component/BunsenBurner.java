@@ -5,10 +5,21 @@ import java.awt.Graphics;
 
 import lab.component.fx.Flame;
 
+/**
+ * @author Benjamin Walls
+ * @version 1.0
+ * @since 1.0
+ */
 public class BunsenBurner extends LabComponent {
 
 	private final Flame flame;
 	
+	/**
+	 * Creates a BunsenBurner LabComponent with the given parameters.
+	 * 
+	 * @param width Specifies the width of the BunsenBurner.
+	 * @param height Specifies the height of the BunsenBurner.
+	 */
 	public BunsenBurner(int width, int height) {
 		super(width, height);
 		
@@ -35,6 +46,9 @@ public class BunsenBurner extends LabComponent {
 		flame.setHeight(height / 7);
 	}
 	
+	/**
+	 * @return The Flame object used by the BunsenBurner.
+	 */
 	public Flame getFlame() {
 		return flame;
 	}
