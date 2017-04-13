@@ -7,10 +7,16 @@ import lab.util.Vector2;
 
 public class Tube extends LabComponent {
 
+	/**
+	 * The default color of tubes, a nice gray color.
+	 */
 	public static final Color DEFAULT_COLOR = new Color(230, 230, 230);
 	
 	private static int diameter = 10;
 	
+	/**
+	 * @param diameter Diameter of all tubes created 
+	 */
 	public static void setDiameter(int diameter) {
 		Tube.diameter = diameter;
 	}

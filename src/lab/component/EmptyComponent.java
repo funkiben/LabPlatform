@@ -11,6 +11,7 @@ public class EmptyComponent extends LabComponent {
 
 	/**
 	 * Creates an empty LabComponent object with the given parameters.
+	 * Good for serving as a container.
 	 * 
 	 * @param width Specifies the width of the component.
 	 * @param height Specifies the height of the component.
