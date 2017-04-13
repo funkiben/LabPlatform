@@ -11,14 +11,22 @@ import javax.swing.JPanel;
 import lab.util.ClickableArea;
 import lab.util.VerticalGraduation;
 
+/**
+ * @author Benjamin Walls
+ * @version 1.0
+ * @since 1.0
+ */
 public class Piston extends GraduatedComponent {
 
 	private Color gasColor = Color.red;
-	private double gasMass = 1.0;
 	private double transparencyModifier = 1.0;
 	private ClickableArea dragArea = new ClickableArea(this);
 	private boolean canDrag = true;
 
+	/**
+	 * @param width The width of the Piston
+	 * @param height The height of the Piston
+	 */
 	public Piston(int width, int height) {
 		super(width, height);
 
@@ -34,34 +42,51 @@ public class Piston extends GraduatedComponent {
 		dragArea.setScale(false);
 	}
 
+	
+	/**
+	 * @return The color of the gas contained by the Piston.
+	 */
 	public Color getGasColor() {
 		return gasColor;
 	}
 
+	
+	/**
+	 * Use to change the color of the gas in the Piston.
+	 * 
+	 * @param gasColor The color of the gas contained by the Piston.
+	 */
 	public void setGasColor(Color gasColor) {
 		this.gasColor = gasColor;
 	}
 
-	public double getGasMass() {
-		return gasMass;
-	}
-
-	public void setGasMass(double gasMass) {
-		this.gasMass = gasMass;
-	}
-
+	/**
+	 * @return The transparency of the gas, number between 0.0 and 1.0
+	 */
 	public double getTransparencyModifier() {
 		return transparencyModifier;
 	}
 
+	/**
+	 * @param transparencyModifier A number between 0.0 and 1.0, determines how transparent the Piston's gas is.
+	 */
 	public void setTransparencyModifier(double transparencyModifier) {
 		this.transparencyModifier = transparencyModifier;
 	}
 	
+	
+	/**
+	 * @return Whether the piston's volume can be changed or not via dragging.
+	 */
 	public boolean canDrag() {
 		return canDrag;
 	}
 	
+	/**
+	 * Disables or enables the drag feature of the piston, allowing the user to change the volume or not.
+	 * 
+	 * @param canDrag Whether or not the piston's volume can be changed by the user.
+	 */
 	public void setCanDrag(boolean canDrag) {
 		this.canDrag = canDrag;
 	}
@@ -123,6 +148,10 @@ public class Piston extends GraduatedComponent {
 
 	}
 	
+	
+	/**
+	 * Override this to run code when the piston's volume is changed by the user.
+	 */
 	public void onDragged() {
 		
 	}
