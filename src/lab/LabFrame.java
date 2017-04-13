@@ -17,26 +17,6 @@ import lab.util.animation.Animator;
  * @version 1.0
  * @since 1.0
  */
-/**
- * @author lab301-user92
- *
- */
-/**
- * @author lab301-user92
- *
- */
-/**
- * @author lab301-user92
- *
- */
-/**
- * @author lab301-user92
- *
- */
-/**
- * @author lab301-user92
- *
- */
 public abstract class LabFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
