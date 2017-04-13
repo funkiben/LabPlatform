@@ -12,14 +12,18 @@ import javax.swing.JPanel;
 
 import lab.util.Drawable;
 
+/**
+ * @author Benjamin Walls
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class LabComponent implements Drawable {
 	
 	public static final byte FREE_FORM = 0;
 	public static final byte PARAGRAPH = 1;
 	
 	private String identifier = "";
-	private int width;
-	private int height;
+	private int width, height;
 	private int offsetX = 0;
 	private int offsetY = 0;
 	private int zOrder = 0;
@@ -39,45 +43,46 @@ public abstract class LabComponent implements Drawable {
 	private boolean jPanelInitCalled = false;
 	private boolean showBounds = false;
 	
+	/**
+	 * Creates a LabComponent object with the given parameters.
+	 * 
+	 * @param width Specifies the width of the LabComponent.
+	 * @param height Specifies the height of the LabComponent.
+	 */
 	public LabComponent(int width, int height) {
 		this.width = width;
 		this.height = height;
-		
 		scaleReferenceWidth = width;
 		scaleReferenceHeight = height;
-		
 	}
 	
 	private void updateRoot() {
 		root = getRoot(this);
-		
-		for (LabComponent c : children) {
+		for (LabComponent c : children)
 			c.updateRoot();
-		}
 	}
 
+	//NEED COMMENT
 	public void insertChild(int index, LabComponent...components) {
 		for (LabComponent component : components) {
 			component.parent = this;
 			component.updateRoot();
-			
 			children.add(index, component);
-			
 			needsChildSort = true;
 		}
 	}
 	
+	//NEED COMMENT
 	public void addChild(LabComponent...components) {
 		for (LabComponent component : components) {
 			component.parent = this;
 			component.updateRoot();
-			
 			children.add(component);
-			
 			needsChildSort = true;
 		}
 	}
 	
+//	NEED COMMENT
 	public void removeChild(LabComponent...components) {
 		for (LabComponent component : components) {
 			children.remove(component);
@@ -88,105 +93,158 @@ public abstract class LabComponent implements Drawable {
 		}
 	}
 	
+//	NEED COMMENT
 	public void removeChild(int...index) {
 		for (int i : index) {
 			removeChild(getChild(i));
 		}
 	}
 	
+//	NEED COMMENT
 	public List<LabComponent> getChildren() {
 		return new ArrayList<LabComponent>(children);
 	}
 	
+//	NEED COMMENT
 	public LabComponent getChild(int index) {
 		return children.get(index);
 	}
 	
+//	NEED COMMENT
 	public LabComponent getParent() {
 		return parent;
 	}
 	
+//	NEED COMMENT
 	public LabComponent getRoot() {
 		return root;
 	}
 	
+//	NEED COMMENT
 	public String getIdentifier() {
 		return identifier;
 	}
 	
+//	NEED COMMENT
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
 	
+//	NEED COMMENT
 	public void stretchToNewWidth(int width) {
 		this.width = width;
 	}
 	
+//	NEED COMMENT
 	public void stretchToNewHeight(int height) {
 		this.height = height;
 	}
 	
+	/**
+	 * Sets the width of the LabComponent.
+	 * 
+	 * @param width Specifies the width of the LabComponent.
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 		this.scaleReferenceWidth = width;
 	}
 	
+	/**
+	 * Sets the height of the LabComponent.
+	 * 
+	 * @param height Specifies the height of the LabComponent.
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 		this.scaleReferenceHeight = height;
 	}
 	
+	/**
+	 * @return The width of the LabComponent.
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * @return The height of the LabComponent.
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * @return The X offset of the LabComponent. This value depends on what type of layout the LabComponent has.
+	 */
 	public int getOffsetX() {
 		return offsetX;
 	}
 
+	/**
+	 * Specifies the X offset of the LabComponent.
+	 * 
+	 * @param offsetX The X offset of the LabComponent. This value depends on what type of layout the LabComponent has.
+	 */
 	public void setOffsetX(int offsetX) {
 		this.offsetX = offsetX;
 	}
 
+	/**
+	 * @return The Y offset of the LabComponent. This value depends on what type of layout the LabComponent has.
+	 */
 	public int getOffsetY() {
 		return offsetY;
 	}
 
+	/**
+	 * Specifies the Y offset of the LabComponent.
+	 * 
+	 * @param offsetY The Y offset of the LabComponent. This value depends on what type of layout the LabComponent has.
+	 */
 	public void setOffsetY(int offsetY) {
 		this.offsetY = offsetY;
 	}
 	
+	/**
+	 * Sets the offset in both dimensions (pixels).
+	 * 
+	 * @param offsetX Specifies the X offset of the LabComponent. This value depends on what type of layout the LabComponent has.
+	 * @param offsetY
+	 */
 	public void setOffset(int offsetX, int offsetY){
 		setOffsetX(offsetX);
 		setOffsetY(offsetY);
 	}
 	
+//	NEED COMMENT
 	public int getZOrder() {
 		return zOrder;
 	}
 
+//	NEED COMMENT
 	public void setZOrder(int zOrder) {
 		this.zOrder = zOrder;
-		
-		if (parent != null) {
+		if (parent != null)
 			parent.needsChildSort = true;
-		}
 	}
 	
+	/**
+	 * @return Whether or not the LabComponent is visible.
+	 */
 	public boolean isVisible() {
 		return visible;
 	}
 
+	/**
+	 * Sets a LabComponent and its children visible.
+	 * 
+	 * @param visible Specifies the visibility of the LabComponent and its children.
+	 */
 	public void setVisible(boolean visible) {
 		this.visible = visible;
-		
-		for (LabComponent child : children) {
+		for (LabComponent child : children)
 			child.setVisible(visible);
-		}
 	}
 	
 	public int getLayout() {
