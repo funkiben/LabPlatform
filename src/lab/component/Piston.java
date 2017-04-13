@@ -109,6 +109,7 @@ public class Piston extends GraduatedComponent {
 	
 			if (dragArea.hasClick()) {
 				setValue(range - (double) (dragArea.getMousePosition().y - y) / height * range);
+				onDragged();
 			}
 		}
 
@@ -120,6 +121,10 @@ public class Piston extends GraduatedComponent {
 			setValue(0);
 		}
 
+	}
+	
+	public void onDragged() {
+		
 	}
 
 	@Override
