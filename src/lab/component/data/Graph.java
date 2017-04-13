@@ -194,11 +194,13 @@ public class Graph extends LabComponent implements MouseListener, MouseMotionLis
 					boolean prevXOut = pdx < x || pdx > x + width;
 					boolean currentXOut = dx < x || dx > x + width;
 					
+					/*
 					if ((prevXOut || prevYOut) && (currentXOut || currentYOut)) {
 						pdx = dx;
 						pdy = dy;
 						continue;
 					}
+					*/
 					
 					Point iTop = getLineIntersectionPoint(x, y, x + width, y, 						dx, dy, pdx, pdy);
 					Point iBottom = getLineIntersectionPoint(x, y + height, x + width, y + height, 	dx, dy, pdx, pdy);
