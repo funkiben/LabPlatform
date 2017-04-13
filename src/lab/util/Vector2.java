@@ -1,69 +1,153 @@
 package lab.util;
 
+/**
+ * @author Benjamin Walls
+ * @version 1.0
+ * @since 1.0
+ */
 public class Vector2 {
 
-	private double x;
-	private double y;
+	private double x, y;
 	
+	/**
+	 * Creates a two dimensional vector with the given a and y values.
+	 * 
+	 * @param x Specifies the x value of the vector.
+	 * @param y Specifies the y value of the vector.
+	 */
 	public Vector2(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 
+	/**
+	 * @return The x value of the vector.
+	 */
 	public double getX() {
 		return x;
 	}
 	
+	/**
+	 * @return The y value of the vector.
+	 */
 	public double getY() {
 		return y;
 	}
 	
+	/**
+	 * Sets the x value of the vector.
+	 * 
+	 * @param x The x value of the vector.
+	 */
 	public void setX(double x) {
 		this.x = x;
 	}
 	
+	/**
+	 * Sets the y value of the vector.
+	 * 
+	 * @param y The y value of the vector.
+	 */
 	public void setY(double y) {
 		this.y = y;
 	}
 	
+	/**
+	 * Sets the vector equal to another vector.
+	 * 
+	 * @param other The other vector.
+	 */
 	public void set(Vector2 other) {
 		x = other.x;
 		y = other.y;
 	}
 	
+	/**
+	 * Sets the x and y values of the vector.
+	 * 
+	 * @param x The x value of the vector.
+	 * @param y The y value of the vector.
+	 */
 	public void set(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 	
+	/**
+	 * Adds the given components to the vector.
+	 * 
+	 * @param x The x value to be added to the vector's x value.
+	 * @param y The y value to be added to the vector's y value.
+	 * @return The resulting vector after the addition.
+	 */
 	public Vector2 add(double x, double y) {
 		return new Vector2(this.x + x, this.y + y);
 	}
 	
+	/**
+	 * Adds another vector to the vector.
+	 * 
+	 * @param other The other vector.
+	 * @return The resulting vector after the addition.
+	 */
 	public Vector2 add(Vector2 other) {
 		return add(other.getX(), other.getY());
 	}
 	
+	/**
+	 * Subtracts the given components from the vector.
+	 * 
+	 * @param x The x value to be subtracted from the vector's x value.
+	 * @param y The y value to be subtracted from the vector's y value.
+	 * @return The resulting vector after the subtraction.
+	 */
 	public Vector2 subtract(double x, double y) {
 		return add(-x, -y);
 	}
 	
+	/**
+	 * Subtracts a given vector from the vector.
+	 * 
+	 * @param other A vector to subtract from the vector.
+	 * @return The resulting vector after the subtraction.
+	 */
 	public Vector2 subtract(Vector2 other) {
 		return subtract(other.getX(), other.getY());
 	}
 	
+	/**
+	 * Multiplies the vector by the given value.
+	 * 
+	 * @param m The value to multiply the vector by.
+	 * @return The resulting vector after multiplication.
+	 */
 	public Vector2 multiply(double m) {
 		return new Vector2(x * m, y * m);
 	}
 	
+	/**
+	 * Divides the vector by the given value.
+	 * 
+	 * @param d The value to divide the vector by.
+	 * @return The resulting vector after division.
+	 */
 	public Vector2 divide(double d) {
 		return multiply(1 / d);
 	}
 	
+	/**
+	 * @return Whether or not the x and y values of the vector are zero.
+	 */
 	public boolean isZero() {
 		return x == 0 && y == 0;
 	}
 	
+	/**
+	 * Rotates the vector by the given number of degrees.
+	 * 
+	 * @param deg Specifies the number of degrees to rotate the vector by.
+	 * @return The resulting vector after rotation.
+	 */
 	public Vector2 rotate(double deg) {
 		deg = Math.toRadians(deg);
 		double s = Math.sin(deg);
@@ -170,15 +254,6 @@ public class Vector2 {
 		
 	}
 	
-	private static float fastInverseSqrt(float x) {
-	    float xhalf = 0.5f * x;
-	    int i = Float.floatToIntBits(x);
-	    i = 0x5f3759df - (i >> 1);
-	    x = Float.intBitsToFloat(i);
-	    x *= (1.5f - xhalf * x * x);
-	    return x;
-	}
-	
 	private static double fastInverseSqrt(double x) {
 	    double xhalf = 0.5d * x;
 	    long i = Double.doubleToLongBits(x);
@@ -187,9 +262,4 @@ public class Vector2 {
 	    x *= (1.5d - xhalf * x * x);
 	    return x;
 	}
-	
-	
-	
-	
-
 }
