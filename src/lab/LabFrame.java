@@ -17,6 +17,26 @@ import lab.util.animation.Animator;
  * @version 1.0
  * @since 1.0
  */
+/**
+ * @author lab301-user92
+ *
+ */
+/**
+ * @author lab301-user92
+ *
+ */
+/**
+ * @author lab301-user92
+ *
+ */
+/**
+ * @author lab301-user92
+ *
+ */
+/**
+ * @author lab301-user92
+ *
+ */
 public abstract class LabFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -27,12 +47,12 @@ public abstract class LabFrame extends JFrame {
 	private final LabComponent root;
 	
 	/**
-	 * Creates a JFrame window with the given parameters.
+	 * Creates a new LabFrame window with the given parameters.
 	 * 
 	 * @param name Specifies the name of the JFrame.
 	 * @param width Specifies the width of the JFrame.
 	 * @param height Specifies the height of the JFrame.
-	 * @param startOpen Specifies whether the frame is visible when the class that creates it starts running.
+	 * @param startOpen Specifies whether the frame is automatically opened after instantiation.
 	 */
 	public LabFrame(String name, int width, int height, boolean startOpen) {
 		setSize(width, height);
@@ -85,6 +105,7 @@ public abstract class LabFrame extends JFrame {
 	
 	/**
 	 * Gets the JPanel which the frame draws on.
+	 * For adding Swing components to the frame.
 	 * 
 	 * @return The JPanel which the frame draws on.
 	 */
@@ -111,26 +132,20 @@ public abstract class LabFrame extends JFrame {
 	}
 	
 	/**
-	 * @return The root LabComponent.
+	 * @return The root LabComponent, parent of all LabComponent's in the frame.
 	 */
 	public LabComponent getRoot() {
 		return root;
 	}
 	
 	/**
-	 * @return The animator used in drawing the frame.
+	 * @return An animator used by the LabFrame, can be used to animate components.
 	 */
 	public Animator getAnimator() {
 		return animator;
 	}
 	
-	/**
-	 * Draws LabComponents on the JFrame.
-	 *
-	 * @param g The graphics object used in drawing.
-	 * @param overMaxFPS Specifies whether or not the frame has exceeded the maximum frames per second.
-	 */
-	public void draw(Graphics g, boolean overMaxFPS) {
+	private void draw(Graphics g, boolean overMaxFPS) {
 		if (!started) return;
 		
 		if (!overMaxFPS) {
@@ -142,7 +157,7 @@ public abstract class LabFrame extends JFrame {
 	}
 	
 	/**
-	 * The update method that is called whenever the frame refreshes.
+	 * The update method runs every frame at the specified FPS.
 	 */
 	public abstract void update();
 	
